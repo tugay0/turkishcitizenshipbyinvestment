@@ -513,6 +513,30 @@
       "url": null,
       "verification": "official_reference_located",
       "lastChecked": "2026-11-11"
+    },
+    {
+      "id": "law-2577",
+      "kind": "statute",
+      "titleTr": "Idari Yargilama Usulu Kanunu",
+      "titleTrNative": "İdari Yargılama Usulü Kanunu",
+      "titleEn": "Code of Administrative Procedure",
+      "number": "2577",
+      "adopted": "1982-01-06",
+      "resmiGazete": {
+        "date": "1982-01-20",
+        "issue": "17580"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "articlesUsed": [
+        {
+          "article": "general",
+          "subject": "Forum, time limits and stay of execution for a challenge to an administrative act, including a decision annulling or withdrawing a grant of citizenship under Law No. 5901 arts. 31 and 40"
+        }
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-11",
+      "note": "Entered to support the annulment and withdrawal page. The specific time limit and forum for a challenge are not yet stated on that page: see the open question below."
     }
   ],
   "datasetSourceMap": {
@@ -576,6 +600,10 @@
     "Sources disagree on the validity period of the appraisal report underlying the Tutar Tespit Belgesi. The 2026-09-28 amendment to circular 2024/4 is reported to set the window between the Tutar Tespit Belgesi and the citizenship application at 12 months, which may be the origin of the disagreement, but the circular text has not been read.",
     "Which sub-paragraphs of Regulation Art. 20(2) the Art. 20(10) lira-conversion requirement reaches. Ra Legal's deposit guide states (b), (c-cedilla), (d) and (e); only the bank deposit is recorded as settled in investment-thresholds.json. Counsel to confirm.",
     "The series in data/investment-returns.json have no entries in this register. Borsa Istanbul index levels, TCMB deposit rates and the TCMB residential property price index each need a dated entry with a URL and a retrieval date before a figure from that file can be cited the way a legal figure can.",
-    "The lira gram gold price series in data/investment-returns.json has no identified publication at all."
+    "The lira gram gold price series in data/investment-returns.json has no identified publication at all.",
+    "The forum, the time limit and the availability of a stay of execution for a challenge to a decision annulling (Law No. 5901 art. 31) or withdrawing (art. 40) a grant of citizenship. Law No. 2577 is now in the register but the applicable provisions have not been read against these decisions, so the annulment page states the gap rather than an answer.",
+    "Four instruments are relied on in prose without register entries, because their Resmi Gazete date and issue could not be confirmed against an official text: Law No. 2575 (Danistay Kanunu), Law No. 6735 (Uluslararasi Isgucu Kanunu, needed to say properly that a residence permit is not a work permit), Law No. 1512 (Noterlik Kanunu, which carries the sworn translation and notarial step), and Law No. 5237 (Turk Ceza Kanunu, referenced only to separate administrative measures from criminal liability).",
+    "The HCCH competent-authority listing, which is a different table from the status table indexed as hcch-1961. Without it the legalisation page cannot name the authorities that issue an apostille in Turkiye.",
+    "Law No. 6458 sits at official_reference_located rather than official_text_located. Re-reading arts. 31(1) and 31(2) in the consolidated text would close two open paragraphs on the residence permit page at once, including the duration of a grant on the investor ground."
   ]
 }

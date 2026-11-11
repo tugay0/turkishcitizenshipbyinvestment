@@ -39,6 +39,27 @@ const PAGES = [
       'Extended from one year to three in 2022, and still published as one year across much of the market. The one error on this subject with a directly calculable price.',
     tag: 'VAT Law art. 13(1)(i), Law No. 7394',
   },
+  {
+    href: '/law/residence-permit',
+    title: 'The short-term residence permit on the investor ground',
+    blurb:
+      'Why a programme with no residence requirement runs through a residence permit, why it is granted on the certificate of conformity and so cannot come first, and how the investor ground differs from the property-owner, business and tourism grounds.',
+    tag: 'Law No. 6458 art. 31(1)(j)',
+  },
+  {
+    href: '/law/annulment-and-withdrawal',
+    title: 'Annulment and withdrawal of a citizenship decision',
+    blurb:
+      'Two powers constantly treated as one. Annulment under art. 31 turns on the applicant\u2019s own false declaration; withdrawal under art. 40 turns on the conditions never having been met and asks nothing about fault, which is where an investor with an inflated valuation is actually exposed.',
+    tag: 'Law No. 5901 arts. 31, 33 and 40',
+  },
+  {
+    href: '/law/legalisation',
+    title: 'Apostille and consular legalisation, with the status table',
+    blurb:
+      'The complete Hague 1961 status table, 130 Contracting Parties with the date the Convention entered into force for each, the consular chain for non-parties, and the acceded-but-not-yet-in-force case a yes-or-no field gets wrong.',
+    tag: 'Hague Convention of 5 October 1961',
+  },
 ];
 
 /* The register, rendered so a reader can see the whole framework at once
@@ -63,30 +84,30 @@ const schema = [
 ---
 
 <Base title={title} description={description} path={PATH} schema={schema}>
-  <div class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <div class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / The law
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+    <header class="page-head mt-7">
+      <h1>
         The instruments
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+      <p class="deck">
         The programme rests on one clause of one statute and one article of one regulation. The
         clause creates a discretionary power and names no figure; the article carries every
         threshold, every holding period and the conversion requirement. Everything else is tax,
         fees, residence and legalisation.
       </p>
-      <p class="mt-4 max-w-2xl leading-relaxed text-ink-soft">
+      <p class="deck">
         That division matters in practice. Because the figures sit in secondary legislation, they
         move by decision rather than by legislation, and a practitioner reading only the Law will
         not find a single number that governs a file.
       </p>
     </header>
 
-    <section class="mt-12">
-      <h2 class="ui-label text-ink-faint">Annotated</h2>
+    <section class="mt-14 border-t border-line-strong pt-7">
+      <h2 class="section-head">Annotated</h2>
       <div class="mt-5 divide-y rule border-y rule">
         {PAGES.map((p) => (
           <article class="py-6">
@@ -100,8 +121,8 @@ const schema = [
       </div>
     </section>
 
-    <section class="mt-14">
-      <h2 class="ui-label text-ink-faint">The whole framework, as a register</h2>
+    <section class="mt-14 border-t border-line-strong pt-7">
+      <h2 class="section-head">The whole framework, as a register</h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-ink-soft">
         Every statute, regulation and amending instrument this site relies on, with its Resmî
         Gazete date and issue and how far we got in confirming it. "Official text located" means
@@ -152,14 +173,16 @@ const schema = [
       </p>
     </section>
 
-    <section class="mt-14 max-w-2xl">
-      <h2 class="ui-label text-ink-faint">Not yet written</h2>
+    <section class="mt-14 max-w-[36rem] border-t border-line-strong pt-7">
+      <h2 class="section-head">Not yet written</h2>
       <p class="mt-3 leading-relaxed text-ink-soft">
-        Pages on the residence permit ground in Law No. 6458 art. 31(1)(j), the fee tariffs under
-        Law No. 492, the annulment and withdrawal powers in arts. 31 and 40 of Law No. 5901, and
-        the legalisation framework under the 1961 Hague Convention are in preparation. The
-        instruments are already in the register above, and the apostille status table is already
-        published as <a href="/data" class="underline decoration-cite-soft">data</a>.
+        A page on the fee tariffs under Law No. 492 is in preparation. Beyond that, the honest
+        gaps are not missing pages but unfinished verification: four instruments are relied on in
+        prose without register entries because their Resmî Gazete details could not be confirmed
+        against an official text, and the forum and time limit for challenging an annulment are
+        not yet stated. Both are recorded as
+        <a href="/data#open-questions" class="underline decoration-cite-soft">open questions</a>
+        rather than answered from memory.
       </p>
       <p class="mt-3 leading-relaxed text-ink-soft">
         If you practise in this area and something here is wrong, or an instrument is missing,

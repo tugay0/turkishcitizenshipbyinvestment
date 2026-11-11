@@ -72,22 +72,22 @@ const schema = [
 ---
 
 <Base title={title} description={description} path={PATH} schema={schema}>
-  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / Practitioners
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+    <header class="page-head mt-7">
+      <h1>
         The practitioner register
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+      <p class="deck">
         A register of firms doing this work, describing each by the same typed facts. Entry is
         free, unpaid and not purchasable, and there is no tier above it. The criteria are published
         here before the entries, so that a firm can see exactly what it will be recorded as and a
         reader can see exactly what has been checked.
       </p>
-      <p class="font-ui mt-5 text-[0.8125rem] text-cite">{SITE.independence}</p>
+      <p class="page-meta">{SITE.independence}</p>
     </header>
 
     <div class="prose-ref mt-12">

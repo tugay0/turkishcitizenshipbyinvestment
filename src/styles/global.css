@@ -1,165 +1,537 @@
 @import 'tailwindcss';
 
 /*
- * A reference work, so the page is set like one: a serif for running text at a
- * size meant for sustained reading, a measure that stays near 70 characters,
- * and marginal notes rather than call-out boxes. Deliberately unlike
- * ralegal.com.tr, which is a firm's site and reads like one. A reader who
- * knows both should not mistake this for marketing.
+ * The design of a journal of record.
+ *
+ * A reference work is still a publication, and a publication has a face. The
+ * rules here are the ones a well-set law review or a long-form newspaper uses:
+ * a masthead that announces what the thing is, one institutional colour used
+ * structurally rather than decoratively, a text column at a readable measure
+ * with the margin kept for apparatus, tables set like printed statistical
+ * tables, and every statutory reference in a monospaced face so a citation
+ * reads as data rather than as prose.
+ *
+ * Three faces, each with one job. Newsreader carries running text and the
+ * display sizes; its optical-size axis means the masthead and the body come
+ * from the same family without the masthead looking like body text enlarged.
+ * IBM Plex Sans carries labels, navigation and table matter. IBM Plex Mono
+ * carries instrument citations, article numbers and section marks.
  */
 
 @theme {
-  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Charter, Georgia, 'Times New Roman', serif;
-  --font-ui: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader Variable', Newsreader, Charter, Georgia, 'Times New Roman', serif;
+  --font-ui: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Paper and ink. Warm, low-contrast, closer to a printed page than a screen. */
-  --color-paper: #fbfaf7;
-  --color-paper-deep: #f3f1ea;
-  --color-ink: #1c1b18;
-  --color-ink-soft: #3c3a35;
-  --color-ink-faint: #6e6a61;
-  --color-line: #ddd8cc;
-  /* One accent, used for citations and instrument references only. */
-  --color-cite: #7a4a1e;
-  --color-cite-soft: #b08a5e;
-  --color-flag: #8a2f22;
+  /* Paper. Warm cream with two deeper steps for panels and bands. */
+  --color-paper: #faf8f2;
+  --color-paper-tint: #f5f2e8;
+  --color-paper-deep: #efebdd;
+
+  /* Ink. Warm near-black, then two steps down for secondary matter. */
+  --color-ink: #17160f;
+  --color-ink-soft: #3d3a30;
+  --color-ink-faint: #6b6557;
+
+  --color-line: #ddd6c4;
+  --color-line-strong: #a9a18a;
+
+  /*
+   * Claret is the publication's colour. It marks structure and identity: the
+   * bar at the head of the page, the rule above a title, section marks, the
+   * current section in the navigation, the head rule of every table, and
+   * every instrument citation. It is never used as decoration.
+   */
+  --color-cite: #8c1d2f;
+  --color-cite-soft: #c6969c;
+  --color-cite-wash: #f6ebe9;
+
+  /*
+   * Ochre marks what is not settled: an unconfirmed figure, an open question,
+   * a claim the source register could not close. It is a caution, not an
+   * error, and it is deliberately a different temperature from claret.
+   */
+  --color-flag: #8a5406;
+  --color-flag-wash: #f7eeda;
 
   --spacing-gutter: 1.25rem;
-}
 
-@media (min-width: 48rem) {
-  @theme {
-    --spacing-gutter: 2rem;
-  }
+  /*
+   * The text measure, and the width of the shell. Running text stays at the
+   * measure; a table is allowed the whole shell, which is what the rest of
+   * the width is for. Nothing is clipped to keep a column looking tidy.
+   */
+  --measure: 35rem;
+  --page: 58rem;
 }
 
 :root {
   color-scheme: light;
+  --spacing-gutter: 1.25rem;
+}
+@media (min-width: 48rem) {
+  :root {
+    --spacing-gutter: 2rem;
+  }
+}
+
+/*
+ * A long citation or bare URL wraps rather than pushing the page sideways.
+ * Every page here ends with a "cite as" line carrying a full URL, so this is
+ * load-bearing rather than defensive.
+ */
+body {
+  overflow-wrap: break-word;
+}
+code {
+  overflow-wrap: anywhere;
 }
 
 html {
   scroll-behavior: smooth;
-  /* An anchored heading should not land flush against the viewport edge. */
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 2rem;
 }
 
 body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1.125rem;
+  line-height: 1.62;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Rules are hairlines. */
+::selection {
+  background: var(--color-cite-wash);
+}
+
+/* The page shell. Every page sits in one of these. */
+.shell {
+  margin-inline: auto;
+  max-width: var(--page);
+  padding-inline: var(--spacing-gutter);
+}
+
 .rule {
   border-color: var(--color-line);
 }
 
-.ui-label {
+.font-mono-ref {
+  font-family: var(--font-mono);
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.topbar {
+  height: 4px;
+  background: var(--color-cite);
+}
+
+.masthead {
+  background: var(--color-paper-tint);
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+.masthead-standing {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+@media (min-width: 30rem) {
+  .masthead-standing {
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+  }
+}
+
+.masthead-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 0.9rem + 2.6vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+}
+.masthead-name:hover {
+  color: var(--color-cite);
+}
+
+.masthead-sub {
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+@media (min-width: 40rem) {
+  .masthead-sub {
+    font-size: 0.6875rem;
+  }
+}
+
+/* The navigation row, between a strong rule above and a double rule below. */
+.mastnav {
+  border-top: 1px solid var(--color-line-strong);
+  box-shadow: 0 3px 0 -2px var(--color-line);
+}
+.mastnav a {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  padding-block: 0.1em;
+  border-bottom: 2px solid transparent;
+}
+.mastnav a:hover {
+  color: var(--color-cite);
+}
+.mastnav a[aria-current='page'] {
+  color: var(--color-cite);
+  font-weight: 600;
+  border-bottom-color: var(--color-cite);
+}
+
+/* ------------------------------------------------------------- page opener */
+
+.crumbs {
   font-family: var(--font-ui);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
+  font-weight: 500;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+.crumbs a:hover {
+  color: var(--color-cite);
+}
+
+.page-head h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.1rem + 3.4vw, 3.25rem);
+  line-height: 1.07;
+  letter-spacing: -0.021em;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+/* The claret bar above a title. One identity mark, on every page. */
+.page-head h1::before {
+  content: '';
+  display: block;
+  width: 3.25rem;
+  height: 3px;
+  background: var(--color-cite);
+  margin-bottom: 1.1rem;
+}
+.page-head .deck {
+  font-size: 1.1875rem;
+  line-height: 1.58;
+  color: var(--color-ink-soft);
+  max-width: var(--measure);
+  margin-top: 1.25rem;
+}
+@media (min-width: 48rem) {
+  .page-head .deck {
+    font-size: 1.25rem;
+  }
+}
+.page-head .page-meta {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--color-ink-faint);
+  max-width: var(--measure);
+  margin-top: 1.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-line);
+}
+.page-head .page-meta a {
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--color-cite-soft);
+  text-underline-offset: 0.2em;
+}
+.page-head .page-meta a:hover {
+  color: var(--color-cite);
+}
+
+/* -------------------------------------------------------------- body text */
+
+/*
+ * Running text sits at the measure. Tables, figures and anything else that
+ * needs room is allowed the full width of the shell, which is what the right
+ * side of the page is for. Nothing is clipped to make a column look tidy.
+ */
+.prose-ref {
+  counter-reset: sec;
+  position: relative;
+}
+.prose-ref > * + * {
+  margin-top: 1.15em;
+}
+.prose-ref > p,
+.prose-ref > ul,
+.prose-ref > ol,
+.prose-ref > h3,
+.prose-ref > h4,
+.prose-ref > blockquote,
+.prose-ref > dl {
+  max-width: var(--measure);
+}
+
+.prose-ref h2 {
+  counter-increment: sec;
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  color: var(--color-ink);
+  max-width: var(--measure);
+  margin-top: 3.5rem;
+  padding-top: 1.45rem;
+}
+/* The rule above a section aligns with the text column it introduces. */
+.prose-ref h2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-line-strong);
+}
+/* The section mark goes in the margin once there is a margin to put it in. */
+@media (min-width: 82rem) {
+  .prose-ref h2::before {
+    content: '\00a7\00a0' counter(sec, decimal-leading-zero);
+    position: absolute;
+    left: -5.25rem;
+    top: 1.55rem;
+    width: 4.25rem;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-cite);
+  }
+}
+.prose-ref h2:first-child {
+  margin-top: 0.5rem;
+}
+
+.prose-ref h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+  margin-top: 2.1rem;
 }
 
 /*
- * Running text. Sized and spaced for a reader working through an argument,
- * not scanning a landing page.
+ * The smallest heading. Set in the sans at reading size rather than in small
+ * capitals: most of the h4s on this site are whole questions, and a sentence
+ * in capitals is slower to read than one that is not.
  */
-.prose-ref {
-  max-width: 38rem;
-}
-.prose-ref > * + * {
-  margin-top: 1.1em;
-}
-.prose-ref h2 {
-  font-family: var(--font-ui);
-  font-size: 0.8125rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-faint);
-  margin-top: 2.75em;
-  padding-bottom: 0.4em;
-  border-bottom: 1px solid var(--color-line);
-}
-.prose-ref h3 {
-  font-size: 1.1875rem;
-  font-weight: 600;
-  margin-top: 2em;
-  line-height: 1.35;
-}
 .prose-ref h4 {
   font-family: var(--font-ui);
   font-size: 0.9375rem;
   font-weight: 600;
-  margin-top: 1.6em;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--color-ink);
+  margin-top: 2rem;
 }
-.prose-ref a {
+
+.prose-ref a,
+.linked {
   color: var(--color-ink);
   text-decoration: underline;
   text-decoration-color: var(--color-cite-soft);
-  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.19em;
 }
-.prose-ref a:hover {
+.prose-ref a:hover,
+.linked:hover {
   color: var(--color-cite);
+  text-decoration-color: var(--color-cite);
 }
+
 .prose-ref ul,
 .prose-ref ol {
-  padding-left: 1.4em;
+  padding-left: 1.3em;
 }
 .prose-ref ul {
   list-style: disc;
+}
+.prose-ref ul::marker,
+.prose-ref li::marker {
+  color: var(--color-cite-soft);
 }
 .prose-ref ol {
   list-style: decimal;
 }
 .prose-ref li + li {
-  margin-top: 0.4em;
-}
-.prose-ref code {
-  font-size: 0.875em;
-  background: var(--color-paper-deep);
-  padding: 0.1em 0.3em;
-  border-radius: 2px;
-}
-.prose-ref blockquote {
-  border-left: 2px solid var(--color-cite-soft);
-  padding-left: 1.1em;
-  color: var(--color-ink-soft);
-  font-style: italic;
+  margin-top: 0.45em;
 }
 
-/* Tables are data, so they get the UI face and room to breathe. */
+.prose-ref code {
+  font-family: var(--font-mono);
+  font-size: 0.8125em;
+  background: var(--color-paper-deep);
+  padding: 0.15em 0.35em;
+  border-radius: 2px;
+}
+
+.prose-ref blockquote {
+  border-left: 3px solid var(--color-cite);
+  padding-left: 1.2em;
+  color: var(--color-ink-soft);
+}
+
+/* ------------------------------------------------------------ editorial ---*/
+
+/*
+ * A finding. The one or two sentences on a page that a practitioner would
+ * quote back. Set large, with the publication's colour on the rule.
+ */
+.finding {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.42;
+  letter-spacing: -0.008em;
+  color: var(--color-ink);
+  border-left: 3px solid var(--color-cite);
+  padding-left: 1.4rem;
+  max-width: 34rem;
+  margin-block: 2rem;
+}
+
+/* A panel: a block of apparatus lifted off the page onto sand. */
+.panel {
+  background: var(--color-paper-deep);
+  border-top: 2px solid var(--color-cite);
+  padding: 1.35rem 1.4rem 1.5rem;
+}
+
+.panel-label,
+.ui-label {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.panel-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--color-cite);
+}
+
+/*
+ * A numbered card. Used where the page carries a short list of findings that
+ * each stand on their own, and where a bullet would undersell them.
+ */
+.numbered {
+  position: relative;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--color-line-strong);
+}
+.numbered > .n {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-cite);
+  margin-bottom: 0.45rem;
+}
+
+/* A section heading used outside .prose-ref, on index pages. */
+.section-head {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  color: var(--color-ink);
+}
+
+/* An eyebrow above a standalone section. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-cite);
+}
+
+/* ---------------------------------------------------------------- tables --*/
+
+/*
+ * Set like a printed statistical table: a claret rule over the head, a rule
+ * under it, a closing rule at the foot, no vertical rules anywhere, and
+ * lining figures on a fixed advance so a column of money reads as a column.
+ */
 .prose-ref table,
 .ref-table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-ui);
-  font-size: 0.875rem;
-  margin-top: 1.4em;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  margin-top: 1.5em;
 }
 .prose-ref table th,
 .ref-table th {
   text-align: left;
   font-weight: 600;
-  font-size: 0.6875rem;
-  letter-spacing: 0.07em;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-ink-faint);
-  border-bottom: 1px solid var(--color-ink);
-  padding: 0 0.7rem 0.5rem 0;
+  color: var(--color-cite);
+  border-top: 2px solid var(--color-cite);
+  border-bottom: 1px solid var(--color-line-strong);
+  padding: 0.6rem 0.85rem 0.5rem 0;
   vertical-align: bottom;
+  white-space: nowrap;
 }
 .prose-ref table td,
 .ref-table td {
   border-bottom: 1px solid var(--color-line);
-  padding: 0.6rem 0.7rem 0.6rem 0;
+  padding: 0.65rem 0.85rem 0.65rem 0;
   vertical-align: top;
+}
+.prose-ref table tbody tr:last-child td,
+.ref-table tbody tr:last-child td {
+  border-bottom: 2px solid var(--color-line-strong);
+}
+/* With a foot, the closing rule belongs under the foot, not over it. */
+.ref-table tbody:has(+ tfoot) tr:last-child td {
+  border-bottom: 1px solid var(--color-line);
+}
+.ref-table tfoot tr:first-child td {
+  border-top: 2px solid var(--color-line-strong);
+}
+.ref-table tfoot tr:last-child td {
+  border-bottom: 2px solid var(--color-line-strong);
+}
+.prose-ref table tbody tr:hover,
+.ref-table tbody tr:hover {
+  background: var(--color-paper-tint);
 }
 .prose-ref table th:last-child,
 .prose-ref table td:last-child,
@@ -167,49 +539,153 @@ body {
 .ref-table td:last-child {
   padding-right: 0;
 }
-
-/* A table wider than the measure scrolls on its own, never the page. */
-.scroll-x {
-  overflow-x: auto;
+.ref-table a,
+.prose-ref table a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-cite-soft);
+  text-underline-offset: 0.17em;
+}
+.ref-table a:hover,
+.prose-ref table a:hover {
+  color: var(--color-cite);
 }
 
 /*
- * A marginal note. On a wide screen it sits in the margin beside the text it
- * annotates, which is how a reference work handles an aside; narrow, it
- * becomes an indented note in the flow.
+ * A table wider than the page scrolls inside its own box, and says so: the
+ * shadows at the edges appear only while there is more table to the side.
+ */
+/*
+ * Below the measure a table is given a floor width before it is allowed to
+ * scroll. Without one, a column holding a sentence collapses to a ribbon two
+ * words wide and the row grows to a dozen lines, which is how a dense table
+ * ends up looking broken on a phone rather than merely wide.
+ */
+@media (max-width: 56rem) {
+  .scroll-x > table {
+    min-width: 42rem;
+  }
+}
+
+.scroll-x {
+  overflow-x: auto;
+  background:
+    linear-gradient(to right, var(--color-paper) 40%, transparent) left center / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--color-paper) 40%, transparent) right center / 2.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgba(23, 22, 15, 0.22), transparent) left center / 1.1rem 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgba(23, 22, 15, 0.22), transparent) right center / 1.1rem 100% no-repeat scroll;
+}
+
+/* ------------------------------------------------------------- apparatus --*/
+
+/*
+ * A marginal note. On a wide screen it sits beside the text it annotates,
+ * which is what a margin is for; narrow, it is an indented note in the flow.
  */
 .marginal {
   font-family: var(--font-ui);
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--color-ink-faint);
-  border-left: 2px solid var(--color-line);
+  border-left: 2px solid var(--color-line-strong);
   padding-left: 0.9rem;
-  margin-top: 1.1em;
+  margin-top: 1.15em;
 }
-@media (min-width: 80rem) {
+@media (min-width: 72rem) {
   .marginal {
-    float: right;
-    clear: right;
-    width: 14rem;
-    margin-right: -16rem;
-    margin-top: 0.3em;
-    border-left: none;
+    position: absolute;
+    left: calc(var(--measure) + 3rem);
+    width: 13.5rem;
+    margin-top: 0.35em;
     padding-left: 0;
-    text-align: left;
+    border-left: none;
+    border-top: 2px solid var(--color-cite);
+    padding-top: 0.6rem;
+    font-size: 0.75rem;
   }
 }
 
 /* An instrument citation: statute, regulation, decision, circular. */
 .cite {
-  font-family: var(--font-ui);
-  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
   color: var(--color-cite);
 }
 
-/* Something we do not know, marked as such rather than quietly omitted. */
+/*
+ * Something we do not know, marked as such rather than quietly omitted. The
+ * gaps are the part of a reference work that is hardest to publish and the
+ * part practitioners trust it for, so they are given a colour of their own.
+ */
 .unknown {
   font-family: var(--font-ui);
   font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--color-flag);
+  background: var(--color-flag-wash);
+  border-left: 2px solid var(--color-flag);
+  padding: 0.55rem 0.9rem;
+}
+.unknown a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.17em;
+}
+
+/* ----------------------------------------------------------------- forms --*/
+
+/*
+ * The one interactive page on the site. Native controls in their default
+ * chrome read as a form bolted onto a document, so they are set in the same
+ * faces and on the same paper as everything else.
+ */
+.field {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  width: 100%;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 2px;
+  padding: 0.5rem 0.65rem;
+  line-height: 1.4;
+}
+select.field {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-cite) 50%),
+    linear-gradient(135deg, var(--color-cite) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.05rem) 55%,
+    calc(100% - 0.65rem) 55%;
+  background-size:
+    0.4rem 0.4rem,
+    0.4rem 0.4rem;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+.field:focus-visible {
+  outline: 2px solid var(--color-cite);
+  outline-offset: 1px;
+}
+
+:where(a, button, select, input, summary):focus-visible {
+  outline: 2px solid var(--color-cite);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ---------------------------------------------------------------- footer --*/
+
+.colophon {
+  border-top: 2px solid var(--color-line-strong);
+  box-shadow: inset 0 3px 0 -2px var(--color-line);
+  background: var(--color-paper-tint);
+}
+.colophon a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-cite-soft);
+  text-underline-offset: 0.18em;
+}
+.colophon a:hover {
+  color: var(--color-cite);
 }

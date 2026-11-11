@@ -6,9 +6,25 @@
  * script: there is nothing to convert on this site, so measuring a reader is
  * all cost and no benefit, and a reference work that tracks you is a worse
  * reference work. Crawler behaviour is read from the host's logs instead.
+ *
+ * The chrome is a masthead rather than a product header. A reader arriving on
+ * a single annotated article should be able to tell in one glance what kind
+ * of publication they have landed in, and a centred masthead over a double
+ * rule says "journal" in a way a logo on the left and a menu on the right
+ * never will. It also makes the one thing this site is not, a firm touting
+ * for instructions, structurally impossible to mistake it for.
  */
-import '@fontsource-variable/source-serif-4';
-import '@fontsource-variable/inter';
+import '@fontsource-variable/newsreader/standard.css';
+import '@fontsource-variable/newsreader/standard-italic.css';
+import '@fontsource/ibm-plex-sans/latin-400.css';
+import '@fontsource/ibm-plex-sans/latin-500.css';
+import '@fontsource/ibm-plex-sans/latin-600.css';
+import '@fontsource/ibm-plex-sans/latin-ext-400.css';
+import '@fontsource/ibm-plex-sans/latin-ext-500.css';
+import '@fontsource/ibm-plex-sans/latin-ext-600.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import '@fontsource/ibm-plex-mono/latin-ext-400.css';
 import '../styles/global.css';
 import { SITE, absoluteUrl } from '../lib/site';
 import { graph } from '../lib/schema';
@@ -70,52 +86,77 @@ const year = new Date().getUTCFullYear();
       >Skip to content</a
     >
 
-    <header class="border-b rule">
-      <div class="mx-auto flex max-w-6xl flex-wrap items-baseline justify-between gap-x-8 gap-y-3 px-(--spacing-gutter) py-5">
-        <a href="/" class="font-ui text-sm font-semibold tracking-tight hover:text-cite">
-          Turkish Citizenship by Investment
-          <span class="block text-[0.6875rem] font-normal uppercase tracking-[0.09em] text-ink-faint">
-            An annotated reference
-          </span>
-        </a>
-        <nav aria-label="Sections">
-          <ul class="font-ui flex flex-wrap gap-x-5 gap-y-2 text-[0.8125rem]">
-            {NAV.map(([href, label]) => (
-              <li>
-                <a
-                  href={href}
-                  aria-current={path === href || path.startsWith(`${href}/`) ? 'page' : undefined}
-                  class="hover:text-cite aria-[current=page]:font-semibold aria-[current=page]:text-cite"
-                  >{label}</a
-                >
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <div class="topbar"></div>
+
+    <header class="masthead">
+      <div class="shell pt-6 pb-5 text-center sm:pt-8 sm:pb-6">
+        <p class="masthead-standing">
+          Open access &middot; CC BY 4.0 &middot; No paid placement
+        </p>
+        <a href="/" class="masthead-name mt-3">Turkish Citizenship by Investment</a>
+        <p class="masthead-sub mt-3">
+          An annotated reference to the law, the procedure and the practitioners
+        </p>
       </div>
+      <nav class="mastnav" aria-label="Sections">
+        <ul class="shell flex flex-wrap justify-center gap-x-6 gap-y-2 py-3 sm:gap-x-9">
+          {NAV.map(([href, label]) => (
+            <li>
+              <a
+                href={href}
+                aria-current={path === href || path.startsWith(`${href}/`) ? 'page' : undefined}
+                >{label}</a
+              >
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
 
     <main id="main">
       <slot />
     </main>
 
-    <footer class="mt-20 border-t rule">
-      <div class="mx-auto max-w-6xl px-(--spacing-gutter) py-10">
-        <p class="font-ui max-w-2xl text-[0.8125rem] leading-relaxed text-ink-faint">
-          {SITE.independence}
-        </p>
-        <p class="font-ui mt-4 max-w-2xl text-[0.8125rem] leading-relaxed text-ink-faint">
-          This is a work of reference on Turkish law, not legal advice, and reading it creates no
-          lawyer-client relationship with anyone. Whether a particular investment, property or
-          family qualifies is a question about documents, which no reference work can read. The
-          grant of citizenship is a discretionary act of the Turkish state.
-        </p>
-        <p class="font-ui mt-6 text-[0.8125rem] text-ink-faint">
-          Text and data licensed
-          <a href={SITE.license.url} rel="license noopener" class="underline decoration-cite-soft">CC BY 4.0</a>.
-          Reuse it, including commercially, with attribution.
-          {' '}&middot; {year} &middot;
-          <a href={`mailto:${SITE.email}`} class="underline decoration-cite-soft">Corrections</a>
+    <footer class="colophon mt-24">
+      <div class="shell grid gap-x-10 gap-y-8 py-12 sm:grid-cols-2 lg:grid-cols-[13rem_1fr_13rem]">
+        <nav aria-label="Footer">
+          <p class="eyebrow">Sections</p>
+          <ul class="font-ui mt-3 space-y-1.5 text-[0.8125rem] text-ink-soft">
+            {NAV.map(([href, label]) => (
+              <li><a href={href}>{label}</a></li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <p class="eyebrow">About this work</p>
+          <p class="font-ui mt-3 text-[0.8125rem] leading-relaxed text-ink-soft">
+            {SITE.independence}
+          </p>
+          <p class="font-ui mt-3 text-[0.8125rem] leading-relaxed text-ink-faint">
+            This is a work of reference on Turkish law, not legal advice, and reading it creates no
+            lawyer-client relationship with anyone. Whether a particular investment, property or
+            family qualifies is a question about documents, which no reference work can read. The
+            grant of citizenship is a discretionary act of the Turkish state.
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow">Reuse and corrections</p>
+          <p class="font-ui mt-3 text-[0.8125rem] leading-relaxed text-ink-soft">
+            Text and data licensed
+            {' '}<a href={SITE.license.url} rel="license noopener">CC BY 4.0</a>. Reuse it,
+            including commercially, with attribution.
+          </p>
+          <p class="font-ui mt-3 text-[0.8125rem] leading-relaxed text-ink-soft">
+            <a href={`mailto:${SITE.email}`}>Send a correction</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="shell border-t border-line pb-10 pt-5">
+        <p class="font-mono-ref text-[0.625rem] uppercase tracking-[0.14em] text-ink-faint">
+          {SITE.name} &middot; {year} &middot; Set in Newsreader and IBM Plex
         </p>
       </div>
     </footer>

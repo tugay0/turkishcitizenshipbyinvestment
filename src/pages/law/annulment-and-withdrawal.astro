@@ -1,0 +1,490 @@
+---
+/**
+ * Arts. 31, 33 and 40 of Law No. 5901: annulment, liquidation, withdrawal.
+ *
+ * The most important unwritten page on the site. The 2026 enforcement action
+ * over inflated valuations is being reported, and advised on, with the two
+ * powers used as synonyms. They are not synonyms. Annulment under art. 31
+ * turns on the applicant's own false declaration or concealment; withdrawal
+ * under art. 40 turns on the decision having been issued without the legal
+ * conditions being met, and requires no fault by anyone. The difference
+ * decides whether an investor whose valuation was inflated by somebody else
+ * is exposed, and the honest answer is that they are, under art. 40, on a
+ * provision that asks nothing about their knowledge.
+ *
+ * Written conservatively. Where the procedural detail is not confirmed,
+ * including limitation periods and the forum for challenge, the page says so
+ * rather than reasoning its way to a number. Two instruments needed for the
+ * review route are not in the source register and the page does not pretend
+ * otherwise.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+import statistics from '../../data/cbi/statistics.json';
+
+const PATH = '/law/annulment-and-withdrawal';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Annulment and Withdrawal of a Citizenship Decision';
+const description =
+  'Law No. 5901 art. 31 annuls a citizenship decision that followed a false declaration or the concealment of material facts. Art. 40 withdraws a decision issued without the legal conditions being met, or issued twice. They are different powers with different triggers and are constantly conflated. With art. 33 on liquidation of assets after loss of citizenship, the position of derivative family members, and what the 2026 figures do and do not establish.';
+
+const PUBLISHED = '2026-11-11';
+
+/** Published figures, read from the dataset so the prose cannot drift. */
+const series: any = (statistics as any).series ?? {};
+const pick = (name: string, dim: string): number | null => {
+  const r = (series[name]?.records ?? []).find((x: any) => x.dimension === dim);
+  return r && typeof r.value === 'number' ? r.value : null;
+};
+const n = (v: number | null): string => (v == null ? 'not recorded' : v.toLocaleString('en-US'));
+
+const cumulativePeople = pick('enforcement_cancellations', 'cumulative_people');
+const cumulativeInvestors = pick('enforcement_cancellations', 'cumulative_principal_investors');
+const art31Investors = pick('enforcement_cancellations', 'fraud_certificates_cancelled_investors');
+const art31People = pick('enforcement_cancellations', 'fraud_certificates_cancelled_people');
+const art40Investors = pick('enforcement_cancellations', 'security_withdrawal_investors');
+const art40People = pick('enforcement_cancellations', 'security_withdrawal_people');
+const wave1 = pick('enforcement_wave_1', 'people_in_revocation_proceedings');
+const wave2 = pick('enforcement_wave_2', 'people_identified');
+const wave2Investors = pick('enforcement_wave_2', 'investors');
+const wave2Family = pick('enforcement_wave_2', 'family_members');
+const wave2Children = pick('enforcement_wave_2', 'children_naturalised_after_decision');
+const salesExamined = pick('enforcement_wave_2', 'sales_examined');
+const salesCollusive = pick('enforcement_wave_2', 'sales_found_collusive');
+const derivedSum = pick('enforcement_derived_sum', 'wave_1_plus_wave_2');
+
+const ratio = (people: number | null, investors: number | null): string =>
+  people && investors ? (people / investors).toFixed(1) : 'not computable';
+
+const POWERS = [
+  {
+    key: 'Provision',
+    art31: 'Law No. 5901 art. 31',
+    art40: 'Law No. 5901 art. 40',
+  },
+  {
+    key: 'Turkish term',
+    art31: 'iptal, annulment',
+    art40: 'geri alınma, withdrawal',
+  },
+  {
+    key: 'Trigger',
+    art31:
+      'The decision was given as a result of a false declaration, or of the concealment of matters material to the acquisition',
+    art40:
+      'The decision is subsequently understood to have been given without the legal conditions being met, or to have been given twice',
+  },
+  {
+    key: 'Requires fault by the applicant',
+    art31: 'Yes. The provision is directed at the applicant’s own conduct',
+    art40: 'No. It asks only whether the conditions were met',
+  },
+  {
+    key: 'Reaches',
+    art31: 'A decision granting citizenship',
+    art40: 'Decisions given under the Law generally, not only grants of citizenship',
+  },
+  {
+    key: 'Typical investor-route case',
+    art31: 'Declared facts that were untrue: a forged document, a concealed identity or record',
+    art40:
+      'A threshold that was never objectively met, or a security condition that in fact existed at the date of the decision',
+  },
+] as const;
+
+const faqs: FaqItem[] = [
+  {
+    question: 'What is the difference between annulment and withdrawal of a citizenship decision?',
+    answer:
+      'Annulment under Law No. 5901 art. 31 applies where the decision was given as a result of the person’s false declaration or the concealment of matters material to the acquisition: it is directed at the applicant’s conduct. Withdrawal under art. 40 applies where the decision is later understood to have been given without the legal conditions being met, or to have been given twice: it is directed at the decision, and asks nothing about fault. They are different powers with different triggers, and the second is the wider one.',
+  },
+  {
+    question: 'Is an investor exposed if someone else inflated the valuation?',
+    answer:
+      'Yes, under art. 40, even on the assumption that the investor knew nothing. If the appraisal was inflated to carry a purchase over the threshold, the qualifying amount was not objectively reached, so the decision was given without the legal conditions being met, which is exactly what art. 40 addresses. Innocence is an answer to art. 31, which requires a false declaration, and to criminal liability. It is not in terms an answer to art. 40. Whether the administration exercises the power differently where the investor was deceived is a matter of practice on which we have located no published policy.',
+  },
+  {
+    question: 'How long after the grant can a decision be annulled or withdrawn?',
+    answer:
+      'Later than most published accounts of the programme imply. The 2026 action concerned grants made years earlier, and the Ministry has published cumulative figures rather than figures for a single year. We have not confirmed whether any limitation period applies to art. 31 or art. 40 and we do not state one: the position is recorded on this page as unverified rather than answered.',
+  },
+  {
+    question: 'Do family members lose citizenship with the main applicant?',
+    answer:
+      `The published figures are consistent with that happening. The Ministry’s cumulative figures distinguish ${n(cumulativeInvestors)} principal investors from ${n(cumulativePeople)} people, a ratio of about ${ratio(cumulativePeople, cumulativeInvestors)} people for each investor, and the September 2026 operation was reported as ${n(wave2Investors)} investors and ${n(wave2Family)} family members. What we have not confirmed is the mechanism: whether the derivative acquisition falls with the principal’s by operation of the Law, or by separate decisions in each case. The page marks that as unverified rather than asserting one.`,
+  },
+  {
+    question: 'What happens to property owned by a person who loses Turkish citizenship?',
+    answer:
+      'Art. 33 of Law No. 5901 governs the liquidation of assets following loss of citizenship. The person is treated as a foreigner from the date of loss, so holdings that a foreigner may not acquire or hold fall to be liquidated. Note what this is not: it is not a confiscation provision, and it is separate from the seizure of property in a criminal investigation, which is what the 2026 reporting of properties seized describes.',
+  },
+  {
+    question: 'Do the 2026 enforcement figures show the rate at which citizenship is being revoked?',
+    answer:
+      `No, and the dataset is explicit about why. The cumulative ${n(cumulativePeople)} and the criminal-file identifications of ${n(wave1)} and ${n(wave2)} people overlap by an unquantified amount, no authority has published the combined total, and a derived sum of ${n(derivedSum)} that circulates was produced by a trade outlet rather than by any authority. There is also no published denominator per year, because no official annual series of investor-route grants exists.`,
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: PUBLISHED,
+    about: [
+      'Türk Vatandaşlığı Kanunu No. 5901, art. 31',
+      'Türk Vatandaşlığı Kanunu No. 5901, art. 33',
+      'Türk Vatandaşlığı Kanunu No. 5901, art. 40',
+    ],
+    citation: ['https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5901.pdf'],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Annulment and withdrawal', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Annulment and withdrawal
+    </nav>
+
+    <header class="page-head mt-7">
+      <h1>
+        Annulment and withdrawal of a citizenship decision
+      </h1>
+      <p class="deck">
+        Two powers in one statute, with different triggers, different subjects and different
+        answers available to the person affected. They are used interchangeably in almost
+        everything written about the 2026 enforcement action, and the conflation matters most to
+        the investor who did nothing wrong: the defence that answers one of them does not answer
+        the other.
+      </p>
+      <p class="page-meta">
+        Figures on this page are read from
+        {' '}<a href="/data#sources" class="underline decoration-cite-soft">the published dataset</a>,
+        with the statement each one rests on.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>Two powers, not one</h2>
+      <p>
+        Law No. 5901 contains both powers, in different parts of the statute and with different
+        language. The distinction is not academic: it decides what the person affected has to prove,
+        and whether proving it helps.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead>
+            <tr><th></th><th>Annulment</th><th>Withdrawal</th></tr>
+          </thead>
+          <tbody>
+            {POWERS.map((row) => (
+              <tr>
+                <td class="font-semibold whitespace-nowrap">{row.key}</td>
+                <td>{row.art31}</td>
+                <td>{row.art40}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="art-31">Article 31: annulment</h3>
+      <p>
+        Art. 31 addresses the case where a decision granting Turkish citizenship was given as a
+        result of the person's false declaration, or of their concealment of matters material to
+        the acquisition. The gravamen is the applicant's own conduct in obtaining the decision.
+      </p>
+      <Instrument id="law-5901" article="31" />
+      <p>
+        Three features follow from that drafting. The power is tied to a defect in what the
+        applicant said or withheld, so it is at least arguable that it is not engaged where the
+        applicant said nothing untrue. It is tied to materiality, so an immaterial inaccuracy is
+        not a ground. And it operates on a decision that was, on the face of the file, properly
+        made: what makes it annullable is the falsity underneath it.
+      </p>
+      <p class="marginal">
+        Annulment is the power the market talks about, because it is the one with a villain. It is
+        also the narrower one, which is why focusing on it produces false comfort.
+      </p>
+
+      <h3 id="art-40">Article 40: withdrawal</h3>
+      <p>
+        Art. 40 sits among the Law's common provisions and addresses decisions given under the Law
+        which are subsequently understood to have been given without the legal conditions being
+        met, or to have been given twice. It speaks of decisions under the Law generally rather than
+        of grants of citizenship specifically.
+      </p>
+      <Instrument id="law-5901" article="40" />
+      <p>
+        Note what is absent from the trigger. There is no reference to a false declaration, to
+        concealment, to knowledge, to intention or to the conduct of any person. The question art.
+        40 asks is whether the legal conditions for the decision existed. If they did not, the
+        decision falls to be withdrawn, and the reason they did not is, on the face of the
+        provision, beside the point.
+      </p>
+      <p>
+        The second limb, a decision given twice, looks like an administrative tidying power and in
+        practice is one. It is worth knowing that it shares a provision with the first limb, because
+        a citation to art. 40 alone does not tell you which limb is engaged.
+      </p>
+
+      <h2>Why the conflation is expensive</h2>
+      <p>
+        Take the case the 2026 action is built on: an appraisal inflated so that a purchase below
+        the threshold appears to clear it. Assume the buyer paid the real price, was told the
+        property was worth the appraised figure, and declared nothing they did not believe.
+      </p>
+      <ul>
+        <li>
+          <strong>Under art. 31</strong> the buyer has an argument. There was no false declaration
+          by them and nothing material was concealed by them. Whether that argument succeeds
+          depends on how the administration and the courts treat a file in which a document
+          submitted by the applicant was false although the applicant was not, which is a question
+          of attribution and not one this site can answer from the text.
+        </li>
+        <li>
+          <strong>Under art. 40</strong> the same facts are worse rather than better. The
+          qualifying amount under art. 20 of the implementing Regulation is tested against the
+          appraised value; if the real value never reached the threshold, the condition was not met
+          when the decision was given. That is the art. 40 trigger, reached without any finding
+          against the buyer at all.
+        </li>
+      </ul>
+      <p>
+        This is why the two words cannot be used as synonyms in advice. An investor told that they
+        are safe because they did nothing wrong has been given an answer to the wrong provision. The
+        correct statement of their position is that they have a case to make under art. 31 and a
+        structural problem under art. 40, and that the second is the one to plan around.
+      </p>
+      <p>
+        The valuation stage, and why the report has to be obtained through the land registry
+        system rather than commissioned privately, is set out in
+        {' '}<a href="/procedure#appraisal">the procedural account of the appraisal</a>.
+      </p>
+      <p class="unknown">
+        We have not located any published administrative policy on how art. 40 is applied where the
+        investor was themselves deceived, nor any decision of the administrative courts on the
+        point that we can cite. The analysis above is an analysis of the statutory triggers and is
+        presented as that. It is not a prediction of outcome and should not be relied on as one.
+      </p>
+
+      <h2>Article 33: what happens to the assets</h2>
+      <p>
+        Art. 33 governs the liquidation of assets where a person has lost Turkish citizenship. The
+        person stands as a foreigner from the date of loss, which means that holdings a foreigner
+        may not acquire or hold are no longer lawfully held and fall to be liquidated.
+      </p>
+      <Instrument id="law-5901" article="33" />
+      <p>
+        Two separations are worth insisting on, because the 2026 reporting runs them together.
+      </p>
+      <ul>
+        <li>
+          <strong>Art. 33 is not confiscation.</strong> It is a liquidation mechanism attached to
+          the change in the holder's status, not a penalty and not a transfer of value to the
+          State.
+        </li>
+        <li>
+          <strong>Art. 33 is not the seizure in the criminal file.</strong> The properties reported
+          as seized in the 2026 operations were seized in a criminal investigation, under criminal
+          procedure, by order of a prosecutor and a court. That is an entirely different power from
+          art. 33, it bites before any loss of citizenship, and it can bite on property belonging
+          to people whose citizenship is never touched.
+        </li>
+      </ul>
+      <p class="unknown">
+        The mechanics of art. 33 are not set out in detail on this page: the period allowed for
+        liquidation, the treatment of proceeds, and what happens to a holding that is not
+        liquidated within any such period are procedural details we have not verified against the
+        consolidated text and the subordinate legislation. The register records art. 33 as the
+        liquidation provision and nothing further, and neither do we.
+      </p>
+
+      <h2>The exposure runs for years</h2>
+      <p>
+        The practical shape of this risk is not a window after the grant. The 2026 action reached
+        decisions made years earlier, and the Ministry's published figures are cumulative rather
+        than annual.
+      </p>
+      <p>
+        The cumulative statements put {n(cumulativeInvestors)} principal investors and
+        {' '}{n(cumulativePeople)} people in total, and they break that total down by provision:
+        {' '}{n(art31Investors)} investors and {n(art31People)} people under art. 31 following the
+        cancellation of certificates obtained by fraud, and {n(art40Investors)} investors and
+        {' '}{n(art40People)} people under art. 40 on security grounds. The two provisions account
+        for the whole of the cumulative figure, which is the clearest public evidence of how the
+        administration allocates the two powers.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Basis</th><th>Provision</th><th>Principal investors</th><th>People</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Certificates obtained by fraud, cancelled</td>
+              <td class="whitespace-nowrap">Art. 31</td>
+              <td class="whitespace-nowrap">{n(art31Investors)}</td>
+              <td class="whitespace-nowrap">{n(art31People)}</td>
+            </tr>
+            <tr>
+              <td>Security grounds</td>
+              <td class="whitespace-nowrap">Art. 40</td>
+              <td class="whitespace-nowrap">{n(art40Investors)}</td>
+              <td class="whitespace-nowrap">{n(art40People)}</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Cumulative</td>
+              <td></td>
+              <td class="whitespace-nowrap font-semibold">{n(cumulativeInvestors)}</td>
+              <td class="whitespace-nowrap font-semibold">{n(cumulativePeople)}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cite">
+        Ministry of Interior written statement of 4 August 2026, restated 21 September 2026.
+        Reported in the press rather than published as a table.
+        {' '}<a href="/data#provenance">How a figure of this kind is recorded here</a>.
+      </p>
+      <p>
+        That allocation is legible once the triggers are read properly. A security impediment is a
+        condition of acquisition under art. 12, so a decision made when such an impediment in fact
+        existed is a decision made without the legal conditions being met, which is art. 40
+        territory even though nobody declared anything false. A certificate obtained by fraud, on
+        the other hand, is a false declaration in the file, which is art. 31 territory. The
+        administration's own usage therefore tracks the statutory distinction rather than treating
+        the two powers as one.
+      </p>
+      <p class="unknown">
+        Whether any limitation period runs against either power is not stated on this site. We have
+        not confirmed the position for art. 31 or for art. 40 against the consolidated text or
+        against authority, and the figures above are consistent with exposure of several years
+        without establishing any outer limit. Treating the absence of a published period as proof
+        that none exists would be the same error in the other direction, and we do not make it
+        either.
+      </p>
+
+      <h2>Family members who derived citizenship</h2>
+      <p>
+        On the investor route the spouse and the minor or dependent children acquire with the
+        principal. The published figures make clear that enforcement reaches them: the cumulative
+        totals distinguish {n(cumulativeInvestors)} investors from {n(cumulativePeople)} people,
+        about {ratio(cumulativePeople, cumulativeInvestors)} people for each investor, and the
+        September 2026 operation was reported as {n(wave2Investors)} investors with
+        {' '}{n(wave2Family)} family members, including {n(wave2Children)} children naturalised
+        after the principal's decision.
+      </p>
+      <p class="marginal">
+        One coincidence to resist. The {n(wave2Investors)} investors in the September 2026 operation
+        and the {n(art40Investors)} investors withdrawn on security grounds in the cumulative
+        statement are the same number and are not the same people. The dataset flags them as
+        distinct and they must not be merged.
+      </p>
+      <p>
+        Under art. 31 the two possible positions are materially different for the family. If the
+        annulment of the principal's decision carries the derivative acquisitions with it, a spouse
+        who declared nothing and a child who was an infant lose a status obtained lawfully on its
+        own terms. If instead each derivative acquisition has to be addressed on its own footing,
+        the spouse's and the children's cases turn on their own files.
+      </p>
+      <p class="unknown">
+        We do not state which of those positions Turkish law takes. The question needs art. 31
+        read with the provisions on derivative acquisition and on loss, and we have not verified
+        the answer to the standard the rest of this site is held to. What the published figures
+        establish is the outcome in practice, that family members are included in the totals. They
+        do not establish the mechanism, and the two should not be confused.
+      </p>
+      <p class="marginal">
+        For a practitioner, the planning point survives the uncertainty: a file is not de-risked by
+        the principal's own good faith, because the people most likely to lose a status they did
+        nothing to obtain are the ones who were children when it was granted.
+      </p>
+
+      <h2>Challenging a decision</h2>
+      <p>
+        Both powers are exercised by administrative act, and an administrative act is in principle
+        subject to judicial review. Beyond that proposition this page stops, because the detail
+        matters too much to approximate.
+      </p>
+      <p class="unknown">
+        The forum for a challenge, the period within which it must be brought, and whether a stay
+        of execution is available are not settled here. Answering them needs the Administrative
+        Procedure Law No. 2577 and the Council of State Law No. 2575, neither of which is in this
+        site's source register, and the forum for review of a decision made at Presidential level
+        is itself the sort of point on which a wrong answer is worse than no answer. It is recorded
+        as a gap. The register does carry the pending Council of State litigation on the programme
+        as a whole, which is a different question from a challenge to an individual decision, and
+        the decision numbers for those rulings are themselves
+        {' '}<a href="/data#open-questions">an open question</a>.
+      </p>
+      <p>
+        One further separation. Annulment and withdrawal are administrative measures. The criminal
+        liability of a valuer, a developer, an intermediary or an investor arises under the criminal
+        law, which this register does not index, and it proceeds on its own timetable before its
+        own courts. A person can be exposed to one without the other in either direction.
+      </p>
+
+      <h2>What the 2026 figures do not say</h2>
+      <p>
+        This page uses the published figures because they are the only quantification that exists.
+        They support less than they are made to support.
+      </p>
+      <ul>
+        <li>
+          The criminal-file identifications of {n(wave1)} people in August 2026 and
+          {' '}{n(wave2)} in September 2026 overlap with the cumulative {n(cumulativePeople)} by an
+          amount no authority has quantified. Adding them to each other, or to the cumulative
+          figure, produces a number that means nothing. A derived sum of {n(derivedSum)} is in
+          circulation; it was published by a trade outlet, not by an authority, and this site
+          records it as a figure in circulation that it does not use.
+        </li>
+        <li>
+          Of {n(salesExamined)} sales examined in the September 2026 operation,
+          {' '}{n(salesCollusive)} were found collusive. That is a rate within an investigation
+          sample selected for suspicion, and it is not a rate within the programme.
+        </li>
+        <li>
+          There is no denominator. No official annual series of investor-route grants is published,
+          so no proportion can be computed, and any percentage of the programme affected is
+          invented.
+        </li>
+      </ul>
+      <p class="font-ui text-[0.8125rem]">
+        <a href="/data#not-known" class="underline decoration-cite-soft">What is not known, recorded as such</a>
+      </p>
+
+      <h2>Questions this page settles</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/procedure#appraisal">The appraisal, the stage the 2026 action concerned</a></li>
+        <li><a href="/law/regulation-article-20">Article 20: the conditions a decision has to have met</a></li>
+        <li><a href="/law/residence-permit">The residence permit on the investor ground</a></li>
+        <li><a href="/law/threshold-history">Which threshold governed a file on its own date</a></li>
+        <li><a href="/data#not-known">The enforcement figures, and what they do not establish</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(PUBLISHED)}, {pageUrl}. CC BY 4.0. This is
+        a note on Turkish citizenship legislation, not legal advice, and a person facing either
+        measure needs counsel on their own file.
+      </p>
+    </div>
+  </article>
+</Base>

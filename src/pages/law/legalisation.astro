@@ -1,0 +1,445 @@
+---
+/**
+ * The 1961 Hague Apostille Convention and consular legalisation.
+ *
+ * Here for one reason above the others: the whole question turns on a status
+ * table, and nobody writing about Turkish citizenship publishes the table.
+ * Guidance says "an apostille if your country is a member, consular
+ * legalisation if not" and leaves the reader to find out which they are,
+ * which is precisely the fact that decides how many weeks the document stage
+ * takes. The dataset behind this page carries every Contracting Party with
+ * the date the Convention entered into force for it, which also exposes the
+ * case a yes-or-no field gets wrong: a State that has acceded but for which
+ * the Convention is not yet in force, whose documents still need the consular
+ * chain today.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+import apostille from '../../data/cbi/apostille-countries.json';
+
+const PATH = '/law/legalisation';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Apostille and Consular Legalisation for a Turkish Citizenship File';
+const description =
+  'Every foreign civil status document in a Turkish citizenship file must be legalised before it is translated. Which form applies depends only on whether the issuing State is a party to the Hague Convention of 5 October 1961. The complete status table, with the date the Convention entered into force for each Contracting Party, the consular chain for non-parties, the acceded-but-not-yet-in-force case, and the sworn translation step that comes afterwards.';
+
+const PUBLISHED = '2026-11-11';
+
+const data: any = apostille as any;
+const asOf: string = data.asOf ?? PUBLISHED;
+const tableLastUpdated: string = data.source?.tableLastUpdated ?? '';
+const readOn: string = data.source?.readOn ?? '';
+const statusTable: string = data.source?.statusTable ?? '';
+
+type Row = {
+  code: string;
+  name: string;
+  apostilleMember: boolean;
+  inForceFrom: string | null;
+  note?: string;
+};
+
+const rows: Row[] = [...(data.countries ?? [])].sort((a: Row, b: Row) =>
+  a.name.localeCompare(b.name, 'en'),
+);
+
+/** Three states, not two. The third is the one a boolean field loses. */
+const statusOf = (r: Row): 'in_force' | 'pending' | 'not_party' =>
+  r.apostilleMember ? 'in_force' : r.inForceFrom ? 'pending' : 'not_party';
+
+const STATUS_LABEL: Record<string, string> = {
+  in_force: 'Apostille',
+  pending: 'Consular, until the date shown',
+  not_party: 'Consular legalisation',
+};
+
+const inForce = rows.filter((r) => statusOf(r) === 'in_force');
+const pending = rows.filter((r) => statusOf(r) === 'pending');
+const notParty = rows.filter((r) => statusOf(r) === 'not_party');
+
+/** The register's own count of Contracting Parties, which includes the pending accession. */
+const declaredParties: number | null = data.counts?.parties ?? null;
+
+const tr = rows.find((r) => r.code === 'TR');
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Does my country’s document need an apostille or consular legalisation?',
+    answer:
+      `It depends only on whether the issuing State is a party to the Hague Convention of 5 October 1961 and whether the Convention is in force for it today. The table on this page gives the answer for every Contracting Party, with the date it entered into force. As of ${longDate(asOf)} the Convention is in force for ${inForce.length} States; documents from those take an apostille, and documents from any other State take the consular chain.`,
+  },
+  {
+    question: 'Is a State that has just acceded to the Convention already covered?',
+    answer:
+      `No, and this is the case a yes-or-no field gets wrong. Accession and entry into force are different events, separated by months. ${pending.length === 1 ? `${pending[0].name} has acceded, but the Convention enters into force for it on ${longDate(pending[0].inForceFrom as string)}, so documents issued there still need consular legalisation until that date.` : 'Our dataset flags any such State separately rather than recording it as a party.'} A table with a single member column cannot express this, which is why ours carries the entry-into-force date as well.`,
+  },
+  {
+    question: 'How long has Türkiye been a party?',
+    answer:
+      `The Convention entered into force for Türkiye on ${tr?.inForceFrom ? longDate(tr.inForceFrom) : '29 September 1985'}. That matters in two directions: a Turkish public document for use abroad can be apostillised, and a foreign apostille is accepted in Türkiye without any consular step.`,
+  },
+  {
+    question: 'Does an apostille remove the need for a translation?',
+    answer:
+      'No. They answer different questions. An apostille certifies the origin of the document, the authenticity of the signature and the capacity of the signatory. It says nothing about the content and is not a translation. A document in a foreign language still has to be translated by a sworn translator and the translation certified, which is a separate step after legalisation and not a substitute for it.',
+  },
+  {
+    question: 'Which order do legalisation and translation go in?',
+    answer:
+      'Legalise first, translate afterwards. The apostille or the consular legalisation is applied in the country of origin to the document as issued; the translation is then made of the document together with the certification it now carries. A translation commissioned before legalisation does not cover the certificate that was added later, which is a common cause of a document being sent back.',
+  },
+  {
+    question: 'Which documents are public documents for the purposes of the Convention?',
+    answer:
+      'The Convention applies to public documents: documents emanating from an authority or official connected with the courts, administrative documents, notarial acts, and official certificates placed on documents signed by private persons, such as a certificate of registration or an authentication of a signature. It expressly does not apply to documents executed by diplomatic or consular agents, or to administrative documents dealing directly with commercial or customs operations.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: PUBLISHED,
+    about: [
+      'Convention of 5 October 1961 Abolishing the Requirement of Legalisation for Foreign Public Documents',
+    ],
+    citation: [statusTable].filter(Boolean),
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Legalisation', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Legalisation
+    </nav>
+
+    <header class="page-head mt-7">
+      <h1>
+        Apostille and consular legalisation
+      </h1>
+      <p class="deck">
+        Every birth, marriage and civil status document in a citizenship file comes from outside
+        Türkiye and has to be legalised before it can be translated and filed. Which route it takes
+        depends on one fact about the issuing State, and that fact decides whether the document
+        stage takes two weeks or two months. The whole status table is below, because the answer is
+        a lookup and no account of this programme publishes the lookup.
+      </p>
+      <p class="page-meta">
+        Status as of {longDate(asOf)}, from the HCCH status table
+        {tableLastUpdated ? ` last updated ${longDate(tableLastUpdated)}` : ''}
+        {readOn ? `, read on ${longDate(readOn)}` : ''}.
+        {' '}<a href="/data#apostille" class="underline decoration-cite-soft">Published as data</a>.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>What an apostille is, and what it replaces</h2>
+      <p>
+        The Convention of 5 October 1961 abolishes the requirement of legalisation for foreign
+        public documents as between its parties, and substitutes a single certificate. The
+        certificate, the apostille, is issued by a competent authority designated by the State in
+        which the document was issued, and it certifies the authenticity of the signature, the
+        capacity in which the signatory acted, and where appropriate the identity of the seal or
+        stamp the document bears. It is placed on the document itself or on an attached allonge,
+        and each competent authority keeps a register of the certificates it has issued, which is
+        what makes an apostille verifiable at its source.
+      </p>
+      <p class="cite">
+        Instrument: <Instrument id="hcch-1961" inline />.
+        {statusTable && (
+          <>
+            {' '}Status per the
+            {' '}<a href={statusTable} rel="noopener">HCCH status table</a>
+            {readOn ? `, read on ${longDate(readOn)}` : ''}. Official text located and read.
+          </>
+        )}
+      </p>
+      <p>
+        Note the limits of what it certifies. An apostille says that the document is what it
+        appears to be and that the official who signed it held the office they claimed. It says
+        nothing about whether the contents are true, it does not validate the document's legal
+        effect in the receiving State, and it is not a translation.
+      </p>
+      <p>
+        What it replaces is a chain. Before the Convention, and still today for documents from a
+        non-party, a foreign public document was accepted only after a series of certifications
+        ending at a mission of the receiving State. The Convention compresses that chain into one
+        certificate issued at the origin.
+      </p>
+      <p class="marginal">
+        This is the only part of a citizenship file governed by an instrument Türkiye did not
+        write, which is also why it is the part most often mis-stated in guidance written from the
+        Turkish end.
+      </p>
+
+      <h2>The consular chain, for a non-party</h2>
+      <p>
+        Where the issuing State is not a party, the document takes the longer route. The sequence
+        is the one recorded against every non-party row in the dataset:
+      </p>
+      <ol>
+        <li>
+          The document is obtained and, where the local system requires it, notarised and certified
+          by the competent domestic authority.
+        </li>
+        <li>It is legalised by that country's ministry of foreign affairs.</li>
+        <li>
+          It is then legalised by the Turkish embassy or consulate accredited to that country.
+        </li>
+      </ol>
+      <p>
+        Each step is a separate appointment with its own queue, and the third depends on the
+        second, so the chain cannot be parallelised. That is the practical reason this question has
+        to be answered at the start of a file rather than at the document stage: for a client from
+        a non-party State the legalisation is often the longest single lead time in the whole
+        procedure, and it can be started before the investment is complete.
+      </p>
+
+      <h2 id="status-table">The status table</h2>
+      <p>
+        Every Contracting Party, with the date the Convention entered into force for it, and the
+        non-party States this site names. Three statuses rather than two, for the reason given
+        below the table.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table" id="apostille-table">
+          <thead>
+            <tr>
+              <th><button type="button" class="sort-btn" data-sort="name">Jurisdiction</button></th>
+              <th><button type="button" class="sort-btn" data-sort="code">ISO</button></th>
+              <th><button type="button" class="sort-btn" data-sort="status">Legalisation</button></th>
+              <th><button type="button" class="sort-btn" data-sort="date">In force for that State</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => {
+              const st = statusOf(r);
+              return (
+                <tr data-name={r.name} data-code={r.code} data-status={st} data-date={r.inForceFrom ?? ''}>
+                  <td>{r.name}</td>
+                  <td class="whitespace-nowrap">{r.code}</td>
+                  <td class="whitespace-nowrap">{STATUS_LABEL[st]}</td>
+                  <td class="whitespace-nowrap">
+                    {r.inForceFrom ? longDate(r.inForceFrom) : 'not a party'}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        {rows.length} jurisdictions listed: {inForce.length} for which the Convention is in force
+        today, {pending.length} which has acceded but for which it is not yet in force, and
+        {' '}{notParty.length} named non-parties.
+        {declaredParties != null && (
+          <>
+            {' '}The HCCH status table gives {declaredParties} Contracting Parties, which is the
+            {' '}{inForce.length} in force plus the {pending.length} pending accession.
+          </>
+        )}
+      </p>
+      <p class="unknown">
+        The Contracting Party rows are the complete HCCH list. The non-party rows are not a
+        complete list of the world's non-parties: the dataset records a non-party only where this
+        site names that nationality elsewhere. The absence of a State from the table is therefore
+        not a statement that it is not a party, and a State not listed here should be checked
+        against
+        {statusTable ? <> {' '}<a href={statusTable} rel="noopener">the HCCH status table</a></> : <> the HCCH status table</>}
+        {' '}directly.
+      </p>
+
+      <h2>The case a yes-or-no field gets wrong</h2>
+      {pending.length === 1 ? (
+        <>
+          <p>
+            {pending[0].name} has acceded to the Convention, and the Convention enters into force
+            for it on {longDate(pending[0].inForceFrom as string)}. Until that date a document
+            issued there still needs consular legalisation, even though every list of Contracting
+            Parties already includes it, and the HCCH status table itself counts it among the
+            {' '}{declaredParties ?? 'listed'} parties.
+          </p>
+          <p>
+            Our dataset therefore records it with the member field false and the entry-into-force
+            date set, which looks inconsistent and is not. The field answers the operational
+            question, which is what a document from there needs today, rather than the treaty
+            question, which is whether the State has acceded. A dataset with only a boolean cannot
+            answer both, and the one practitioners need is the operational one.
+          </p>
+          <p class="marginal">
+            The interval between accession and entry into force is a matter of months rather than
+            days. A file planned on a list that collapses the two will instruct an apostille that
+            the issuing authority cannot yet issue.
+          </p>
+        </>
+      ) : (
+        <p>
+          Accession and entry into force are different events. The dataset carries the
+          entry-into-force date for every party precisely so that a State which has acceded but
+          for which the Convention is not yet operative can be distinguished from one for which it
+          is.
+        </p>
+      )}
+
+      <h2>Türkiye's own position</h2>
+      <p>
+        The Convention entered into force for Türkiye on
+        {' '}{tr?.inForceFrom ? longDate(tr.inForceFrom) : '29 September 1985'}, which has two
+        consequences for a file. A foreign apostille is accepted in Türkiye on its own, with no
+        further Turkish consular step, and that is the whole saving the Convention delivers here. In
+        the other direction, a Turkish public document needed abroad can be apostillised rather
+        than legalised, which matters for the certificate of conformity, a title deed extract or a
+        Turkish civil status record used in another jurisdiction.
+      </p>
+      <p class="unknown">
+        Which Turkish authorities are designated as competent to issue apostilles is published by
+        the HCCH in its competent-authority listing, which is a different table from the status
+        table our register indexes. We have not read the designation for this release and do not
+        reproduce it here, because naming the wrong office is worse than naming none.
+      </p>
+
+      <h2>Sworn translation and notarisation, after legalisation</h2>
+      <p>
+        Legalisation makes a foreign document usable. It does not make it readable, and the Turkish
+        authority that will act on it needs it in Turkish. That is a separate step, and in a file
+        it is a separate failure point:
+      </p>
+      <ul>
+        <li>
+          <strong>Order.</strong> Legalise first. The translation has to be made of the document as
+          certified, so that the apostille or the consular legalisations are part of what is
+          translated and certified. A translation obtained earlier, on a trip home before the
+          apostille was applied for, will not match the document that arrives.
+        </li>
+        <li>
+          <strong>Who translates.</strong> A sworn translator, whose translation is then certified
+          by a Turkish notary. A translation certified at a Turkish consulate abroad is the
+          alternative where the document is being assembled before travel.
+        </li>
+        <li>
+          <strong>Names.</strong> This is where files stall, and it is a clerical problem rather
+          than a legal one. A name transliterated one way on the passport, another way on the birth
+          certificate and a third way in the translation produces a file in which the documents do
+          not obviously refer to the same person. The transliteration used in the translations
+          should be fixed once, against the passport, before any of them is ordered.
+        </li>
+      </ul>
+      <p class="unknown">
+        The sworn translation and notarial certification requirements rest on Turkish notarial
+        legislation, which this site's source register does not yet index, so this section is
+        carried on practice rather than on a cited instrument. We also record no verified rule on
+        how recently a civil status document must have been issued to be accepted: requirements of
+        that kind are applied at the directorates and we have located no instrument setting a
+        period.
+      </p>
+
+      <h2>Questions this page settles</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/procedure#file">The citizenship file, and where documents fail to reconcile</a></li>
+        <li><a href="/law/residence-permit">The residence permit on the investor ground</a></li>
+        <li><a href="/law/annulment-and-withdrawal">Annulment and withdrawal of a citizenship decision</a></li>
+        <li><a href="/data#apostille">The apostille status dataset, with its retrieval date</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(PUBLISHED)}, {pageUrl}. CC BY 4.0. The
+        status table is reproduced from the HCCH status table, read on
+        {' '}{readOn ? longDate(readOn) : longDate(asOf)}; the HCCH is the authority on its own
+        status, and a date that matters to a file should be checked there.
+      </p>
+    </div>
+  </article>
+
+  <style>
+    /* The sort control is a button for keyboard and screen reader reasons, so
+       it has to be stripped back to the header text it replaces. Scoped to
+       this page: the site stylesheet knows nothing about it. */
+    .sort-btn {
+      all: unset;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      border-bottom: 1px dotted currentColor;
+    }
+    .sort-btn:hover,
+    .sort-btn:focus-visible {
+      color: var(--color-cite);
+    }
+    .sort-btn[data-active='true'] {
+      border-bottom-style: solid;
+    }
+  </style>
+
+  <script>
+    /* Sorting for the status table. Plain JavaScript, no page state beyond the
+       row order: the table is complete and correct before this runs, so a
+       reader with scripting disabled loses the sort and nothing else. */
+    const table = document.getElementById('apostille-table');
+    if (table) {
+      const body = table.querySelector('tbody');
+      const STATUS_ORDER = { in_force: 0, pending: 1, not_party: 2 };
+      let active = '';
+      let descending = false;
+
+      const value = (row, key) => {
+        if (key === 'status') {
+          const s = row.getAttribute('data-status') || '';
+          return String(STATUS_ORDER[s] === undefined ? 9 : STATUS_ORDER[s]);
+        }
+        if (key === 'date') {
+          /* Non-parties have no date; they sort last in either direction. */
+          return row.getAttribute('data-date') || '9999-99-99';
+        }
+        return (row.getAttribute('data-' + key) || '').toLowerCase();
+      };
+
+      const sortBy = (key) => {
+        descending = active === key ? !descending : false;
+        active = key;
+        const rows = Array.prototype.slice.call(body.querySelectorAll('tr'));
+        rows.sort((a, b) => {
+          const va = value(a, key);
+          const vb = value(b, key);
+          if (va === vb) {
+            const na = value(a, 'name');
+            const nb = value(b, 'name');
+            return na < nb ? -1 : na > nb ? 1 : 0;
+          }
+          const cmp = va < vb ? -1 : 1;
+          return descending ? -cmp : cmp;
+        });
+        rows.forEach((r) => body.appendChild(r));
+        table.querySelectorAll('.sort-btn').forEach((b) => {
+          const own = b.getAttribute('data-sort') === key;
+          const th = b.parentElement;
+          if (th) th.setAttribute('aria-sort', own ? (descending ? 'descending' : 'ascending') : 'none');
+          b.setAttribute('data-active', own ? 'true' : 'false');
+        });
+      };
+
+      table.querySelectorAll('.sort-btn').forEach((b) => {
+        b.addEventListener('click', () => sortBy(b.getAttribute('data-sort')));
+      });
+    }
+  </script>
+</Base>

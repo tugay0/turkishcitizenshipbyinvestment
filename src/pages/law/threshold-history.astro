@@ -102,16 +102,16 @@ const label = (route: string) =>
 ---
 
 <Base title={title} description={description} path={PATH} schema={schema}>
-  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Threshold history
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+    <header class="page-head mt-7">
+      <h1>
         Every threshold since 2017, with the instrument that set it
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+      <p class="deck">
         The threshold that governs a file is the one in force on the date of the acquisition relied
         on, which makes the chronology operational rather than historical: to assess a 2019 file
         you need the 2019 figure and the decree that set it. All of it is below, and all of it is

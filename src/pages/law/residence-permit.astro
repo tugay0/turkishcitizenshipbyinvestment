@@ -1,0 +1,387 @@
+---
+/**
+ * Law No. 6458 art. 31(1)(j), the investor ground for a short-term residence
+ * permit.
+ *
+ * Here because the permit is the one stage of the chain whose purpose is
+ * routinely misdescribed in both directions. Marketing copy presents it as a
+ * benefit of the programme, and sceptical copy presents it as a hidden
+ * residence requirement. It is neither: it is a procedural gateway, because
+ * the citizenship application is made by a lawful resident, and it is granted
+ * on the certificate of conformity, which makes it a sequencing problem
+ * rather than a qualifying one. The page also separates the investor ground
+ * from the other short-term grounds a client may already hold, since holding
+ * the wrong one is a common and quiet cause of delay.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+
+const PATH = '/law/residence-permit';
+const pageUrl = absoluteUrl(PATH);
+const title = 'The Short-Term Residence Permit on the Investor Ground';
+const description =
+  'Law No. 6458 art. 31(1)(j) provides a short-term residence permit for the holder of a qualifying investment and their family. Why a programme with no residence requirement needs one, why it is granted on the certificate of conformity and therefore cannot be applied for first, how it differs from the property-owner, business and tourism grounds, and what it does not confer.';
+
+const PUBLISHED = '2026-11-11';
+
+/**
+ * The short-term grounds a citizenship-route client is most likely to hold or
+ * to be offered. Restricted to the four that matter here: the full list in
+ * art. 31(1) is longer and is not reproduced.
+ */
+const GROUNDS = [
+  {
+    letter: 'b',
+    ground: 'Owner of immovable property in Türkiye',
+    evidenced: 'Title deed in the applicant’s name',
+    family: 'No. The ground names the owner. Dependants take a family permit on their own footing.',
+    note:
+      'Available to any foreign owner, at any value, and entirely independent of the citizenship route. A client who bought before deciding to apply usually holds this one.',
+  },
+  {
+    letter: 'c',
+    ground: 'Intending to establish a commercial connection or a business',
+    evidenced: 'Commercial documentation assessed by the directorate',
+    family: 'No.',
+    note:
+      'Turns on an intended commercial activity, which is a matter of assessment rather than of certification. It carries no relationship to art. 20 of the implementing Regulation.',
+  },
+  {
+    letter: 'e',
+    ground: 'Staying for tourism purposes',
+    evidenced: 'Accommodation, means of support and an itinerary',
+    family: 'No.',
+    note:
+      'The default ground for a person with no other connection. Short, renewable at the directorate’s discretion, and the weakest footing from which to file a citizenship application.',
+  },
+  {
+    letter: 'j',
+    ground: 'Holder of a qualifying investment, with family',
+    evidenced: 'Certificate of conformity for the investment',
+    family: 'Yes. The ground itself names the foreign spouse and the dependent foreign children.',
+    note:
+      'The only ground that is keyed to the investment criteria in art. 20 of the implementing Regulation, and the only one whose grant follows from a certificate another authority has already issued.',
+  },
+] as const;
+
+const faqs: FaqItem[] = [
+  {
+    question: 'If the programme has no residence requirement, why is a residence permit needed at all?',
+    answer:
+      'Because the citizenship application is made by a lawful resident, not because any instrument requires the applicant to live in Türkiye. Law No. 5901 art. 12(1)(b) imposes no period of residence, no language test and no physical presence requirement. The permit is the status from which the file is filed, which is a procedural point, and holding it creates no obligation to spend any time in the country.',
+  },
+  {
+    question: 'Which comes first, the residence permit or the certificate of conformity?',
+    answer:
+      'The certificate. The permit on the investor ground under Law No. 6458 art. 31(1)(j) is granted on the certificate of conformity, so an application for the permit filed before the certificate exists is incomplete rather than early. This is the most common sequencing error on the route, and it costs an appointment slot rather than the file.',
+  },
+  {
+    question: 'Is the investor permit better than the property-owner permit the client already holds?',
+    answer:
+      'They are different grounds with different evidence and different reach. The property-owner ground under art. 31(1)(b) is available to any foreign owner at any value and is independent of the citizenship route; it does not extend to family members, who need their own footing. The investor ground under art. 31(1)(j) is keyed to the investment criteria and names the spouse and dependent children in the ground itself. A client holding only the property-owner permit is lawfully resident but is not resident on the ground the investment file is built around.',
+  },
+  {
+    question: 'Does the permit allow the holder to work in Türkiye?',
+    answer:
+      'No. A residence permit is not a work permit. The right to take employment or to be employed by a Turkish company rests on a separate permit under separate legislation, which this site’s source register does not yet index. Nothing in art. 31 of Law No. 6458 confers a right to work, and the investor ground as drafted contemplates a person who is not working in Türkiye.',
+  },
+  {
+    question: 'Does the family of the investor need separate permits?',
+    answer:
+      'They are covered by the investor ground itself, which names the foreign spouse and the dependent foreign children of the investor and of the spouse. That is the practical difference from the other short-term grounds: elsewhere the family takes a family residence permit derived from the holder, which is a separate application on separate conditions.',
+  },
+  {
+    question: 'What happens to the permit once citizenship is granted?',
+    answer:
+      'It becomes redundant. A Turkish citizen does not hold a residence permit, and the permit is not a status that survives the grant or that has to be surrendered as a condition of it. If the application is refused or withdrawn, the permit continues on its own terms until it expires, because its validity does not depend on the citizenship decision.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: PUBLISHED,
+    about: [
+      'Yabancılar ve Uluslararası Koruma Kanunu No. 6458, art. 31(1)(j)',
+      'Türk Vatandaşlığı Kanunu No. 5901, art. 12(1)(b)',
+    ],
+    citation: ['https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6458.pdf'],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Residence permit', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Residence permit
+    </nav>
+
+    <header class="page-head mt-7">
+      <h1>
+        The short-term residence permit on the investor ground
+      </h1>
+      <p class="deck">
+        A programme with no residence requirement nevertheless runs through a residence permit, and
+        the reason is procedural rather than substantive: the citizenship application is made by a
+        lawful resident. Understanding the permit as a gateway rather than as a condition settles
+        most of what is said about it in both directions, including the claim that the investor
+        must live in Türkiye and the claim that the permit is a benefit of the programme.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>The ground</h2>
+      <p>
+        Law No. 6458 art. 31(1) lists the grounds on which a short-term residence permit may be
+        issued. Sub-paragraph (j) provides for the holder of an investment of the scope and amount
+        determined by the Presidency, together with the holder's foreign spouse and the dependent
+        foreign children of the holder and of the spouse.
+      </p>
+      <Instrument id="law-6458" article="31(1)(j)" />
+      <p>
+        Two features of that drafting matter in practice. The first is that the ground does not
+        itself state a figure: the scope and amount are determined elsewhere, which is why the
+        permit tracks art. 20 of the implementing Regulation without reproducing it, and why a
+        change to the investment thresholds changes who qualifies for this permit without any
+        amendment to Law No. 6458. The second is that the family members are named in the ground
+        itself rather than taking a derived family permit, which is the structural difference from
+        every other sub-paragraph discussed below.
+      </p>
+      <Instrument id="regulation-2010-139" article="20" />
+      <p class="marginal">
+        The letters in art. 31(1) run in Turkish alphabetical order, in which ç follows c and ı
+        precedes i. A citation to a sub-paragraph letter therefore has to be read against the
+        Turkish sequence rather than the English one, the same trap as the deposit route sitting at
+        art. 20(2)(ç) of the Regulation.
+      </p>
+
+      <h2>Why the permit exists in a programme with no residence requirement</h2>
+      <p>
+        Nothing in Law No. 5901 art. 12(1)(b) requires an investor to reside in Türkiye. There is
+        no qualifying period, no minimum number of days, no language test and no interview on the
+        merits. The route is an exception to the ordinary naturalisation conditions precisely
+        because it dispenses with them.
+      </p>
+      <Instrument id="law-5901" article="12(1)(b)" />
+      <p>
+        What remains is the form of the application itself. The file is made and processed as the
+        application of a person lawfully present in Türkiye, through a provincial civil
+        registration and nationality directorate, and the residence permit is the status that makes
+        the applicant such a person. That is the whole of its function on this route. It is not a
+        test of attachment, it is not scored, and the length of time it has been held is not part of
+        the assessment of the investment.
+      </p>
+      <p>
+        Two consequences follow, and they point in opposite directions, which is why the permit is
+        described so inconsistently. The permit imposes no obligation to be in the country, so an
+        investor who never returns after the biometric appointments has breached nothing. But the
+        permit is also not optional, so an investor who declines it on the view that residence is
+        irrelevant to the programme has removed the footing the application is made from.
+      </p>
+
+      <h2>It is granted on the certificate, so the order is fixed</h2>
+      <p>
+        The investor ground is evidenced by the certificate of conformity, the document by which
+        the ministry responsible for the route certifies that the investment satisfies art. 20. The
+        permit is granted on that certificate, which fixes the order of the chain and makes the
+        sequencing a matter of substance rather than of convenience.
+      </p>
+      <ol>
+        <li>The qualifying investment is completed and registered or blocked.</li>
+        <li>
+          The certifying authority for that sub-paragraph issues the certificate of conformity.
+        </li>
+        <li>
+          The residence permit is applied for on the investor ground, on the strength of the
+          certificate.
+        </li>
+        <li>The citizenship application is filed by the now lawfully resident applicant.</li>
+      </ol>
+      <p>
+        An application for the permit lodged before the certificate exists is not early, it is
+        incomplete, and the directorate has nothing on which to grant the investor ground. The cost
+        is an appointment and a refusal on the file, not the loss of the investment, but on a route
+        where appointment capacity is the binding constraint that is not a trivial cost.
+      </p>
+      <p>
+        The step-by-step chain, including what each stage produces and which authority issues it,
+        is set out separately in
+        {' '}<a href="/procedure#residence">the procedural account</a>.
+      </p>
+
+      <h2>The other short-term grounds a client may already hold</h2>
+      <p>
+        A client who bought property before deciding to apply, or who has been coming to Türkiye on
+        a tourism permit, or who holds a permit tied to a business, is already lawfully resident.
+        The grounds are not interchangeable, and the differences are not cosmetic.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead>
+            <tr>
+              <th>Sub-para.</th>
+              <th>Ground</th>
+              <th>Evidenced by</th>
+              <th>Covers family</th>
+            </tr>
+          </thead>
+          <tbody>
+            {GROUNDS.map((g) => (
+              <tr>
+                <td class="whitespace-nowrap font-semibold">31(1)({g.letter})</td>
+                <td>{g.ground}</td>
+                <td>{g.evidenced}</td>
+                <td>{g.family}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {GROUNDS.map((g) => (
+        <>
+          <h3 id={`art-31-1-${g.letter}`}>
+            Article 31(1)({g.letter}): {g.ground.toLowerCase()}
+          </h3>
+          <p>{g.note}</p>
+        </>
+      ))}
+      <p>
+        The practical point is that the investor ground is the only one of the four that is derived
+        from the investment criteria, and the only one under which a grant is the near-automatic
+        consequence of a document issued by another authority rather than the outcome of an
+        assessment at the directorate. That is what makes it the gateway, and it is also what makes
+        it fragile: if the certificate is wrong, the permit granted on it was granted on a wrong
+        certificate.
+      </p>
+      <p class="unknown">
+        Whether a citizenship file is accepted from an applicant resident on another ground, for
+        example the property-owner ground under art. 31(1)(b), is a question of practice at the
+        provincial directorates that we cannot settle from the instruments. Neither Law No. 5901
+        nor art. 20 of the Regulation names a residence ground. We record the investor ground as
+        the ground the chain is designed around and do not assert that it is the only one accepted.
+      </p>
+
+      <h2>Duration, renewal and family members</h2>
+      <p>
+        Law No. 6458 art. 31(2) sets the maximum duration of a short-term permit per grant rather
+        than a single term for all grounds. The general rule for short-term permits is up to two
+        years at a time, and the permit is renewable on the continuing existence of its ground.
+      </p>
+      <p class="unknown">
+        A longer maximum, commonly stated as up to five years, is reported for the investor ground
+        specifically. Our register records Law No. 6458 at the level of an official reference
+        located rather than a text read for this release, and we have not re-read art. 31(2) in the
+        consolidated text, so the five-year figure is recorded here as unconfirmed. Nothing on this
+        route turns on it: the duration of the permit is not an element of the citizenship
+        assessment.
+      </p>
+      <p>
+        Family members under the investor ground are covered by the ground itself. That is worth
+        stating because it is a saving of a whole application: on the other grounds the spouse and
+        children take a family residence permit, derived from the holder and granted on its own
+        conditions. Under sub-paragraph (j) the foreign spouse and the dependent foreign children
+        of the investor and of the spouse are within the ground, and they appear on the citizenship
+        file as derivative applicants in the same way.
+      </p>
+      <p>
+        Valid health insurance is a condition of a residence permit under Law No. 6458, and it is
+        the condition most often overlooked by an applicant who is in Türkiye for a week of
+        appointments and assumes travel cover is enough.
+      </p>
+
+      <h2>What the permit does not do</h2>
+      <ul>
+        <li>
+          <strong>It is not a work permit.</strong> The right to work rests on a separate permit
+          under separate legislation, which this site's register does not index. A residence permit
+          on the investor ground confers no right to take employment.
+        </li>
+        <li>
+          <strong>It carries no obligation to live in Türkiye.</strong> There is no minimum
+          presence, and absence does not of itself breach the permit. What absence can affect is
+          renewal, because renewal rests on the ground continuing to exist.
+        </li>
+        <li>
+          <strong>It does not qualify the investment.</strong> The permit follows the certificate.
+          It adds nothing to the investment file and cures no defect in it. An investor holding a
+          valid permit on a certificate that should not have been issued is in a worse position
+          than one with no permit at all, because the permit is evidence that the certificate was
+          relied upon.
+        </li>
+        <li>
+          <strong>It is not a route to ordinary naturalisation by itself.</strong> Ordinary
+          naturalisation under Law No. 5901 rests on its own conditions, including a residence
+          period, and the investor route does not use a residence period at all.
+        </li>
+      </ul>
+      <p class="unknown">
+        Whether and how far time held on a short-term permit on the investor ground counts toward
+        the residence period for ordinary naturalisation is not settled on this site. The question
+        only arises for an applicant whose investment file fails and who then looks at the ordinary
+        route, and answering it needs the conditions in Law No. 5901 art. 11 read with the
+        residence provisions of the Regulation. We have not done that work and do not assert an
+        answer.
+      </p>
+
+      <h2>Two restrictions that sit on the permit and not on the purchase</h2>
+      <p>
+        The Presidency of Migration Management announcements of 16 May 2022 and 30 June 2022 closed
+        listed neighbourhoods to new residence permit registrations. This is a residence permit
+        measure, not a property measure: a unit in a closed neighbourhood can still be a qualifying
+        acquisition under art. 20 while being an address at which a new permit registration is
+        refused. A file can therefore be sound on the investment and stuck on the permit, which is
+        a failure mode that does not appear in any account of the programme organised by
+        investment threshold.
+      </p>
+      <p class="unknown">
+        The current state of the closed-neighbourhood regime is unresolved here. No announcement
+        lifting or restating the 2022 position was located, and the list is administered rather
+        than published as an instrument. It is
+        {' '}<a href="/data#not-known">recorded among the things this site does not know</a>.
+      </p>
+      <p>
+        Separately, a property threshold of {usd(200000)} for residence permits was announced on
+        16 October 2023. That figure concerns the property-owner ground under art. 31(1)(b) and not
+        the investor ground, and it has no bearing on the {usd(400000)} citizenship threshold.
+      </p>
+      <p class="unknown">
+        The legal instrument behind that {usd(200000)} figure has not been identified. It is
+        carried on the announcement alone and
+        {' '}<a href="/data#open-questions">published as an open question</a> rather than cited to
+        an instrument we have not found.
+      </p>
+
+      <h2>Questions this ground settles</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/procedure#conformity">The certificate of conformity, and why it precedes the permit</a></li>
+        <li><a href="/law/regulation-article-20">Article 20 of the implementing Regulation, annotated</a></li>
+        <li><a href="/law/annulment-and-withdrawal">Annulment and withdrawal of a citizenship decision</a></li>
+        <li><a href="/law/legalisation">Apostille and consular legalisation, with the status table</a></li>
+        <li><a href="/data#files">What a file contains, as data</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(PUBLISHED)}, {pageUrl}. CC BY 4.0. This is
+        a note on Turkish immigration and citizenship legislation, not legal advice.
+      </p>
+    </div>
+  </article>
+</Base>

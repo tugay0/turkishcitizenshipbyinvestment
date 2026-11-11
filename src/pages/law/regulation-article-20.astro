@@ -117,23 +117,23 @@ const schema = [
 ---
 
 <Base title={title} description={description} path={PATH} schema={schema}>
-  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Article 20
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+    <header class="page-head mt-7">
+      <h1>
         Article 20 of the implementing Regulation, annotated
       </h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+      <p class="deck">
         Everything about the investment route is in this article, and almost every error in
         circulation about the programme is an error about one of its sub-paragraphs. What follows
         takes them in the order the consolidated text numbers them, states the condition, names the
         authority that certifies compliance, and separates what the instrument says from what we
         have been unable to confirm.
       </p>
-      <p class="font-ui mt-4 text-[0.8125rem] text-ink-faint">
+      <p class="page-meta">
         Figures as of {longDate(asOf)}. Every one is held in
         {' '}<a href="/data" class="underline decoration-cite-soft">the open dataset</a>, with the
         instrument that set it.
@@ -186,7 +186,7 @@ const schema = [
               const r = byRoute[sp.route];
               return (
                 <tr>
-                  <td class="whitespace-nowrap font-semibold">20(2)({sp.letter})</td>
+                  <td class="font-mono-ref whitespace-nowrap text-[0.75rem] font-medium text-cite">20(2)({sp.letter})</td>
                   <td>{sp.heading}</td>
                   <td class="whitespace-nowrap">
                     {r?.minimum != null

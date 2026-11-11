@@ -37,28 +37,28 @@ const schema = [
 ---
 
 <Base title={title} description={description} path={PATH} schema={schema}>
-  <div class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <div class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / Tools
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">Calculators</h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+    <header class="page-head mt-7">
+      <h1>Calculators</h1>
+      <p class="deck">
         Each of these reads
         {' '}<a href="/data" class="underline decoration-cite-soft">the published dataset</a> at
         build time rather than carrying its own copy of the figures. That is the whole design
         principle: a calculator that holds its own numbers will eventually disagree with the page
         that explains them, and the reader has no way to tell which one is stale.
       </p>
-      <p class="font-ui mt-4 text-[0.8125rem] text-ink-faint">
+      <p class="page-meta">
         Data as of {longDate(asOf)}. No sign-up, no tracking, and nothing recorded about what you
         enter: these run entirely in your browser.
       </p>
     </header>
 
-    <section class="mt-12">
-      <h2 class="ui-label text-ink-faint">Published</h2>
+    <section class="mt-14 border-t border-line-strong pt-7">
+      <h2 class="section-head">Published</h2>
       <div class="mt-5 divide-y rule border-y rule">
         {LIVE.map((t) => (
           <article class="py-6">
@@ -71,8 +71,8 @@ const schema = [
       </div>
     </section>
 
-    <section class="mt-12 max-w-2xl">
-      <h2 class="ui-label text-ink-faint">In preparation</h2>
+    <section class="mt-14 max-w-[36rem] border-t border-line-strong pt-7">
+      <h2 class="section-head">In preparation</h2>
       <p class="mt-3 leading-relaxed text-ink-soft">
         Listed because the data behind them is already published, so anyone can build these
         before we do.
@@ -87,8 +87,8 @@ const schema = [
       </dl>
     </section>
 
-    <section class="mt-12 max-w-2xl">
-      <h2 class="ui-label text-ink-faint">Reuse</h2>
+    <section class="mt-14 max-w-[36rem] border-t border-line-strong pt-7">
+      <h2 class="section-head">Reuse</h2>
       <p class="mt-3 leading-relaxed text-ink-soft">
         The data is CC BY 4.0 and the calculations are not secret. If you want to build one of
         these into your own site, take

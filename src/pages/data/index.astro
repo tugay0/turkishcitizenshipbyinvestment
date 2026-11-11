@@ -109,19 +109,19 @@ const pendingApostille = apostille.countries.filter((c: any) => c.inForceFrom &&
 ---
 
 <Base title={TITLE} description={description} path={PATH} schema={schema} rawTitle>
-  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
-    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+  <article class="shell py-14">
+    <nav class="crumbs" aria-label="Breadcrumb">
       <a href="/" class="hover:text-cite">Home</a> / Data
     </nav>
 
-    <header class="mt-5 max-w-3xl">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{TITLE}</h1>
-      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+    <header class="page-head mt-7">
+      <h1>{TITLE}</h1>
+      <p class="deck">
         The figures behind every page on this site, published as files anyone can compute with. The
         pages read these files at build time, so a figure here and a figure on a page cannot
         disagree. Licensed CC BY 4.0: reuse it, including commercially, with attribution.
       </p>
-      <p class="font-ui mt-5 text-[0.8125rem] text-cite">
+      <p class="page-meta">
         As of {longDate(asOf)} &middot; source commit
         {' '}<a href={manifest.commitUrl} rel="noopener" class="underline decoration-cite-soft">{sha7}</a>
         {' '}&middot; {srcList.length} primary sources &middot; {openQuestions.length} open questions
