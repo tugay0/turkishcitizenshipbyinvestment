@@ -6,11 +6,13 @@ import tailwindcss from '@tailwindcss/vite';
 /**
  * Static output, deployed to Cloudflare Pages.
  *
- * Pages rather than shared cPanel hosting on purpose. ralegal.com.tr sits
- * behind a host-level bot-blocking module that answered Bingbot with 406 on
- * 226 of 248 requests before we found it, and which still blocks Bytespider.
- * A reference work that intends to be cited by crawlers cannot be hosted
- * somewhere that decides which crawlers are allowed.
+ * Pages rather than shared cPanel hosting on purpose. The sibling site runs
+ * on a host whose bot-blocking module answered Bingbot with 406 on 226 of 248
+ * requests until it was found and disabled, and which still returns 403 to
+ * Bytespider. That was recoverable, but only because someone went looking. A
+ * reference work meant to be cited by crawlers should not be hosted somewhere
+ * that decides which crawlers are allowed, and should not depend on anyone
+ * noticing when that decision changes.
  *
  * trailingSlash 'never' and build.format 'file' match ralegal.com.tr, so the
  * shared tooling and the canonical logic behave identically across both.

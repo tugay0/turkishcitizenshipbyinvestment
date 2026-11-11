@@ -35,7 +35,8 @@ Funding and the resulting conflict of interest are set out in full at `/method`.
 ## Stack
 
 - Astro 7, static output, Tailwind v4
-- Deployed to Cloudflare Pages (project `tcbi-reference`)
+- Deployed to Cloudflare Pages (project `tcbi-reference`), rather than shared
+  hosting whose bot module can silently decide which crawlers are served
 - Data vendored from [Ralegal/turkish-cbi-data](https://github.com/Ralegal/turkish-cbi-data)
   by `scripts/sync-open-data.sh`, with the commit recorded in `manifest.json`
 
