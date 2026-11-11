@@ -1,0 +1,988 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Whether a country is a Contracting Party to the Hague Convention of 5 October 1961 Abolishing the Requirement of Legalisation for Foreign Public Documents, which decides whether a civil status document for a Turkish citizenship file takes an apostille or needs consular legalisation. Parties are the full HCCH status table. Non-parties are listed only where a Ra Legal guide or tool names that nationality; absence from this file is not a statement that a country is not a party.",
+  "asOf": "2026-11-11",
+  "source": {
+    "id": "hcch-1961",
+    "statusTable": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+    "tableLastUpdated": "2026-06-30",
+    "readOn": "2026-11-11"
+  },
+  "counts": {
+    "parties": 130,
+    "inForceToday": 129,
+    "listedNonParties": 27
+  },
+  "countries": [
+    {
+      "code": "AD",
+      "name": "Andorra",
+      "apostilleMember": true,
+      "inForceFrom": "1996-12-31"
+    },
+    {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "AF",
+      "name": "Afghanistan",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "AG",
+      "name": "Antigua and Barbuda",
+      "apostilleMember": true,
+      "inForceFrom": "1981-11-01"
+    },
+    {
+      "code": "AL",
+      "name": "Albania",
+      "apostilleMember": true,
+      "inForceFrom": "2004-05-09"
+    },
+    {
+      "code": "AM",
+      "name": "Armenia",
+      "apostilleMember": true,
+      "inForceFrom": "1994-08-14"
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "apostilleMember": true,
+      "inForceFrom": "1988-02-18"
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "apostilleMember": true,
+      "inForceFrom": "1968-01-13"
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "apostilleMember": true,
+      "inForceFrom": "1995-03-16"
+    },
+    {
+      "code": "AZ",
+      "name": "Azerbaijan",
+      "apostilleMember": true,
+      "inForceFrom": "2005-03-02"
+    },
+    {
+      "code": "BA",
+      "name": "Bosnia and Herzegovina",
+      "apostilleMember": true,
+      "inForceFrom": "1992-03-06"
+    },
+    {
+      "code": "BB",
+      "name": "Barbados",
+      "apostilleMember": true,
+      "inForceFrom": "1966-11-30"
+    },
+    {
+      "code": "BD",
+      "name": "Bangladesh",
+      "apostilleMember": true,
+      "inForceFrom": "2025-03-30"
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "apostilleMember": true,
+      "inForceFrom": "1976-02-09"
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "apostilleMember": true,
+      "inForceFrom": "2001-04-29"
+    },
+    {
+      "code": "BH",
+      "name": "Bahrain",
+      "apostilleMember": true,
+      "inForceFrom": "2013-12-31"
+    },
+    {
+      "code": "BI",
+      "name": "Burundi",
+      "apostilleMember": true,
+      "inForceFrom": "2015-02-13"
+    },
+    {
+      "code": "BN",
+      "name": "Brunei Darussalam",
+      "apostilleMember": true,
+      "inForceFrom": "1987-12-03"
+    },
+    {
+      "code": "BO",
+      "name": "Bolivia",
+      "apostilleMember": true,
+      "inForceFrom": "2018-05-07"
+    },
+    {
+      "code": "BR",
+      "name": "Brazil",
+      "apostilleMember": true,
+      "inForceFrom": "2016-08-14"
+    },
+    {
+      "code": "BS",
+      "name": "Bahamas",
+      "apostilleMember": true,
+      "inForceFrom": "1973-07-10"
+    },
+    {
+      "code": "BW",
+      "name": "Botswana",
+      "apostilleMember": true,
+      "inForceFrom": "1966-09-30"
+    },
+    {
+      "code": "BY",
+      "name": "Belarus",
+      "apostilleMember": true,
+      "inForceFrom": "1992-05-31"
+    },
+    {
+      "code": "BZ",
+      "name": "Belize",
+      "apostilleMember": true,
+      "inForceFrom": "1993-04-11"
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "apostilleMember": true,
+      "inForceFrom": "2024-01-11"
+    },
+    {
+      "code": "CH",
+      "name": "Switzerland",
+      "apostilleMember": true,
+      "inForceFrom": "1973-03-11"
+    },
+    {
+      "code": "CK",
+      "name": "Cook Islands",
+      "apostilleMember": true,
+      "inForceFrom": "2005-04-30"
+    },
+    {
+      "code": "CL",
+      "name": "Chile",
+      "apostilleMember": true,
+      "inForceFrom": "2016-08-30"
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "apostilleMember": true,
+      "inForceFrom": "2023-11-07"
+    },
+    {
+      "code": "CO",
+      "name": "Colombia",
+      "apostilleMember": true,
+      "inForceFrom": "2001-01-30"
+    },
+    {
+      "code": "CR",
+      "name": "Costa Rica",
+      "apostilleMember": true,
+      "inForceFrom": "2011-12-14"
+    },
+    {
+      "code": "CV",
+      "name": "Cabo Verde",
+      "apostilleMember": true,
+      "inForceFrom": "2010-02-13"
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "apostilleMember": true,
+      "inForceFrom": "1973-04-30"
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "apostilleMember": true,
+      "inForceFrom": "1999-03-16"
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "apostilleMember": true,
+      "inForceFrom": "1966-02-13"
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "apostilleMember": true,
+      "inForceFrom": "2006-12-29"
+    },
+    {
+      "code": "DM",
+      "name": "Dominica",
+      "apostilleMember": true,
+      "inForceFrom": "1978-11-03"
+    },
+    {
+      "code": "DO",
+      "name": "Dominican Republic",
+      "apostilleMember": true,
+      "inForceFrom": "2009-08-30"
+    },
+    {
+      "code": "DZ",
+      "name": "Algeria",
+      "apostilleMember": true,
+      "inForceFrom": "2026-07-09"
+    },
+    {
+      "code": "EC",
+      "name": "Ecuador",
+      "apostilleMember": true,
+      "inForceFrom": "2005-04-02"
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "apostilleMember": true,
+      "inForceFrom": "2001-09-30"
+    },
+    {
+      "code": "EG",
+      "name": "Egypt",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "apostilleMember": true,
+      "inForceFrom": "1978-09-25"
+    },
+    {
+      "code": "ET",
+      "name": "Ethiopia",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "apostilleMember": true,
+      "inForceFrom": "1985-08-26"
+    },
+    {
+      "code": "FJ",
+      "name": "Fiji",
+      "apostilleMember": true,
+      "inForceFrom": "1970-10-10"
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "apostilleMember": true,
+      "inForceFrom": "1965-01-24"
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom of Great Britain and Northern Ireland",
+      "apostilleMember": true,
+      "inForceFrom": "1965-01-24"
+    },
+    {
+      "code": "GD",
+      "name": "Grenada",
+      "apostilleMember": true,
+      "inForceFrom": "2002-04-07"
+    },
+    {
+      "code": "GE",
+      "name": "Georgia",
+      "apostilleMember": true,
+      "inForceFrom": "2007-05-14"
+    },
+    {
+      "code": "GH",
+      "name": "Ghana",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "GR",
+      "name": "Greece",
+      "apostilleMember": true,
+      "inForceFrom": "1985-05-18"
+    },
+    {
+      "code": "GT",
+      "name": "Guatemala",
+      "apostilleMember": true,
+      "inForceFrom": "2017-09-18"
+    },
+    {
+      "code": "GY",
+      "name": "Guyana",
+      "apostilleMember": true,
+      "inForceFrom": "2019-04-18"
+    },
+    {
+      "code": "HN",
+      "name": "Honduras",
+      "apostilleMember": true,
+      "inForceFrom": "2004-09-30"
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "apostilleMember": true,
+      "inForceFrom": "1991-10-08"
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "apostilleMember": true,
+      "inForceFrom": "1973-01-18"
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "apostilleMember": true,
+      "inForceFrom": "2022-06-04"
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "apostilleMember": true,
+      "inForceFrom": "1999-03-09"
+    },
+    {
+      "code": "IL",
+      "name": "Israel",
+      "apostilleMember": true,
+      "inForceFrom": "1978-08-14"
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "apostilleMember": true,
+      "inForceFrom": "2005-07-14"
+    },
+    {
+      "code": "IQ",
+      "name": "Iraq",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "IR",
+      "name": "Iran (Islamic Republic of)",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "IS",
+      "name": "Iceland",
+      "apostilleMember": true,
+      "inForceFrom": "2004-11-27"
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "apostilleMember": true,
+      "inForceFrom": "1978-02-11"
+    },
+    {
+      "code": "JM",
+      "name": "Jamaica",
+      "apostilleMember": true,
+      "inForceFrom": "2021-07-03"
+    },
+    {
+      "code": "JO",
+      "name": "Jordan",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "apostilleMember": true,
+      "inForceFrom": "1970-07-27"
+    },
+    {
+      "code": "KE",
+      "name": "Kenya",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "KG",
+      "name": "Kyrgyzstan",
+      "apostilleMember": true,
+      "inForceFrom": "2011-07-31"
+    },
+    {
+      "code": "KH",
+      "name": "Cambodia",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "KN",
+      "name": "Saint Kitts and Nevis",
+      "apostilleMember": true,
+      "inForceFrom": "1994-12-14"
+    },
+    {
+      "code": "KR",
+      "name": "Republic of Korea",
+      "apostilleMember": true,
+      "inForceFrom": "2007-07-14"
+    },
+    {
+      "code": "KW",
+      "name": "Kuwait",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "KZ",
+      "name": "Kazakhstan",
+      "apostilleMember": true,
+      "inForceFrom": "2001-01-30"
+    },
+    {
+      "code": "LA",
+      "name": "Lao People's Democratic Republic",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "LB",
+      "name": "Lebanon",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "LC",
+      "name": "Saint Lucia",
+      "apostilleMember": true,
+      "inForceFrom": "2002-07-31"
+    },
+    {
+      "code": "LI",
+      "name": "Liechtenstein",
+      "apostilleMember": true,
+      "inForceFrom": "1972-09-17"
+    },
+    {
+      "code": "LK",
+      "name": "Sri Lanka",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "LR",
+      "name": "Liberia",
+      "apostilleMember": true,
+      "inForceFrom": "1996-02-08"
+    },
+    {
+      "code": "LS",
+      "name": "Lesotho",
+      "apostilleMember": true,
+      "inForceFrom": "1966-10-04"
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "apostilleMember": true,
+      "inForceFrom": "1997-07-19"
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "apostilleMember": true,
+      "inForceFrom": "1979-06-03"
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "apostilleMember": true,
+      "inForceFrom": "1996-01-30"
+    },
+    {
+      "code": "LY",
+      "name": "Libya",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "MA",
+      "name": "Morocco",
+      "apostilleMember": true,
+      "inForceFrom": "2016-08-14"
+    },
+    {
+      "code": "MC",
+      "name": "Monaco",
+      "apostilleMember": true,
+      "inForceFrom": "2002-12-31"
+    },
+    {
+      "code": "MD",
+      "name": "Republic of Moldova",
+      "apostilleMember": true,
+      "inForceFrom": "2007-03-16"
+    },
+    {
+      "code": "ME",
+      "name": "Montenegro",
+      "apostilleMember": true,
+      "inForceFrom": "2006-06-03"
+    },
+    {
+      "code": "MH",
+      "name": "Marshall Islands",
+      "apostilleMember": true,
+      "inForceFrom": "1992-08-14"
+    },
+    {
+      "code": "MK",
+      "name": "North Macedonia",
+      "apostilleMember": true,
+      "inForceFrom": "1991-11-17"
+    },
+    {
+      "code": "MM",
+      "name": "Myanmar",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "MN",
+      "name": "Mongolia",
+      "apostilleMember": true,
+      "inForceFrom": "2009-12-31"
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "apostilleMember": true,
+      "inForceFrom": "1968-03-03"
+    },
+    {
+      "code": "MU",
+      "name": "Mauritius",
+      "apostilleMember": true,
+      "inForceFrom": "1968-03-12"
+    },
+    {
+      "code": "MV",
+      "name": "Maldives",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "MW",
+      "name": "Malawi",
+      "apostilleMember": true,
+      "inForceFrom": "1967-12-02"
+    },
+    {
+      "code": "MX",
+      "name": "Mexico",
+      "apostilleMember": true,
+      "inForceFrom": "1995-08-14"
+    },
+    {
+      "code": "MY",
+      "name": "Malaysia",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "NA",
+      "name": "Namibia",
+      "apostilleMember": true,
+      "inForceFrom": "2001-01-30"
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "NI",
+      "name": "Nicaragua",
+      "apostilleMember": true,
+      "inForceFrom": "2013-05-14"
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands (Kingdom of the)",
+      "apostilleMember": true,
+      "inForceFrom": "1965-10-08"
+    },
+    {
+      "code": "NO",
+      "name": "Norway",
+      "apostilleMember": true,
+      "inForceFrom": "1983-07-29"
+    },
+    {
+      "code": "NP",
+      "name": "Nepal",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "NU",
+      "name": "Niue",
+      "apostilleMember": true,
+      "inForceFrom": "1999-03-02"
+    },
+    {
+      "code": "NZ",
+      "name": "New Zealand",
+      "apostilleMember": true,
+      "inForceFrom": "2001-11-22"
+    },
+    {
+      "code": "OM",
+      "name": "Oman",
+      "apostilleMember": true,
+      "inForceFrom": "2012-01-30"
+    },
+    {
+      "code": "PA",
+      "name": "Panama",
+      "apostilleMember": true,
+      "inForceFrom": "1991-08-04"
+    },
+    {
+      "code": "PE",
+      "name": "Peru",
+      "apostilleMember": true,
+      "inForceFrom": "2010-09-30"
+    },
+    {
+      "code": "PH",
+      "name": "Philippines",
+      "apostilleMember": true,
+      "inForceFrom": "2019-05-14"
+    },
+    {
+      "code": "PK",
+      "name": "Pakistan",
+      "apostilleMember": true,
+      "inForceFrom": "2023-03-09"
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "apostilleMember": true,
+      "inForceFrom": "2005-08-14"
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "apostilleMember": true,
+      "inForceFrom": "1969-02-04"
+    },
+    {
+      "code": "PW",
+      "name": "Palau",
+      "apostilleMember": true,
+      "inForceFrom": "2020-06-23"
+    },
+    {
+      "code": "PY",
+      "name": "Paraguay",
+      "apostilleMember": true,
+      "inForceFrom": "2014-08-30"
+    },
+    {
+      "code": "QA",
+      "name": "Qatar",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "apostilleMember": true,
+      "inForceFrom": "2001-03-16"
+    },
+    {
+      "code": "RS",
+      "name": "Serbia",
+      "apostilleMember": true,
+      "inForceFrom": "1992-04-27"
+    },
+    {
+      "code": "RU",
+      "name": "Russian Federation",
+      "apostilleMember": true,
+      "inForceFrom": "1992-05-31"
+    },
+    {
+      "code": "RW",
+      "name": "Rwanda",
+      "apostilleMember": true,
+      "inForceFrom": "2024-06-05"
+    },
+    {
+      "code": "SA",
+      "name": "Saudi Arabia",
+      "apostilleMember": true,
+      "inForceFrom": "2022-12-07"
+    },
+    {
+      "code": "SC",
+      "name": "Seychelles",
+      "apostilleMember": true,
+      "inForceFrom": "1979-03-31"
+    },
+    {
+      "code": "SD",
+      "name": "Sudan",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "apostilleMember": true,
+      "inForceFrom": "1999-05-01"
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "apostilleMember": true,
+      "inForceFrom": "2021-09-16"
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "apostilleMember": true,
+      "inForceFrom": "1991-06-25"
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "apostilleMember": true,
+      "inForceFrom": "2002-02-18"
+    },
+    {
+      "code": "SM",
+      "name": "San Marino",
+      "apostilleMember": true,
+      "inForceFrom": "1995-02-13"
+    },
+    {
+      "code": "SN",
+      "name": "Senegal",
+      "apostilleMember": true,
+      "inForceFrom": "2023-03-23"
+    },
+    {
+      "code": "SO",
+      "name": "Somalia",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "SR",
+      "name": "Suriname",
+      "apostilleMember": true,
+      "inForceFrom": "1975-11-25"
+    },
+    {
+      "code": "ST",
+      "name": "Sao Tome and Principe",
+      "apostilleMember": true,
+      "inForceFrom": "2008-09-13"
+    },
+    {
+      "code": "SV",
+      "name": "El Salvador",
+      "apostilleMember": true,
+      "inForceFrom": "1996-05-31"
+    },
+    {
+      "code": "SY",
+      "name": "Syrian Arab Republic",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "SZ",
+      "name": "Eswatini",
+      "apostilleMember": true,
+      "inForceFrom": "1968-09-06"
+    },
+    {
+      "code": "TH",
+      "name": "Thailand",
+      "apostilleMember": false,
+      "inForceFrom": "2027-02-28",
+      "note": "Acceded, but the Convention has not yet entered into force for this State. Documents still need consular legalisation until the date above."
+    },
+    {
+      "code": "TJ",
+      "name": "Tajikistan",
+      "apostilleMember": true,
+      "inForceFrom": "2015-10-31"
+    },
+    {
+      "code": "TM",
+      "name": "Turkmenistan",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "TN",
+      "name": "Tunisia",
+      "apostilleMember": true,
+      "inForceFrom": "2018-03-30"
+    },
+    {
+      "code": "TO",
+      "name": "Tonga",
+      "apostilleMember": true,
+      "inForceFrom": "1970-06-04"
+    },
+    {
+      "code": "TR",
+      "name": "Türkiye",
+      "apostilleMember": true,
+      "inForceFrom": "1985-09-29"
+    },
+    {
+      "code": "TT",
+      "name": "Trinidad and Tobago",
+      "apostilleMember": true,
+      "inForceFrom": "2000-07-14"
+    },
+    {
+      "code": "TW",
+      "name": "Taiwan",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "UA",
+      "name": "Ukraine",
+      "apostilleMember": true,
+      "inForceFrom": "2003-12-22"
+    },
+    {
+      "code": "US",
+      "name": "United States of America",
+      "apostilleMember": true,
+      "inForceFrom": "1981-10-15"
+    },
+    {
+      "code": "UY",
+      "name": "Uruguay",
+      "apostilleMember": true,
+      "inForceFrom": "2012-10-14"
+    },
+    {
+      "code": "UZ",
+      "name": "Uzbekistan",
+      "apostilleMember": true,
+      "inForceFrom": "2012-04-15"
+    },
+    {
+      "code": "VC",
+      "name": "Saint Vincent and the Grenadines",
+      "apostilleMember": true,
+      "inForceFrom": "1979-10-27"
+    },
+    {
+      "code": "VE",
+      "name": "Venezuela (Bolivarian Republic of)",
+      "apostilleMember": true,
+      "inForceFrom": "1999-03-16"
+    },
+    {
+      "code": "VN",
+      "name": "Viet Nam",
+      "apostilleMember": true,
+      "inForceFrom": "2026-09-11"
+    },
+    {
+      "code": "VU",
+      "name": "Vanuatu",
+      "apostilleMember": true,
+      "inForceFrom": "1980-07-30"
+    },
+    {
+      "code": "WS",
+      "name": "Samoa",
+      "apostilleMember": true,
+      "inForceFrom": "1999-09-13"
+    },
+    {
+      "code": "XK",
+      "name": "Kosovo",
+      "apostilleMember": true,
+      "inForceFrom": "2016-07-14"
+    },
+    {
+      "code": "YE",
+      "name": "Yemen",
+      "apostilleMember": false,
+      "inForceFrom": null,
+      "note": "Not a party. Public documents need consular legalisation: notarised and certified in the issuing country, then legalised by that country's foreign ministry and by the Turkish mission there."
+    },
+    {
+      "code": "ZA",
+      "name": "South Africa",
+      "apostilleMember": true,
+      "inForceFrom": "1995-04-30"
+    }
+  ]
+}

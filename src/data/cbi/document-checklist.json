@@ -1,0 +1,86 @@
+{
+  "description": "Documents commonly required for a Turkish citizenship-by-investment application. Authorities may request more case by case.",
+  "asOf": "2026-11-11",
+  "mainApplicant": [
+    {
+      "document": "Passport",
+      "legalisation": "none",
+      "translation": "notarised Turkish translation"
+    },
+    {
+      "document": "Birth certificate",
+      "legalisation": "apostille or consular legalisation",
+      "translation": "sworn translation",
+      "note": "Recently issued, in practice within six months"
+    },
+    {
+      "document": "Biometric photos",
+      "quantity": 4,
+      "spec": "50x60mm, ICAO"
+    },
+    {
+      "document": "Turkish tax number",
+      "issuedIn": "Turkiye"
+    },
+    {
+      "document": "Power of attorney",
+      "issuedIn": "Turkish consulate abroad or Turkish notary"
+    },
+    {
+      "document": "Proof of qualifying investment",
+      "note": "Title deed plus appraisal, or bank letter"
+    },
+    {
+      "document": "Currency conversion certificate (doviz alim belgesi)",
+      "issuedIn": "Turkish bank"
+    },
+    {
+      "document": "Health insurance valid in Turkiye",
+      "note": "For the residence permit stage"
+    }
+  ],
+  "spouse": [
+    {
+      "document": "Passport",
+      "translation": "notarised Turkish translation"
+    },
+    {
+      "document": "Birth certificate",
+      "legalisation": "apostille or consular legalisation"
+    },
+    {
+      "document": "Marriage certificate",
+      "legalisation": "apostille or consular legalisation"
+    },
+    {
+      "document": "Biometric photos",
+      "quantity": 4
+    }
+  ],
+  "childUnder18": [
+    {
+      "document": "Passport",
+      "translation": "notarised Turkish translation"
+    },
+    {
+      "document": "Birth certificate showing both parents",
+      "legalisation": "apostille or consular legalisation"
+    },
+    {
+      "document": "Biometric photos",
+      "quantity": 4
+    },
+    {
+      "document": "Non-applying parent consent",
+      "legalisation": "apostille or consular legalisation",
+      "conditional": true
+    }
+  ],
+  "apostilleStatus": {
+    "note": "Hague Apostille Convention membership decides whether a public document takes an apostille or needs consular legalisation. The full table is a separate file so it can be updated on its own as states accede.",
+    "file": "data/apostille-countries.json",
+    "lookup": "ISO 3166-1 alpha-2 code in countries[].code; apostilleMember is the answer for today, inForceFrom is the date the Convention entered into force for that state.",
+    "source": "hcch-1961",
+    "coverage": "All 130 Contracting Parties, plus the non-parties named in Ra Legal guides. A country absent from the file is not known to be a non-party: check the HCCH status table before answering."
+  }
+}

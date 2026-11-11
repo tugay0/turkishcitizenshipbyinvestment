@@ -1,0 +1,581 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Turkish citizenship by investment: primary source index",
+  "description": "Machine-readable index of the primary legal instruments, official statistical publications and official statements behind the datasets in this repository. Every figure published here is traceable to an entry in this file.",
+  "asOf": "2026-11-11",
+  "license": "CC BY 4.0",
+  "repository": "https://github.com/Ralegal/turkish-cbi-data",
+  "maintainer": {
+    "name": "Ra Legal",
+    "kind": "law_firm",
+    "city": "Istanbul",
+    "country": "TR",
+    "website": "https://ralegal.com.tr",
+    "email": "info@ralegal.com.tr",
+    "barAssociation": "Istanbul Bar Association (Istanbul Barosu)"
+  },
+  "conventions": {
+    "id": "Stable identifier. Records in the datasets may reference these identifiers; the identifiers are not renamed once published.",
+    "resmiGazete": "Publication in the Turkish Official Gazette: date in ISO 8601 and issue number (sayi). Null where the instrument is not published in the Official Gazette, for example an internal circular of a general directorate.",
+    "titleTr": "Official Turkish title, with Turkish characters.",
+    "titleEn": "English rendering for readers. Not an official translation unless marked.",
+    "url": "Stable public URL where one was located, otherwise null.",
+    "verification": "official_text_located = a URL to the official or officially consolidated text was located and the citation matches its header. official_reference_located = the citation matches an official reference such as the Official Gazette archive or the mevzuat.gov.tr index, but the operative wording was not re-read for this release. secondary = the citation rests on secondary reporting and is flagged for confirmation against the primary text.",
+    "lastChecked": "Date this entry's citation details were last checked by a maintainer."
+  },
+  "sources": [
+    {
+      "id": "law-5901",
+      "kind": "statute",
+      "titleTr": "Turk Vatandasligi Kanunu",
+      "titleTrNative": "Türk Vatandaşlığı Kanunu",
+      "titleEn": "Turkish Citizenship Law",
+      "number": "5901",
+      "adopted": "2009-05-29",
+      "resmiGazete": {
+        "date": "2009-06-12",
+        "issue": "27256"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "articlesUsed": [
+        {
+          "article": "12(1)(b)",
+          "subject": "Acquisition of Turkish citizenship by exceptional means, including persons determined to have brought investment into Turkiye"
+        },
+        {
+          "article": "31",
+          "subject": "Annulment (iptal) of a decision granting citizenship where it followed a false declaration or the concealment of material facts"
+        },
+        {
+          "article": "33",
+          "subject": "Liquidation of assets following loss of citizenship"
+        },
+        {
+          "article": "40",
+          "subject": "Withdrawal (geri alinma) of a citizenship decision later found to have been issued without the legal conditions being met, or issued twice"
+        },
+        {
+          "article": "46",
+          "subject": "Authority for the implementing Regulation"
+        }
+      ],
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5901.pdf",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "regulation-2010-139",
+      "kind": "regulation",
+      "titleTr": "Turk Vatandasligi Kanununun Uygulanmasina Iliskin Yonetmelik",
+      "titleTrNative": "Türk Vatandaşlığı Kanununun Uygulanmasına İlişkin Yönetmelik",
+      "titleEn": "Regulation on the Implementation of the Turkish Citizenship Law",
+      "number": "2010/139",
+      "instrument": "Bakanlar Kurulu Karari",
+      "decided": "2010-02-11",
+      "resmiGazete": {
+        "date": "2010-04-06",
+        "issue": "27544"
+      },
+      "publisher": "Bakanlar Kurulu",
+      "statutoryBasis": "law-5901 art. 46",
+      "articlesUsed": [
+        {
+          "article": "20",
+          "subject": "Procedure and criteria for exceptional acquisition of Turkish citizenship, including the qualifying investment amounts and holding periods"
+        }
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/21.5.2010139.pdf",
+      "originalTextUrl": "https://www.resmigazete.gov.tr/eskiler/2010/04/20100406-9.htm",
+      "note": "Article 20 has been amended repeatedly. The amendments that moved the thresholds are indexed separately below. Always read the consolidated text rather than the 2010 original.",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "bkk-2016-9601",
+      "kind": "amending_instrument",
+      "titleEn": "Amendment introducing the investor route into the implementing Regulation",
+      "number": "2016/9601",
+      "instrument": "Bakanlar Kurulu Karari",
+      "amends": "regulation-2010-139",
+      "resmiGazete": {
+        "date": "2017-01-12",
+        "issue": "29946"
+      },
+      "publisher": "Bakanlar Kurulu",
+      "effect": "Introduced the investor route. Real estate threshold USD 1,000,000; bank deposit threshold USD 3,000,000.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "bkk-2017-10008",
+      "kind": "amending_instrument",
+      "titleEn": "Amendment to the investor route criteria",
+      "number": "2017/10008",
+      "instrument": "Bakanlar Kurulu Karari",
+      "amends": "regulation-2010-139",
+      "resmiGazete": {
+        "date": "2017-05-05",
+        "issue": "30057"
+      },
+      "publisher": "Bakanlar Kurulu",
+      "effect": "Amended the investor route criteria.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "cbk-106",
+      "kind": "amending_instrument",
+      "titleTr": "Cumhurbaskanligi Kararnamesi No. 106",
+      "titleEn": "Presidential Decree No. 106",
+      "number": "106",
+      "instrument": "Cumhurbaskanligi Kararnamesi",
+      "amends": "regulation-2010-139",
+      "resmiGazete": {
+        "date": "2018-09-19",
+        "issue": "30540"
+      },
+      "publisher": "Cumhurbaskanligi",
+      "effect": "Cut the thresholds: real estate to USD 250,000, bank deposit, government bonds and investment fund shares to USD 500,000, fixed capital investment to USD 500,000, job creation to 50 employees.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "cbk-5554",
+      "kind": "amending_instrument",
+      "titleTr": "Cumhurbaskani Karari No. 5554",
+      "titleEn": "Presidential Decision No. 5554",
+      "number": "5554",
+      "instrument": "Cumhurbaskani Karari",
+      "amends": "regulation-2010-139",
+      "resmiGazete": {
+        "date": "2022-05-13",
+        "issue": "31834"
+      },
+      "inForceFrom": "2022-06-13",
+      "publisher": "Cumhurbaskanligi",
+      "effect": "Raised the real estate threshold from USD 250,000 to USD 400,000, in force one month after publication.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "law-492",
+      "kind": "statute",
+      "titleTr": "Harclar Kanunu",
+      "titleTrNative": "Harçlar Kanunu",
+      "titleEn": "Fees Law",
+      "number": "492",
+      "adopted": "1964-07-02",
+      "resmiGazete": {
+        "date": "1964-07-17",
+        "issue": "11756"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "articlesUsed": [
+        {
+          "article": "57 and Tariff No. 4",
+          "subject": "Title deed and cadastre fees. Tariff No. 4 applies the transfer fee at 20 per thousand to the transferor and 20 per thousand to the transferee separately, which is the 4 per cent figure in data/government-costs.csv. The rate was set at 20 per thousand by Bakanlar Kurulu Karari 2012/3735 of 2012-09-20, replacing 16.5 per thousand."
+        },
+        {
+          "article": "63",
+          "subject": "Fee base in transfers of immovable property: the declared transfer value, which may not be below the property tax value"
+        }
+      ],
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.492.htm",
+      "originalTextUrl": "https://www.resmigazete.gov.tr/arsiv/11756.pdf",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "law-3065",
+      "kind": "statute",
+      "titleTr": "Katma Deger Vergisi Kanunu",
+      "titleTrNative": "Katma Değer Vergisi Kanunu",
+      "titleEn": "Value Added Tax Law",
+      "number": "3065",
+      "adopted": "1984-10-25",
+      "resmiGazete": {
+        "date": "1984-11-02",
+        "issue": "18563"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "articlesUsed": [
+        {
+          "article": "13(i)",
+          "subject": "VAT exemption on the first delivery of a building constructed as a residence or workplace to a person not resident in Turkiye, where the price is brought into Turkiye in foreign currency"
+        }
+      ],
+      "amendedBy": [
+        {
+          "id": "law-6824",
+          "titleEn": "Law No. 6824, art. 7, which added subparagraph (i) to art. 13",
+          "resmiGazete": {
+            "date": "2017-03-08",
+            "issue": "30001"
+          },
+          "appliesFrom": "2017-04-01"
+        }
+      ],
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.3065.pdf",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "kdv-tebligi-13i",
+      "kind": "administrative_guidance",
+      "titleTr": "Katma Deger Vergisi Genel Uygulama Tebliginde Degisiklik Yapilmasina Dair Teblig",
+      "titleEn": "Amendment to the VAT General Application Communique, adding section II/B-12 on the exemption for residence and workplace deliveries",
+      "resmiGazete": {
+        "date": "2017-05-05",
+        "issue": null
+      },
+      "publisher": "Hazine ve Maliye Bakanligi, Gelir Idaresi Baskanligi",
+      "subject": "Conditions for applying the art. 13(i) VAT exemption, including the requirement that the title deed registration be completed and that the foreign currency be brought in.",
+      "url": "https://www.resmigazete.gov.tr/eskiler/2017/05/20170505-11.htm",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "tkgm-genelge-2024-4",
+      "kind": "circular",
+      "titleTr": "Tapu ve Kadastro Genel Mudurlugu 2024/4 sayili Genelge",
+      "titleEn": "General Directorate of Land Registry and Cadastre Circular No. 2024/4",
+      "number": "2024/4",
+      "dated": "2024-06-13",
+      "resmiGazete": null,
+      "publisher": "Tapu ve Kadastro Genel Mudurlugu (TKGM)",
+      "subject": "Procedure for the Tutar Tespit Belgesi (value confirmation document) that evidences the qualifying real estate amount for a citizenship file, and the appraisal report it rests on.",
+      "amendedBy": [
+        {
+          "titleEn": "Makam Oluru of 2026-09-28, no. 21914825",
+          "effect": "The appraisal report underlying the Tutar Tespit Belgesi may be issued by any appraisal company authorised by the Capital Markets Board, and the window between the Tutar Tespit Belgesi and the citizenship title deed application was extended from 6 months to 12 months.",
+          "verification": "secondary"
+        }
+      ],
+      "url": null,
+      "verification": "secondary",
+      "note": "Circulars of the General Directorate are not published in the Official Gazette. The 2026-09-28 amendment is recorded here from secondary reporting and is flagged for confirmation against the circular text.",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "tkgm-genelge-2019-1",
+      "kind": "circular",
+      "titleTr": "Tapu ve Kadastro Genel Mudurlugu 2019/1 sayili Genelge",
+      "titleEn": "General Directorate of Land Registry and Cadastre Circular No. 2019/1",
+      "number": "2019/1",
+      "resmiGazete": null,
+      "publisher": "Tapu ve Kadastro Genel Mudurlugu (TKGM)",
+      "subject": "Requirement for an appraisal report by a company licensed by the Capital Markets Board where one party to a title deed transfer is a foreign national.",
+      "url": null,
+      "verification": "secondary",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "law-6362",
+      "kind": "statute",
+      "titleTr": "Sermaye Piyasasi Kanunu",
+      "titleTrNative": "Sermaye Piyasası Kanunu",
+      "titleEn": "Capital Markets Law",
+      "number": "6362",
+      "adopted": "2012-12-06",
+      "resmiGazete": {
+        "date": "2012-12-30",
+        "issue": "28513"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "subject": "Basis on which the Capital Markets Board (SPK) authorises real estate appraisal companies. The list of authorised companies is maintained by the Board.",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6362.pdf",
+      "registerUrl": "https://spk.gov.tr",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "law-6458",
+      "kind": "statute",
+      "titleTr": "Yabancilar ve Uluslararasi Koruma Kanunu",
+      "titleTrNative": "Yabancılar ve Uluslararası Koruma Kanunu",
+      "titleEn": "Law on Foreigners and International Protection",
+      "number": "6458",
+      "adopted": "2013-04-04",
+      "resmiGazete": {
+        "date": "2013-04-11",
+        "issue": "28615"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "subject": "Residence permits, including the short-term residence permit issued to owners of immovable property and the health insurance condition. Relevant to the residence permit stage in data/document-checklist.json.",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6458.pdf",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "law-6305",
+      "kind": "statute",
+      "titleTr": "Afet Sigortalari Kanunu",
+      "titleTrNative": "Afet Sigortaları Kanunu",
+      "titleEn": "Disaster Insurance Law",
+      "number": "6305",
+      "adopted": "2012-05-09",
+      "resmiGazete": {
+        "date": "2012-08-18",
+        "issue": "28388"
+      },
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "subject": "Compulsory earthquake insurance (DASK), a condition of utility registration and of title deed transactions. Appears as a cost line in data/government-costs.csv.",
+      "url": "https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6305.pdf",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "hcch-1961",
+      "kind": "international_instrument",
+      "titleEn": "Convention of 5 October 1961 Abolishing the Requirement of Legalisation for Foreign Public Documents",
+      "shortName": "Hague Apostille Convention",
+      "publisher": "Hague Conference on Private International Law (HCCH)",
+      "subject": "Whether an apostille or consular legalisation applies to a civil status document, used in the apostilleStatus block of data/document-checklist.json. Entry-into-force dates per contracting party are read from the HCCH status table.",
+      "url": "https://www.hcch.net/en/instruments/conventions/status-table/?cid=41",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "tuik-konut-satis",
+      "kind": "statistical_series",
+      "titleTr": "Konut Satis Istatistikleri",
+      "titleTrNative": "Konut Satış İstatistikleri",
+      "titleEn": "House Sales Statistics",
+      "publisher": "Turkiye Istatistik Kurumu (TUIK)",
+      "cadence": "monthly, with an annual bulletin",
+      "subject": "Foreign house sales by unit, by buyer nationality and by province. The monthly bulletin publishes only a top five by nationality; year-to-date nationality columns appear in the December bulletin.",
+      "url": "https://data.tuik.gov.tr",
+      "note": "Several records in data/statistics.json reach TUIK figures through industry reproductions of the bulletin rather than the bulletin table itself. Each such record says so in its own source field. TUIK has also revised the historical series, and the repository keeps the pre-revision and revised bases as separate series.",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "tcmb-balance-of-payments",
+      "kind": "statistical_series",
+      "titleTr": "Odemeler Dengesi Istatistikleri",
+      "titleTrNative": "Ödemeler Dengesi İstatistikleri",
+      "titleEn": "Balance of Payments Statistics",
+      "publisher": "Turkiye Cumhuriyet Merkez Bankasi (TCMB)",
+      "cadence": "monthly",
+      "subject": "Net foreign direct investment in real estate, line 1.2.3 Gayrimenkul (Net). Used for the real_estate_net_inflow series in data/statistics.json. Recent months are provisional.",
+      "url": "https://www.tcmb.gov.tr",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "nvi",
+      "kind": "institution",
+      "titleTr": "Nufus ve Vatandaslik Isleri Genel Mudurlugu",
+      "titleTrNative": "Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü",
+      "titleEn": "General Directorate of Civil Registration and Nationality (NVI)",
+      "publisher": "Icisleri Bakanligi",
+      "subject": "Holder of the citizenship acquisition and loss records. NVI publishes no regular statistical series on citizenship acquisitions; figures reach the public through ministerial statements and answers to parliamentary questions, and the records in data/statistics.json name the statement they come from.",
+      "url": "https://www.nvi.gov.tr",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "icisleri-bakanligi-statements",
+      "kind": "official_statement",
+      "titleEn": "Ministry of Interior written statements and ministerial statements on the investor route",
+      "publisher": "Icisleri Bakanligi",
+      "subject": "Cumulative investor-route acquisitions, and cancellations and withdrawals under Law No. 5901 art. 31 and art. 40. Each record in data/statistics.json names the statement date it rests on, because no published table carries these figures.",
+      "url": "https://www.icisleri.gov.tr",
+      "verification": "secondary",
+      "note": "Written statements of this kind are reported in the press rather than published as a dataset. Records sourced this way are marked in their own source field and should be read as official statements reported secondhand.",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "istanbul-bassavciligi",
+      "kind": "official_statement",
+      "titleTr": "Istanbul Cumhuriyet Bassavciligi",
+      "titleTrNative": "İstanbul Cumhuriyet Başsavcılığı",
+      "titleEn": "Istanbul Chief Public Prosecutor's Office",
+      "subject": "Investigation announcements of 2026-08-04 and 2026-09-21 concerning citizenship files, including a 687-person nationality breakdown drawn from the investigation file and MASAK analyses. Persons under investigation, not programme participants generally.",
+      "url": null,
+      "verification": "secondary",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "masak",
+      "kind": "institution",
+      "titleTr": "Mali Suclari Arastirma Kurulu",
+      "titleTrNative": "Mali Suçları Araştırma Kurulu",
+      "titleEn": "Financial Crimes Investigation Board (MASAK)",
+      "publisher": "Hazine ve Maliye Bakanligi",
+      "subject": "Financial analyses referred to in the 2026 investigation announcements.",
+      "url": "https://www.hmb.gov.tr/mali-suclari-arastirma-kurulu-baskanligi",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "danistay",
+      "kind": "court",
+      "titleTr": "Danistay",
+      "titleTrNative": "Danıştay",
+      "titleEn": "Council of State",
+      "subject": "Judicial review of the investor route. The litigation series in data/statistics.json records the Turkish Bar Association challenge, including the 10th Chamber decision of 2025-09-11 refused on standing, with an appeal pending.",
+      "url": "https://www.danistay.gov.tr",
+      "verification": "secondary",
+      "note": "Decision numbers for these rulings are not yet recorded in the dataset. See openQuestions.",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "goc-idaresi",
+      "kind": "institution",
+      "titleTr": "Goc Idaresi Baskanligi",
+      "titleTrNative": "Göç İdaresi Başkanlığı",
+      "titleEn": "Presidency of Migration Management",
+      "publisher": "Icisleri Bakanligi",
+      "subject": "Residence permit administration, and the closed-neighbourhood announcements of 2022-05-16 and 2022-06-30 that restrict new residence permit registrations in listed neighbourhoods. These concern residence permits, not property purchase.",
+      "url": "https://www.goc.gov.tr",
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "ankara-valiligi-service-standards",
+      "kind": "administrative_publication",
+      "titleTr": "Ankara Valiligi Il Nufus ve Vatandaslik Mudurlugu hizmet standartlari tablosu",
+      "titleEn": "Ankara Governorship, Provincial Civil Registration and Nationality Directorate service standards table",
+      "subject": "The only located official statement of a service time for a step in the citizenship process, row 4 of the standards table. No Turkish authority publishes an end-to-end processing time for the investor route.",
+      "url": null,
+      "verification": "secondary",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "resmi-gazete",
+      "kind": "gazette",
+      "titleTr": "Resmi Gazete",
+      "titleTrNative": "Resmî Gazete",
+      "titleEn": "Official Gazette of the Republic of Turkiye",
+      "subject": "Publication of record for statutes, presidential decrees and decisions, and regulations. Every resmiGazete reference in this file can be checked in its archive by date and issue number.",
+      "url": "https://www.resmigazete.gov.tr",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "mevzuat-gov-tr",
+      "kind": "consolidated_legislation",
+      "titleEn": "mevzuat.gov.tr, the official consolidated legislation database",
+      "publisher": "Cumhurbaskanligi Hukuk ve Mevzuat Genel Mudurlugu",
+      "subject": "Officially consolidated texts of statutes and regulations, with footnotes recording each amendment. The reference text for the current wording of any instrument indexed here.",
+      "url": "https://www.mevzuat.gov.tr",
+      "verification": "official_text_located",
+      "lastChecked": "2026-11-08"
+    },
+    {
+      "id": "cbk-5072",
+      "kind": "amending_instrument",
+      "titleEn": "Amendment requiring qualifying deposits and instruments to be converted into Turkish lira",
+      "number": "5072",
+      "instrument": "Cumhurbaskanligi Karari",
+      "amends": "regulation-2010-139",
+      "resmiGazete": {
+        "date": "2022-01-06",
+        "issue": "31711"
+      },
+      "publisher": "Cumhurbaskanligi",
+      "articlesUsed": [
+        {
+          "article": "20(10)",
+          "subject": "The foreign currency is sold to the bank and by the bank to the Central Bank, and the qualifying amount is held in Turkish lira"
+        }
+      ],
+      "effect": "Added Art. 20(10) to the implementing Regulation, so a qualifying bank deposit is a Turkish lira deposit rather than a foreign currency one.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-11",
+      "note": "Which sub-paragraphs of Art. 20(2) this rule reaches, beyond the bank deposit, is an open question below."
+    },
+    {
+      "id": "law-7394",
+      "kind": "statute",
+      "titleEn": "Law amending the Law on the Taxation of Certain Assets and certain other laws",
+      "number": "7394",
+      "resmiGazete": {
+        "date": "2022-04-15",
+        "issue": "31810"
+      },
+      "inForce": "2022-05-01",
+      "publisher": "Turkiye Buyuk Millet Meclisi",
+      "amends": "law-3065",
+      "articlesUsed": [
+        {
+          "article": "13(1)(i)",
+          "subject": "The no-disposal period attached to the foreign-buyer VAT exemption, extended from one year to three years"
+        }
+      ],
+      "effect": "Replaced \"one year\" with \"three years\" in VAT Law No. 3065 Art. 13(1)(i). Disposing of the unit inside the period brings the exempted VAT back with interest.",
+      "url": null,
+      "verification": "official_reference_located",
+      "lastChecked": "2026-11-11"
+    }
+  ],
+  "datasetSourceMap": {
+    "data/investment-thresholds.json": [
+      "law-5901",
+      "regulation-2010-139",
+      "bkk-2016-9601",
+      "bkk-2017-10008",
+      "cbk-106",
+      "cbk-5554",
+      "cbk-5072"
+    ],
+    "data/government-costs.csv": [
+      "law-492",
+      "law-3065",
+      "kdv-tebligi-13i",
+      "law-6305",
+      "law-6362",
+      "tkgm-genelge-2019-1",
+      "tkgm-genelge-2024-4",
+      "cbk-5072",
+      "law-7394"
+    ],
+    "data/document-checklist.json": [
+      "law-5901",
+      "regulation-2010-139",
+      "law-6458",
+      "hcch-1961",
+      "tkgm-genelge-2024-4"
+    ],
+    "data/statistics.json": [
+      "tuik-konut-satis",
+      "tcmb-balance-of-payments",
+      "nvi",
+      "icisleri-bakanligi-statements",
+      "istanbul-bassavciligi",
+      "masak",
+      "danistay",
+      "goc-idaresi",
+      "ankara-valiligi-service-standards",
+      "law-5901",
+      "regulation-2010-139",
+      "bkk-2016-9601",
+      "bkk-2017-10008",
+      "cbk-106",
+      "cbk-5554"
+    ],
+    "data/apostille-countries.json": [
+      "hcch-1961"
+    ],
+    "data/processing-times.json": [
+      "ankara-valiligi-service-standards"
+    ],
+    "data/investment-returns.json": []
+  },
+  "openQuestions": [
+    "Decision numbers (esas and karar) for the Danistay rulings in the litigation series are not yet recorded.",
+    "The Tapu ve Kadastro Genel Mudurlugu circulars are not published in the Official Gazette, so 2019/1, 2021/6 and 2024/4 and its 2026-09-28 amendment rest on secondary reporting and need confirmation against the circular texts.",
+    "The legal instrument behind the USD 200,000 property threshold for residence permits announced on 2023-10-16 has not been identified.",
+    "The Official Gazette issue number for the VAT General Application Communique amendment of 2017-05-05 is not yet recorded.",
+    "Sources disagree on the validity period of the appraisal report underlying the Tutar Tespit Belgesi. The 2026-09-28 amendment to circular 2024/4 is reported to set the window between the Tutar Tespit Belgesi and the citizenship application at 12 months, which may be the origin of the disagreement, but the circular text has not been read.",
+    "Which sub-paragraphs of Regulation Art. 20(2) the Art. 20(10) lira-conversion requirement reaches. Ra Legal's deposit guide states (b), (c-cedilla), (d) and (e); only the bank deposit is recorded as settled in investment-thresholds.json. Counsel to confirm.",
+    "The series in data/investment-returns.json have no entries in this register. Borsa Istanbul index levels, TCMB deposit rates and the TCMB residential property price index each need a dated entry with a URL and a retrieval date before a figure from that file can be cited the way a legal figure can.",
+    "The lira gram gold price series in data/investment-returns.json has no identified publication at all."
+  ]
+}

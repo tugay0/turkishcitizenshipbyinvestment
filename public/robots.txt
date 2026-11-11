@@ -1,0 +1,78 @@
+# Everything here is published to be read, quoted and recomputed, by people
+# and by machines alike. The text and data are CC BY 4.0, so there is no
+# reason to exclude any crawler, and the ones most often blocked by default
+# are named explicitly rather than left to a wildcard.
+
+User-agent: *
+Allow: /
+
+# Search
+User-agent: Googlebot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: YandexBot
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: PetalBot
+Allow: /
+User-agent: Yeti
+Allow: /
+User-agent: Naverbot
+Allow: /
+User-agent: Seznambot
+Allow: /
+
+# Assistants and their crawlers
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-CloudVertexBot
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: DeepSeekBot
+Allow: /
+User-agent: YouBot
+Allow: /
+
+# Archives, because a reference work that cannot be checked against its own
+# past is worth less.
+User-agent: ia_archiver
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://turkishcitizenshipbyinvestment.org/sitemap-index.xml

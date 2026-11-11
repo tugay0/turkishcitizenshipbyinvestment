@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../lib/site';
+import { breadcrumbs, scholarlyArticle } from '../lib/schema';
+import thresholds from '../data/cbi/investment-thresholds.json';
+import processing from '../data/cbi/processing-times.json';
+import sources from '../data/cbi/sources.json';
+import apostille from '../data/cbi/apostille-countries.json';
+
+const PATH = '/';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Turkish Citizenship by Investment: An Annotated Reference';
+const description =
+  'An independent reference on Turkish citizenship by investment: the governing instruments annotated article by article, the procedure, the published figures with their sources, and what no authority publishes. Free, CC BY 4.0, with no paid placement of any kind.';
+
+const asOf: string = (thresholds as any).asOf ?? '';
+const current: any[] = (thresholds as any).current ?? [];
+const openQuestions: string[] = (sources as any).openQuestions ?? [];
+const sourceCount = ((sources as any).sources ?? []).length;
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+  }),
+  breadcrumbs([{ name: 'Home', url: pageUrl }]),
+];
+
+const SECTIONS = [
+  {
+    href: '/law',
+    label: 'The law',
+    blurb:
+      'The instruments, annotated. Law No. 5901 art. 12(1)(b) creates the power; art. 20 of the implementing Regulation carries every figure. Each page states the condition, names the certifying authority and separates the text from the gloss.',
+  },
+  {
+    href: '/procedure',
+    label: 'Procedure',
+    blurb:
+      'The chain from investment to decision: appraisal, certificate of conformity, residence permit under Law No. 6458 art. 31(1)(j), the citizenship file, the decision. What each stage produces and what it is tested against.',
+  },
+  {
+    href: '/data',
+    label: 'Data',
+    blurb: `Machine-readable, CC BY 4.0: thresholds and their statutory basis, government costs, document requirements, the Hague Apostille status table, observed processing times, dollar-return series, and a register of ${sourceCount} primary sources.`,
+  },
+  {
+    href: '/tools',
+    label: 'Tools',
+    blurb:
+      'Calculators that compute from the dataset rather than from assertions: what a purchase costs beyond the investment, which documents an issuing country needs, where a pending file sits against observed durations.',
+  },
+  {
+    href: '/directory',
+    label: 'Practitioners',
+    blurb:
+      'A register of firms doing this work, with how each was verified and what each discloses. Nothing in it can be bought.',
+  },
+  {
+    href: '/method',
+    label: 'Method',
+    blurb:
+      'How a figure gets onto this site, how a firm gets into the register, what we do when sources disagree, and what we refuse to publish.',
+  },
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema} rawTitle>
+  <div class="mx-auto max-w-6xl px-(--spacing-gutter)">
+    <section class="border-b rule py-14">
+      <h1 class="max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        Turkish citizenship by investment, as the instruments actually set it out
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+        Most of what is published about this programme is written to sell a service, and it shows:
+        thresholds without the decision that set them, processing times presented as commitments,
+        a VAT condition that changed in 2022 and is still quoted at its old length, and a deposit
+        route still described as a way to hold foreign currency four years after that stopped being
+        true.
+      </p>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
+        This is a reference work instead. Every figure names the instrument behind it and the date.
+        Where the sources disagree, it says so. Where no authority publishes a number, it says that
+        too, rather than supplying one. There is nothing here to buy and no firm can pay to appear.
+      </p>
+      <p class="font-ui mt-6 text-[0.8125rem] text-ink-faint">
+        Current as of {longDate(asOf)} &middot; text and data under
+        {' '}<a href={SITE.license.url} rel="license noopener" class="underline decoration-cite-soft">CC BY 4.0</a>
+      </p>
+    </section>
+
+    <section class="border-b rule py-12">
+      <h2 class="ui-label text-ink-faint">The programme in one table</h2>
+      <p class="mt-3 max-w-2xl text-ink-soft">
+        Thresholds under art. 20(2) of the implementing Regulation. The sub-paragraph letter is the
+        instrument's own, and it is what a certificate of conformity cites.
+      </p>
+      <div class="scroll-x mt-6">
+        <table class="ref-table">
+          <thead>
+            <tr><th>Route</th><th>Minimum</th><th>Holding</th><th>Condition</th><th>Effective</th></tr>
+          </thead>
+          <tbody>
+            {current.map((r: any) => (
+              <tr>
+                <td class="whitespace-nowrap font-semibold">{r.label}</td>
+                <td class="whitespace-nowrap">
+                  {r.minimum != null ? usd(r.minimum) : r.employees != null ? `${r.employees} employees` : 'not recorded'}
+                </td>
+                <td class="whitespace-nowrap">
+                  {r.holdingPeriodYears == null ? 'none stated' : `${r.holdingPeriodYears} years`}
+                </td>
+                <td>{r.basis}</td>
+                <td class="whitespace-nowrap">{r.effectiveFrom ? longDate(r.effectiveFrom) : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="font-ui mt-4 text-[0.8125rem] text-ink-faint">
+        <a href="/law/regulation-article-20" class="underline decoration-cite-soft">Each sub-paragraph annotated</a>
+        {' '}&middot;
+        <a href="/law/threshold-history" class="underline decoration-cite-soft">every change since 2017</a>
+      </p>
+    </section>
+
+    <section class="border-b rule py-12">
+      <h2 class="ui-label text-ink-faint">Four things commonly got wrong</h2>
+      <div class="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        <div>
+          <h3 class="font-ui text-[0.9375rem] font-semibold">The deposit is held in lira, not dollars</h3>
+          <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">
+            Since 6 January 2022, art. 20(10) requires the foreign currency to be sold to the bank
+            and by the bank to the Central Bank. The investor carries lira exposure for three
+            years. Sources calling it an FX deposit describe the pre-2022 position.
+          </p>
+          <p class="font-ui mt-1.5 text-[0.8125rem]">
+            <a href="/law/currency-conversion" class="underline decoration-cite-soft">Article 20(10)</a>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-ui text-[0.9375rem] font-semibold">The VAT condition is three years, not one</h3>
+          <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">
+            Law No. 7394 replaced "one year" with "three years" in VAT Law art. 13(1)(i), in force
+            1 May 2022. Much of the market still publishes one year. A buyer who sells in year two
+            on that advice repays the exempted VAT with interest.
+          </p>
+          <p class="font-ui mt-1.5 text-[0.8125rem]">
+            <a href="/law/vat-exemption" class="underline decoration-cite-soft">The exemption</a>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-ui text-[0.9375rem] font-semibold">No authority publishes a processing time</h3>
+          <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">
+            Neither the Law nor the Regulation sets a deadline, and no ministry publishes an
+            end-to-end figure. Every duration in circulation, including the
+            {' '}{processing.endToEnd.lowMonths} to {processing.endToEnd.highMonths} months recorded
+            here, is an observation and is marked as one in the data.
+          </p>
+          <p class="font-ui mt-1.5 text-[0.8125rem]">
+            <a href="/data#processing-times" class="underline decoration-cite-soft">What is recorded, and how</a>
+          </p>
+        </div>
+        <div>
+          <h3 class="font-ui text-[0.9375rem] font-semibold">The threshold is the appraisal, not the price</h3>
+          <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">
+            Four figures must each independently reach {usd(400000)}: the appraised value, the
+            declared deed value, the currency-purchase certificate and the sum transferred to the
+            seller. Fees and VAT count toward none of them.
+          </p>
+          <p class="font-ui mt-1.5 text-[0.8125rem]">
+            <a href="/law/regulation-article-20#art-20-2-b" class="underline decoration-cite-soft">Article 20(2)(b)</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b rule py-12">
+      <h2 class="ui-label text-ink-faint">Sections</h2>
+      <div class="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+        {SECTIONS.map((s) => (
+          <div>
+            <h3 class="font-ui text-[0.9375rem] font-semibold">
+              <a href={s.href} class="underline decoration-cite-soft hover:text-cite">{s.label}</a>
+            </h3>
+            <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-soft">{s.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-12">
+      <h2 class="ui-label text-ink-faint">What we do not know</h2>
+      <p class="mt-3 max-w-2xl text-ink-soft">
+        {openQuestions.length} questions are open in the source register, published as questions.
+        A reference work that resolves everything is either lucky or lying, and the gaps are the
+        part practitioners quote back to us most often.
+      </p>
+      <ul class="prose-ref mt-5 list-disc pl-5">
+        {openQuestions.slice(0, 4).map((q) => <li class="text-[0.9375rem] text-ink-soft">{q}</li>)}
+      </ul>
+      <p class="font-ui mt-4 text-[0.8125rem] text-ink-faint">
+        <a href="/data#open-questions" class="underline decoration-cite-soft">All of them</a>
+        {' '}&middot; the Hague Apostille table covers {apostille.counts.parties} Contracting
+        Parties, and says plainly that absence from it is not an answer
+      </p>
+    </section>
+  </div>
+</Base>

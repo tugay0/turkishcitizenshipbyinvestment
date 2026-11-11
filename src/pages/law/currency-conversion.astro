@@ -1,0 +1,199 @@
+---
+/**
+ * Article 20(10), the lira-conversion requirement.
+ *
+ * Given its own page because it is the change most often missed. It moved no
+ * threshold, so it never appeared in the tables that circulate, and four
+ * years later a great deal of published guidance still describes the deposit
+ * route as a way of holding foreign currency in a Turkish bank.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+import thresholds from '../../data/cbi/investment-thresholds.json';
+
+const PATH = '/law/currency-conversion';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Article 20(10): Why a Qualifying Deposit Is Held in Turkish Lira';
+const description =
+  'Presidential Decision No. 5072 added Article 20(10) to the implementing Regulation on 6 January 2022: a qualifying amount is converted into Turkish lira through the Central Bank and held in lira. What the paragraph does, how the conversion works, which sub-paragraphs it reaches, and what it means for an investor choosing the deposit route.';
+
+const asOf: string = (thresholds as any).asOf ?? '';
+const dep = ((thresholds as any).current ?? []).find((r: any) => r.route === 'bank_deposit');
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Can a qualifying investment still be held in foreign currency?',
+    answer:
+      'No, for the bank deposit route. Since Article 20(10) was added on 6 January 2022 the foreign currency is sold to the bank, the bank sells it to the Central Bank, and the qualifying amount is held in Turkish lira for the holding period. Guidance describing a qualifying deposit as a foreign currency deposit is describing the position before that date.',
+  },
+  {
+    question: 'Who bears the currency risk during the three years?',
+    answer:
+      'The investor. The threshold is expressed in US dollars and tested at conversion, but the asset held afterwards is lira. If the lira depreciates against the dollar over the holding period, the dollar value of the deposit falls, and nothing in the Regulation compensates for that. This is the opposite of the risk profile the route is often sold on.',
+  },
+  {
+    question: 'Which sub-paragraphs does Article 20(10) reach?',
+    answer:
+      'The bank deposit route under Article 20(2)(ç) is uncontroversial. Practitioner guidance commonly states that it also reaches sub-paragraphs (b), (d) and (e), covering real estate, government debt instruments and investment fund shares. We have not confirmed that against the consolidated text and do not assert it; it is recorded as an open question in the dataset.',
+  },
+  {
+    question: 'How is the dollar threshold measured if the asset is in lira?',
+    answer:
+      'By the Central Bank effective exchange rate on the determination date. Which date that is decides whether the file clears the threshold, so the conversion date is a substantive step and not an administrative one.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+    about: [
+      'Türk Vatandaşlığı Kanununun Uygulanmasına İlişkin Yönetmelik, art. 20(10)',
+      'Cumhurbaşkanlığı Kararı No. 5072',
+    ],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Article 20(10)', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Article 20(10)
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        Article 20(10): why a qualifying deposit is held in Turkish lira
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        This paragraph changed the economics of four of the seven routes and moved no threshold,
+        which is precisely why it is still missing from most published accounts of the programme.
+        Tables get updated when a number changes. This was not a number.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>What the paragraph does</h2>
+      <p>
+        Presidential Decision No. 5072 added a tenth paragraph to art. 20 of the implementing
+        Regulation. Its effect is to interpose the Central Bank between the investor's money and
+        the qualifying asset.
+      </p>
+      <Instrument id="cbk-5072" article="20(10)" />
+      <p>
+        The sequence is specific, and each step is evidenced by a document that ends up in the
+        file:
+      </p>
+      <ol>
+        <li>
+          The investor transfers foreign currency into a bank operating in Türkiye.
+        </li>
+        <li>
+          The investor sells that currency to the bank. The bank issues a currency-purchase
+          certificate, the <em>döviz alım belgesi</em> or DAB, which fixes the dollar equivalent on
+          that date. This is the document the threshold is tested against.
+        </li>
+        <li>
+          The bank sells the foreign currency on to the Central Bank. This is the step art. 20(10)
+          added, and it is the reason the rule exists: it is a capital-account measure, not an
+          immigration one.
+        </li>
+        <li>
+          The lira proceeds are placed on deposit and blocked for the holding period, under an
+          undertaking not to withdraw the principal.
+        </li>
+      </ol>
+      <p class="marginal">
+        Reading the rule as an immigration requirement makes it look arbitrary. Reading it as what
+        it is, a measure to route hard currency to the Central Bank during a reserves squeeze,
+        makes it entirely legible, and suggests it will not be relaxed while that pressure lasts.
+      </p>
+
+      <h2>What this means for the investor</h2>
+      <p>
+        The deposit route is routinely presented as the conservative choice: the capital is not at
+        market risk, nothing has to be sold, and at the end of three years the money is simply
+        released. Two of those three things remain true. The third does not.
+      </p>
+      <p>
+        The threshold is denominated in dollars, {dep?.minimum ? usd(dep.minimum) : usd(500000)},
+        and tested in dollars at conversion. The asset held for the next three years is lira. The
+        investor therefore accepts Turkish lira exposure on the full amount for the holding period,
+        and whether that is a good trade depends on the lira deposit rate against lira
+        depreciation over three years, which is a question about macroeconomics rather than about
+        citizenship law.
+      </p>
+      <p>
+        That is a legitimate choice, and in the high-rate years it has sometimes been a profitable
+        one. What it is not is a way to park dollars. An adviser who presents it as one has
+        described the pre-2022 product.
+      </p>
+      <p>
+        One practical consequence worth knowing: banks do not generally price a single three-year
+        lira term deposit. In practice the account opens on a shorter term and is rolled over, with
+        the blockage riding across each renewal. The blockage, not the term, is what satisfies the
+        Regulation.
+      </p>
+
+      <h2>How far the paragraph reaches</h2>
+      <p>
+        The bank deposit route under art. 20(2)(ç) is settled. Beyond that, the position taken here
+        is deliberately incomplete.
+      </p>
+      <p>
+        Practitioner guidance in circulation commonly states that art. 20(10) applies to
+        sub-paragraphs (b), (ç), (d) and (e), which would put the conversion requirement on real
+        estate, the deposit, government debt instruments and fund shares alike. That is a
+        significant claim: applied to the real estate route it would mean the purchase price must
+        pass through the same Central Bank conversion, which is consistent with the currency
+        certificate being a required document in property files.
+      </p>
+      <p class="unknown">
+        We have not confirmed the sub-paragraph list against the consolidated text, so this site
+        records the deposit route as covered and the others as unconfirmed. The question is
+        published as {' '}<a href="/data#open-questions">an open question</a> rather than resolved
+        by inference. If you have read the consolidated paragraph and can cite it,
+        {' '}<a href={`mailto:${SITE.email}`}>write to the editor</a>.
+      </p>
+
+      <h2>Dating the rule correctly</h2>
+      <p>
+        The Decision was published in the Resmî Gazete of 6 January 2022. A file whose conversion
+        happened before that date was governed by the previous position, which matters when reading
+        an older file, an older certificate, or a 2021 engagement letter that promised a foreign
+        currency deposit. It also means any guidance dated before January 2022 is not wrong so much
+        as superseded, a distinction worth preserving when assessing whether an adviser was
+        negligent or merely early.
+      </p>
+
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/law/regulation-article-20">Article 20 in full, sub-paragraph by sub-paragraph</a></li>
+        <li><a href="/law/threshold-history">Every threshold change, with its instrument</a></li>
+        <li><a href="/data#open-questions">The open questions, including this one</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(asOf)}, {pageUrl}. CC BY 4.0.
+      </p>
+    </div>
+  </article>
+</Base>

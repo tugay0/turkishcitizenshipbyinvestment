@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+# Credentials never live in this tree. They are in
+# ~/.config/cloudflare/tugay.env, mode 600.
+.env
+.env.*
+.dev.vars

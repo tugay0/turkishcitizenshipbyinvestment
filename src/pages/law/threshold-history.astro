@@ -1,0 +1,219 @@
+---
+/**
+ * The chronology, generated from the dataset's history array.
+ *
+ * Written as a page rather than a table because the sequence tells you
+ * something the numbers alone do not: the thresholds sit in secondary
+ * legislation, and the instrument type changes from Council of Ministers
+ * decision to Presidential decision in 2018, which is the constitutional
+ * transition showing up in an immigration programme.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+import thresholds from '../../data/cbi/investment-thresholds.json';
+
+const PATH = '/law/threshold-history';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Every Turkish Citizenship Investment Threshold Since 2017';
+const description =
+  'The complete chronology of qualifying investment thresholds for Turkish citizenship, each with the instrument that set it and its Resmî Gazete date: the 2017 introduction, the 2018 cut, the 2022 real estate increase and the 2022 lira-conversion requirement. Which figure governs a historical file, and why.';
+
+const history: any[] = (thresholds as any).history ?? [];
+const current: any[] = (thresholds as any).current ?? [];
+const asOf: string = (thresholds as any).asOf ?? '';
+
+/** Group the chronology by effective date: each date is one instrument. */
+const byDate = new Map<string, any[]>();
+for (const h of history) {
+  const k = h.effectiveFrom ?? '';
+  byDate.set(k, [...(byDate.get(k) ?? []), h]);
+}
+const dates = [...byDate.keys()].sort();
+
+const EPOCH: Record<string, { instrument: string; heading: string; note: string }> = {
+  '2017-01-12': {
+    instrument: 'bkk-2016-9601',
+    heading: 'The route is introduced',
+    note: 'A Council of Ministers decision adds the investor route to art. 20. The figures are set high enough that the programme is barely used: a million dollars of real estate, three million on deposit or in government debt, two million of fixed capital, a hundred employees.',
+  },
+  '2017-05-05': {
+    instrument: 'bkk-2017-10008',
+    heading: 'The criteria are amended',
+    note: 'A second Council of Ministers decision adjusts the criteria within months of the first, before any significant volume of files.',
+  },
+  '2018-09-19': {
+    instrument: 'cbk-106',
+    heading: 'The cut that created the programme',
+    note: 'A Presidential decree reduces real estate from a million dollars to two hundred and fifty thousand and the financial routes from three million to five hundred thousand, a 75 to 83 per cent reduction across the board. Note the instrument type: the first threshold changes were Council of Ministers decisions, this and everything after are Presidential, which is the 2018 constitutional transition appearing in the citizenship file.',
+  },
+  '2022-06-13': {
+    instrument: 'cbk-5554',
+    heading: 'Real estate rises to USD 400,000',
+    note: 'Presidential Decision No. 5554 raises the real estate threshold from two hundred and fifty thousand to four hundred thousand. It was published on 13 May 2022 with a month written into it, so the old figure governed acquisitions through 12 June 2022. The decision also added the private pension route. The financial routes were left at five hundred thousand and have not moved since.',
+  },
+};
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Which threshold applies to a property bought in 2019?',
+    answer:
+      'USD 250,000. The threshold that governs a file is the one in force on the date of the acquisition relied on, not the one in force when the application is made or decided. A 2019 purchase at USD 250,000 remains a qualifying acquisition.',
+  },
+  {
+    question: 'Did the USD 400,000 threshold apply from 13 May or 13 June 2022?',
+    answer:
+      'From 13 June 2022. Presidential Decision No. 5554 was published in the Resmî Gazete on 13 May 2022 with a one-month period written into it, so USD 250,000 applied to acquisitions through 12 June 2022. Sources dating the increase from 13 May are quoting the publication date rather than the effective date, which puts a month of acquisitions on the wrong side of the line.',
+  },
+  {
+    question: 'Has the Turkish Citizenship Law itself been amended to change these figures?',
+    answer:
+      'No. Law No. 5901 art. 12(1)(b) has not been amended in any respect material to the investment route. Every threshold change has been made to art. 20 of the implementing Regulation, first by Council of Ministers decision and since 2018 by Presidential decision.',
+  },
+  {
+    question: 'Have the financial route thresholds changed since 2018?',
+    answer:
+      'No. The bank deposit, government debt instrument, investment fund and fixed capital routes have stood at USD 500,000 since 19 September 2018. What changed for them in 2022 was not the amount but the currency: Article 20(10) now requires the qualifying amount to be converted into Turkish lira.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+    about: ['Türk Vatandaşlığı Kanununun Uygulanmasına İlişkin Yönetmelik, art. 20'],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Threshold history', url: pageUrl },
+  ]),
+];
+
+const ROUTE_LABEL: Record<string, string> = Object.fromEntries(
+  current.map((r: any) => [r.route, r.label]),
+);
+const label = (route: string) =>
+  ROUTE_LABEL[route] ?? route.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase());
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Threshold history
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        Every threshold since 2017, with the instrument that set it
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        The threshold that governs a file is the one in force on the date of the acquisition relied
+        on, which makes the chronology operational rather than historical: to assess a 2019 file
+        you need the 2019 figure and the decree that set it. All of it is below, and all of it is
+        in <a href="/data" class="underline decoration-cite-soft">the dataset</a>.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>The chronology</h2>
+
+      {dates.map((d) => {
+        const rows = byDate.get(d)!;
+        const meta = EPOCH[d];
+        return (
+          <>
+            <h3 id={`d-${d}`}>
+              {longDate(d)}
+              {meta ? `: ${meta.heading.toLowerCase()}` : ''}
+            </h3>
+            {meta && <p>{meta.note}</p>}
+            <div class="scroll-x">
+              <table class="ref-table">
+                <thead><tr><th>Route</th><th>Figure</th><th>Note</th></tr></thead>
+                <tbody>
+                  {rows.map((h: any) => (
+                    <tr>
+                      <td class="whitespace-nowrap">{label(h.route)}</td>
+                      <td class="whitespace-nowrap font-semibold">
+                        {h.minimum != null ? usd(h.minimum) : h.employees != null ? `${h.employees} employees` : 'not recorded'}
+                      </td>
+                      <td>{h.note ?? ''}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {meta && <Instrument id={meta.instrument} />}
+          </>
+        );
+      })}
+
+      <h3 id="d-2022-01-06">6 January 2022: the currency, not the amount</h3>
+      <p>
+        No threshold moved on this date, which is why it is absent from most chronologies. Art.
+        20(10) was added, requiring a qualifying amount to be sold to the bank, sold on by the bank
+        to the Central Bank, and held in Turkish lira. For an investor it was a larger change than
+        most of the number changes above.
+      </p>
+      <Instrument id="cbk-5072" article="20(10)" />
+      <p class="font-ui text-[0.8125rem]">
+        <a href="/law/currency-conversion" class="underline decoration-cite-soft">Article 20(10) in full</a>
+      </p>
+
+      <h2>Where it stands now</h2>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Route</th><th>Minimum</th><th>Holding</th><th>In force since</th></tr></thead>
+          <tbody>
+            {current.map((r: any) => (
+              <tr>
+                <td class="whitespace-nowrap font-semibold">{r.label}</td>
+                <td class="whitespace-nowrap">
+                  {r.minimum != null ? usd(r.minimum) : r.employees != null ? `${r.employees} employees` : 'not recorded'}
+                </td>
+                <td class="whitespace-nowrap">
+                  {r.holdingPeriodYears == null ? 'none stated' : `${r.holdingPeriodYears} years`}
+                </td>
+                <td class="whitespace-nowrap">{r.effectiveFrom ? longDate(r.effectiveFrom) : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="font-ui mt-3 text-[0.8125rem] text-ink-faint">As of {longDate(asOf)}.</p>
+
+      <h2>Two things the sequence shows</h2>
+      <p>
+        <strong>The figures are in secondary legislation, and that is the whole risk profile.</strong>
+        Four changes in nine years, none of them requiring parliamentary process, the most recent
+        published with a month's notice. An investor planning around a threshold is planning around
+        an instrument that can be replaced by decision.
+      </p>
+      <p>
+        <strong>The direction of travel has not been uniform.</strong> The 2018 cut was an
+        extraordinary liberalisation, a reduction of three quarters at a moment of currency
+        pressure, and it created the programme as a market. The 2022 increase was a partial
+        retrenchment on real estate only. Since then the pressure has moved from thresholds to
+        enforcement: valuation scrutiny, and the annulment and withdrawal powers in arts. 31 and 40
+        of the Law. Expecting the next change to be another number may be the wrong expectation.
+      </p>
+
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(asOf)}, {pageUrl}. CC BY 4.0.
+      </p>
+    </div>
+  </article>
+</Base>

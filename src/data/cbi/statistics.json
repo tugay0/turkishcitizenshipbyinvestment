@@ -1,0 +1,3127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Turkish citizenship by investment: statistics",
+  "description": "Long-format observations on Turkish citizenship acquisitions, the investment route, foreign property purchases, threshold and rule changes, and 2026 enforcement action. Every record names its source and an as-of date. value is null where the figure is not published.",
+  "asOf": "2026-11-08",
+  "updateCadence": "quarterly",
+  "license": "CC BY 4.0",
+  "canonicalPage": "https://ralegal.com.tr/turkish-cbi-statistics",
+  "csv": "https://ralegal.com.tr/data/turkish-cbi-statistics.csv",
+  "repository": "https://github.com/Ralegal/turkish-cbi-data",
+  "conventions": {
+    "value": "Number where published; null where not published. published flags which.",
+    "source": "Named for every record. Where a figure reached the public through a ministerial statement or a parliamentary answer rather than a published table, the source field says so.",
+    "asOf": "Date the figure was published or restated, not the date this file was built."
+  },
+  "notKnown": [
+    "Goc Idaresi Baskanligi publishes no citizenship-acquisition statistics series. Annual figures reach the public through ministerial statements and parliamentary answers.",
+    "Annual citizenship acquisitions for 2018, 2022, 2023 and 2026 are not published. The series is non-monotonic, so it must not be interpolated.",
+    "There is no annual investment-route series, and no published application, approval, rejection or backlog count.",
+    "No Turkish authority publishes an end-to-end processing time for the investor route.",
+    "TUIK 2025 nationality counts for China, Pakistan, Bangladesh, Kazakhstan, Saudi Arabia, Afghanistan and Kuwait are not published.",
+    "No 2026 year-to-date nationality or province breakdown of foreign house sales is published.",
+    "No official average transaction value for foreign property purchases is published by TUIK, TKGM or TCMB.",
+    "The revised TUIK series year mapping for 2013 to 2021 is derived by ratio matching, not read off an official table.",
+    "Appraisal report validity: the Kilavuz of 1 February 2024 states 3 months, post-2026 secondary reporting states 12 months. The sources disagree and the 9 December 2024 Kilavuz could not be read.",
+    "The current status of the closed-neighbourhood regime for residence permits is unresolved. No official announcement lifting or restating the 2022 position was located.",
+    "The legal instrument behind the USD 200,000 residence-permit property threshold of 16 October 2023 could not be identified.",
+    "Overlap between the cumulative 6,134 cancellations and the 687 and 1,070 criminal-file identifications is unquantified."
+  ],
+  "figuresInCirculationNotUsed": [
+    {
+      "claim": "January 2026 foreign house sales of 1,547",
+      "reason": "Inconsistent with five published TUIK cumulatives, which give 1,306."
+    },
+    {
+      "claim": "China 41 units for full-year 2025",
+      "reason": "Implausible against 110 units in April 2026 alone; not used."
+    },
+    {
+      "claim": "About 15,000 investment-route principals and 40,000 people to end-2025",
+      "reason": "Undated source with no primary link; contradicts the Interior Minister figures by a factor of about 3.5. Not used."
+    },
+    {
+      "claim": "1,757 people in revocation proceedings",
+      "reason": "A derived sum of 687 and 1,070 published by a trade outlet, not by any authority, with overlap unclarified. Carried in the data only as a flagged derived record."
+    },
+    {
+      "claim": "Automatic 25 per cent uplift on valuations",
+      "reason": "No primary text; described as unreliable by practitioners."
+    },
+    {
+      "claim": "Real-estate threshold rising to USD 600,000 or USD 500,000",
+      "reason": "Never enacted. The consolidated Regulation still reads USD 400,000."
+    }
+  ],
+  "series": {
+    "citizenship_acquisitions_all_routes": {
+      "records": [
+        {
+          "period": "2018",
+          "dimension": "all_routes",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "No official series published; NVI annual figure for 2018 not located",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2019",
+          "dimension": "all_routes",
+          "value": 79757,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2020",
+          "dimension": "all_routes",
+          "value": 79720,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2021",
+          "dimension": "all_routes",
+          "value": 70514,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2022",
+          "dimension": "all_routes",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "No official series published; NVI annual figure for 2022 not located",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2023",
+          "dimension": "all_routes",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "No official series published; NVI annual figure for 2023 not located",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2024",
+          "dimension": "all_routes",
+          "value": 34683,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2025",
+          "dimension": "all_routes",
+          "value": 48334,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2026",
+          "dimension": "all_routes",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "Not published yet as of 8 November 2026",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2016-2025",
+          "dimension": "cumulative",
+          "value": 562701,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        }
+      ]
+    },
+    "citizenship_losses_all_routes": {
+      "records": [
+        {
+          "period": "2018",
+          "dimension": "all_routes",
+          "value": 33062,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce; peak loss year",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2025",
+          "dimension": "all_routes",
+          "value": 9980,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        },
+        {
+          "period": "2016-2025",
+          "dimension": "cumulative",
+          "value": 213444,
+          "unit": "people",
+          "published": true,
+          "source": "NVI figures, reported by DW Turkce",
+          "asOf": "2026-08-09"
+        }
+      ]
+    },
+    "citizenship_acquisitions_temporary_protection": {
+      "records": [
+        {
+          "period": "2024",
+          "dimension": "syrians_and_former_temporary_protection",
+          "value": 238733,
+          "unit": "people",
+          "published": true,
+          "source": "Then Interior Minister Ali Yerlikaya, statement",
+          "asOf": "2024-08-31"
+        }
+      ]
+    },
+    "investment_route_cumulative": {
+      "records": [
+        {
+          "period": "2018-2026",
+          "dimension": "total_people",
+          "value": 174567,
+          "unit": "people",
+          "published": true,
+          "source": "Interior Minister Mustafa Ciftci, statement of 29 May 2026",
+          "asOf": "2026-05-29"
+        },
+        {
+          "period": "2018-2026",
+          "dimension": "principal_investors",
+          "value": 51762,
+          "unit": "people",
+          "published": true,
+          "source": "Interior Minister Mustafa Ciftci, statement of 29 May 2026",
+          "asOf": "2026-05-29"
+        },
+        {
+          "period": "2018-2026",
+          "dimension": "spouses_and_children",
+          "value": 122805,
+          "unit": "people",
+          "published": true,
+          "source": "Interior Minister Mustafa Ciftci, statement of 29 May 2026",
+          "asOf": "2026-05-29"
+        },
+        {
+          "period": "2018-2026",
+          "dimension": "investment_attracted",
+          "value": 16074000000,
+          "unit": "usd",
+          "published": true,
+          "source": "Interior Minister Mustafa Ciftci, statement of 29 May 2026",
+          "asOf": "2026-05-29"
+        }
+      ]
+    },
+    "investment_route_annual": {
+      "records": [
+        {
+          "period": "2018-2026",
+          "dimension": "annual_series",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "No official annual investment-route series exists",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "investment_route_historical": {
+      "records": [
+        {
+          "period": "2018-2021",
+          "dimension": "property_route_grants",
+          "value": 19630,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures",
+          "asOf": "2021-12-31"
+        },
+        {
+          "period": "2019",
+          "dimension": "investor_naturalisations_to_end_2019",
+          "value": 5000,
+          "unit": "people",
+          "published": true,
+          "source": "Interior Ministry via Kristin Surak (LSE), cited in IMI Daily; stated as more than 5000",
+          "asOf": "2019-12-31"
+        },
+        {
+          "period": "2019",
+          "dimension": "applications_pending_end_2019",
+          "value": 9000,
+          "unit": "people",
+          "published": true,
+          "source": "Interior Ministry via Kristin Surak (LSE), cited in IMI Daily; stated as up to 9000",
+          "asOf": "2019-12-31"
+        }
+      ]
+    },
+    "investment_route_applications": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "applications_received",
+          "value": null,
+          "unit": "files",
+          "published": false,
+          "source": "No official statistics published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "approvals",
+          "value": null,
+          "unit": "files",
+          "published": false,
+          "source": "No official statistics published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "rejections",
+          "value": null,
+          "unit": "files",
+          "published": false,
+          "source": "No official statistics published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "rejection_rate",
+          "value": null,
+          "unit": "percent",
+          "published": false,
+          "source": "No official statistics published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "backlog",
+          "value": null,
+          "unit": "files",
+          "published": false,
+          "source": "No official statistics published",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "investment_route_processing_time": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "official_end_to_end",
+          "value": null,
+          "unit": "months",
+          "published": false,
+          "source": "No Turkish authority publishes an end-to-end processing time",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "file_preparation_at_provincial_registry",
+          "value": 20,
+          "unit": "minutes",
+          "published": true,
+          "source": "Ankara Valiligi Il Nufus ve Vatandaslik Mudurlugu service standards table, row 4",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "citizenship_property_route_by_nationality": {
+      "records": [
+        {
+          "period": "2018-2020",
+          "dimension": "iran",
+          "value": 1716,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "afghanistan",
+          "value": 997,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "iraq",
+          "value": 925,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "yemen",
+          "value": 792,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "palestine",
+          "value": 451,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "jordan",
+          "value": 359,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "libya",
+          "value": 302,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "china",
+          "value": 297,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "egypt",
+          "value": 223,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "pakistan",
+          "value": 156,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "lebanon",
+          "value": 124,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "sudan",
+          "value": 93,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "algeria",
+          "value": 81,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "russia",
+          "value": 80,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "azerbaijan",
+          "value": 72,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "united_states",
+          "value": 72,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "saudi_arabia",
+          "value": 54,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "dominica",
+          "value": 37,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "israel",
+          "value": 35,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "canada",
+          "value": 32,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "morocco",
+          "value": 28,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "tunisia",
+          "value": 26,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "somalia",
+          "value": 25,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "saint_kitts_and_nevis",
+          "value": 21,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "kazakhstan",
+          "value": 19,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "bangladesh",
+          "value": 18,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "united_kingdom",
+          "value": 18,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "india",
+          "value": 17,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "uzbekistan",
+          "value": 17,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "ukraine",
+          "value": 16,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "stateless",
+          "value": 2,
+          "unit": "people",
+          "published": true,
+          "source": "NVI data released by CHP deputy group chair Ozgur Ozel",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "total_low",
+          "value": 7242,
+          "unit": "people",
+          "published": true,
+          "source": "Sources disagree: Ozel quoted 7242, article lead gave 7312, country list sums to 7294",
+          "asOf": "2020-12-12"
+        },
+        {
+          "period": "2018-2020",
+          "dimension": "total_high",
+          "value": 7312,
+          "unit": "people",
+          "published": true,
+          "source": "Sources disagree: Ozel quoted 7242, article lead gave 7312, country list sums to 7294",
+          "asOf": "2020-12-12"
+        }
+      ]
+    },
+    "citizenship_earliest_cohort_by_nationality": {
+      "records": [
+        {
+          "period": "2017-2018",
+          "dimension": "iran",
+          "value": 253,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "iraq",
+          "value": 143,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "yemen",
+          "value": 97,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "afghanistan",
+          "value": 94,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "syria",
+          "value": 59,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "palestine",
+          "value": 58,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "jordan",
+          "value": 57,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "egypt",
+          "value": 45,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "china",
+          "value": 21,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "azerbaijan",
+          "value": 16,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures, earliest 981-person cohort",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "pakistan",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "Not in the published top ten; absence from a top ten is not a zero",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "bangladesh",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "Not in the published top ten; absence from a top ten is not a zero",
+          "asOf": "2018-12-31"
+        },
+        {
+          "period": "2017-2018",
+          "dimension": "total",
+          "value": 981,
+          "unit": "people",
+          "published": true,
+          "source": "Secondary press reproduction of official figures",
+          "asOf": "2018-12-31"
+        }
+      ]
+    },
+    "citizenship_purpose_property_purchases": {
+      "records": [
+        {
+          "period": "2023H1",
+          "dimension": "citizenship_related_units",
+          "value": 4166,
+          "unit": "dwellings",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis, reported by Capital",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "share_of_foreign_purchases",
+          "value": 18.6,
+          "unit": "percent",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis, reported by Capital",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "istanbul_share_of_citizenship_units",
+          "value": 63.3,
+          "unit": "percent",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis, reported by Capital",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "china_rank_national",
+          "value": 3,
+          "unit": "rank",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis; rank only, counts not published",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "china_rank_istanbul",
+          "value": 3,
+          "unit": "rank",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis; rank only, counts not published",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "pakistan_rank_national",
+          "value": 7,
+          "unit": "rank",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis; rank only, counts not published",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "pakistan_rank_istanbul",
+          "value": 8,
+          "unit": "rank",
+          "published": true,
+          "source": "EVA Gayrimenkul Degerleme analysis; rank only, counts not published",
+          "asOf": "2023-08-14"
+        },
+        {
+          "period": "2023H1",
+          "dimension": "bangladesh_rank",
+          "value": null,
+          "unit": "rank",
+          "published": false,
+          "source": "Not in the published top ten nationally or in Istanbul",
+          "asOf": "2023-08-14"
+        }
+      ]
+    },
+    "foreign_house_sales_units": {
+      "records": [
+        {
+          "period": "2016",
+          "dimension": "turkiye",
+          "value": 18189,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2017",
+          "dimension": "turkiye",
+          "value": 22234,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2018",
+          "dimension": "turkiye",
+          "value": 39663,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2019",
+          "dimension": "turkiye",
+          "value": 45483,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2020",
+          "dimension": "turkiye",
+          "value": 40812,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2021",
+          "dimension": "turkiye",
+          "value": 58576,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2022",
+          "dimension": "turkiye",
+          "value": 67490,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2023",
+          "dimension": "turkiye",
+          "value": 35005,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "turkiye",
+          "value": 23781,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "turkiye",
+          "value": 21534,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma; originally published basis",
+          "asOf": "2026-01-22"
+        }
+      ]
+    },
+    "foreign_house_sales_share": {
+      "records": [
+        {
+          "period": "2016",
+          "dimension": "turkiye",
+          "value": 1.4,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2017",
+          "dimension": "turkiye",
+          "value": 1.6,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2018",
+          "dimension": "turkiye",
+          "value": 2.9,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2019",
+          "dimension": "turkiye",
+          "value": 3.4,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2020",
+          "dimension": "turkiye",
+          "value": 2.7,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2021",
+          "dimension": "turkiye",
+          "value": 3.9,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2022",
+          "dimension": "turkiye",
+          "value": 4.5,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2023",
+          "dimension": "turkiye",
+          "value": 2.9,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "turkiye",
+          "value": 1.6,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "turkiye",
+          "value": 1.3,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK annual bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-22"
+        }
+      ]
+    },
+    "foreign_house_sales_units_revised": {
+      "records": [
+        {
+          "period": "2013",
+          "dimension": "turkiye",
+          "value": 13581,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2014",
+          "dimension": "turkiye",
+          "value": 20395,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2015",
+          "dimension": "turkiye",
+          "value": 24249,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2016",
+          "dimension": "turkiye",
+          "value": 19435,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2017",
+          "dimension": "turkiye",
+          "value": 23956,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2018",
+          "dimension": "turkiye",
+          "value": 43084,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2019",
+          "dimension": "turkiye",
+          "value": 49590,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2020",
+          "dimension": "turkiye",
+          "value": 44167,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2021",
+          "dimension": "turkiye",
+          "value": 63449,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived, not read off an official table",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2022",
+          "dimension": "turkiye",
+          "value": 72342,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series, figure stated in report text via BMD Arastirma and Ekonomi Politikasi",
+          "asOf": "2026-11-06"
+        },
+        {
+          "period": "2023",
+          "dimension": "turkiye",
+          "value": 37497,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2024",
+          "dimension": "turkiye",
+          "value": 25677,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series via BMD Arastirma chart labels; year mapping derived",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2025",
+          "dimension": "turkiye",
+          "value": 22980,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK revised series, figure stated in report text via BMD Arastirma and Ekonomi Politikasi",
+          "asOf": "2026-11-06"
+        }
+      ]
+    },
+    "foreign_house_sales_monthly": {
+      "records": [
+        {
+          "period": "2025-10",
+          "dimension": "turkiye",
+          "value": 2106,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin as published at the time, pre-revision basis",
+          "asOf": "2025-11-17"
+        },
+        {
+          "period": "2025-11",
+          "dimension": "turkiye",
+          "value": 1943,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin as published at the time, pre-revision basis",
+          "asOf": "2025-12-16"
+        },
+        {
+          "period": "2025-12",
+          "dimension": "turkiye",
+          "value": 2541,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin as published at the time, pre-revision basis",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2026-01",
+          "dimension": "turkiye",
+          "value": 1306,
+          "unit": "dwellings",
+          "published": true,
+          "source": "Derived from TUIK published cumulatives (Jan to Feb 2812 minus Feb 1506); the 1547 figure in circulation is inconsistent with five published cumulatives",
+          "asOf": "2026-10-19"
+        },
+        {
+          "period": "2026-02",
+          "dimension": "turkiye",
+          "value": 1506,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-03-17"
+        },
+        {
+          "period": "2026-03",
+          "dimension": "turkiye",
+          "value": 1353,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-04-17"
+        },
+        {
+          "period": "2026-04",
+          "dimension": "turkiye",
+          "value": 1516,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-05-16"
+        },
+        {
+          "period": "2026-05",
+          "dimension": "turkiye",
+          "value": 1387,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-06-17"
+        },
+        {
+          "period": "2026-06",
+          "dimension": "turkiye",
+          "value": 2015,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-07-17"
+        },
+        {
+          "period": "2026-07",
+          "dimension": "turkiye",
+          "value": 2120,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-08-17"
+        },
+        {
+          "period": "2026-08",
+          "dimension": "turkiye",
+          "value": 1938,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK monthly bulletin, revised basis, as reproduced by BMD Arastirma",
+          "asOf": "2026-09-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "turkiye",
+          "value": 2167,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, released 16 October 2026, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-10",
+          "dimension": "turkiye",
+          "value": null,
+          "unit": "dwellings",
+          "published": false,
+          "source": "TUIK October 2026 bulletin not released as of 8 November 2026",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "foreign_house_sales_cumulative": {
+      "records": [
+        {
+          "period": "2026-01-to-09",
+          "dimension": "turkiye",
+          "value": 15308,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, released 16 October 2026",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-01-to-09",
+          "dimension": "change_year_on_year",
+          "value": -4.3,
+          "unit": "percent",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, released 16 October 2026",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-01-to-09",
+          "dimension": "share_of_all_house_sales",
+          "value": 1.4,
+          "unit": "percent",
+          "published": true,
+          "source": "Derived from TUIK: 15308 of 1092919 total sales",
+          "asOf": "2026-10-16"
+        }
+      ]
+    },
+    "foreign_house_buyers_by_nationality": {
+      "records": [
+        {
+          "period": "2025",
+          "dimension": "russian_federation",
+          "value": 3649,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "iran",
+          "value": 1878,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "ukraine",
+          "value": 1541,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "germany",
+          "value": 1376,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual bulletin, reported by Daily Sabah",
+          "asOf": "2026-01-22"
+        },
+        {
+          "period": "2025",
+          "dimension": "iraq",
+          "value": 1292,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "azerbaijan",
+          "value": 944,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "kazakhstan",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Reported as top ten but no 2025 count published in any reachable source",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "china",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Reported as top ten but no 2025 count published; the figure of 41 in circulation is rejected as implausible",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "saudi_arabia",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Reported as top ten but no 2025 count published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "afghanistan",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Reported as top ten but no 2025 count published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "kuwait",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "No 2025 count published",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "pakistan",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "No 2025 count published; not in the published 2024 top twenty",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "bangladesh",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "No 2025 count published; not in the published 2024 top twenty",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2025",
+          "dimension": "nationality_table_total",
+          "value": 21677,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table; exceeds unit sales because buyers of different nationalities can jointly purchase one dwelling",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "russian_federation",
+          "value": 4867,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "iran",
+          "value": 2166,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "ukraine",
+          "value": 1631,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "germany",
+          "value": 1283,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "iraq",
+          "value": 1302,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "kazakhstan",
+          "value": 1055,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "azerbaijan",
+          "value": 866,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "china",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Published in the 2024 top twenty at rank 9; count not published",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "saudi_arabia",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Published in the 2024 top twenty at rank 8; count not published",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "afghanistan",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Published in the 2024 top twenty at rank 11; count not published",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "kuwait",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Published in the 2024 top twenty at rank 13; count not published",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "pakistan",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Not in the published 2024 top twenty",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "bangladesh",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "Not in the published 2024 top twenty",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "nationality_table_total",
+          "value": 23975,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK annual nationality table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2026-01-to-09",
+          "dimension": "year_to_date_breakdown",
+          "value": null,
+          "unit": "buyers",
+          "published": false,
+          "source": "TUIK publishes only a monthly top five; year to date nationality columns appear in the December bulletin",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "foreign_house_buyers_monthly_by_nationality": {
+      "records": [
+        {
+          "period": "2026-01",
+          "dimension": "russian_federation",
+          "value": 248,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-02-17"
+        },
+        {
+          "period": "2026-01",
+          "dimension": "iran",
+          "value": 162,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-02-17"
+        },
+        {
+          "period": "2026-01",
+          "dimension": "iraq",
+          "value": 103,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-02-17"
+        },
+        {
+          "period": "2026-02",
+          "dimension": "russian_federation",
+          "value": 191,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-03-17"
+        },
+        {
+          "period": "2026-02",
+          "dimension": "iran",
+          "value": 131,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-03-17"
+        },
+        {
+          "period": "2026-02",
+          "dimension": "iraq",
+          "value": 106,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-03-17"
+        },
+        {
+          "period": "2026-03",
+          "dimension": "russian_federation",
+          "value": 229,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-04-17"
+        },
+        {
+          "period": "2026-03",
+          "dimension": "iran",
+          "value": 130,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-04-17"
+        },
+        {
+          "period": "2026-03",
+          "dimension": "germany",
+          "value": 84,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-04-17"
+        },
+        {
+          "period": "2026-04",
+          "dimension": "russian_federation",
+          "value": 263,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, reported by Turkiye Gazetesi",
+          "asOf": "2026-05-14"
+        },
+        {
+          "period": "2026-04",
+          "dimension": "china",
+          "value": 110,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, reported by Turkiye Gazetesi; China placed second that month",
+          "asOf": "2026-05-14"
+        },
+        {
+          "period": "2026-04",
+          "dimension": "iran",
+          "value": 100,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, reported by Turkiye Gazetesi",
+          "asOf": "2026-05-14"
+        },
+        {
+          "period": "2026-05",
+          "dimension": "russian_federation",
+          "value": 268,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-06-17"
+        },
+        {
+          "period": "2026-05",
+          "dimension": "iran",
+          "value": 125,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-06-17"
+        },
+        {
+          "period": "2026-05",
+          "dimension": "ukraine",
+          "value": 88,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-06-17"
+        },
+        {
+          "period": "2026-06",
+          "dimension": "russian_federation",
+          "value": 381,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-07-17"
+        },
+        {
+          "period": "2026-06",
+          "dimension": "ukraine",
+          "value": 170,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-07-17"
+        },
+        {
+          "period": "2026-06",
+          "dimension": "iran",
+          "value": 170,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-07-17"
+        },
+        {
+          "period": "2026-07",
+          "dimension": "russian_federation",
+          "value": 394,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK July 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-08-17"
+        },
+        {
+          "period": "2026-07",
+          "dimension": "iran",
+          "value": 189,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK July 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-08-17"
+        },
+        {
+          "period": "2026-07",
+          "dimension": "ukraine",
+          "value": 145,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK July 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-08-17"
+        },
+        {
+          "period": "2026-08",
+          "dimension": "russian_federation",
+          "value": 343,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-09-16"
+        },
+        {
+          "period": "2026-08",
+          "dimension": "ukraine",
+          "value": 147,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-09-16"
+        },
+        {
+          "period": "2026-08",
+          "dimension": "iran",
+          "value": 140,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK monthly bulletin, top five only, via industry reproductions",
+          "asOf": "2026-09-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "russian_federation",
+          "value": 388,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "iraq",
+          "value": 166,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "germany",
+          "value": 162,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "iran",
+          "value": 159,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "ukraine",
+          "value": 158,
+          "unit": "buyers",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        }
+      ]
+    },
+    "foreign_house_sales_by_province": {
+      "records": [
+        {
+          "period": "2025",
+          "dimension": "istanbul",
+          "value": 7989,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "antalya",
+          "value": 7118,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "mersin",
+          "value": 1800,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "ankara",
+          "value": 769,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2025",
+          "dimension": "yalova",
+          "value": 461,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual bulletin, reported by Daily Sabah",
+          "asOf": "2026-01-22"
+        },
+        {
+          "period": "2025",
+          "dimension": "bursa",
+          "value": 427,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "istanbul",
+          "value": 8416,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "antalya",
+          "value": 8223,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "mersin",
+          "value": 2112,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "ankara",
+          "value": 637,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "yalova",
+          "value": 588,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "bursa",
+          "value": 528,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, as reproduced by BMD Arastirma",
+          "asOf": "2026-01-20"
+        },
+        {
+          "period": "2024",
+          "dimension": "kocaeli",
+          "value": 417,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "aydin",
+          "value": 389,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "izmir",
+          "value": 381,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2024",
+          "dimension": "mugla",
+          "value": 365,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK annual province table, reported by Milliyet",
+          "asOf": "2025-01-30"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "istanbul",
+          "value": 817,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "antalya",
+          "value": 664,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "mersin",
+          "value": 155,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "ankara",
+          "value": 106,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-09",
+          "dimension": "yalova",
+          "value": 51,
+          "unit": "dwellings",
+          "published": true,
+          "source": "TUIK September 2026 bulletin, as reproduced by BMD Arastirma",
+          "asOf": "2026-10-16"
+        },
+        {
+          "period": "2026-01-to-09",
+          "dimension": "year_to_date_breakdown",
+          "value": null,
+          "unit": "dwellings",
+          "published": false,
+          "source": "No cumulative 2026 province breakdown published",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "real_estate_threshold": {
+      "records": [
+        {
+          "period": "2017-01-12",
+          "dimension": "real_estate",
+          "value": 1000000,
+          "unit": "usd",
+          "published": true,
+          "source": "BKK 2016/9601, Resmi Gazete 12 January 2017 No. 29946",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "real_estate",
+          "value": 250000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2022-06-13",
+          "dimension": "real_estate",
+          "value": 400000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Karari 5554, Resmi Gazete 13 May 2022 No. 31834, in force 13 June 2022",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "other_route_thresholds": {
+      "records": [
+        {
+          "period": "2017-01-12",
+          "dimension": "fixed_capital",
+          "value": 2000000,
+          "unit": "usd",
+          "published": true,
+          "source": "BKK 2016/9601; secondary tabulation by ProCompliance",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2017-01-12",
+          "dimension": "bank_deposit",
+          "value": 3000000,
+          "unit": "usd",
+          "published": true,
+          "source": "BKK 2016/9601; secondary tabulation by ProCompliance",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2017-01-12",
+          "dimension": "government_debt",
+          "value": 3000000,
+          "unit": "usd",
+          "published": true,
+          "source": "BKK 2016/9601; secondary tabulation by ProCompliance",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2017-01-12",
+          "dimension": "employment",
+          "value": 100,
+          "unit": "persons",
+          "published": true,
+          "source": "BKK 2016/9601; secondary tabulation by ProCompliance",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2017-05-05",
+          "dimension": "fund_units",
+          "value": 1500000,
+          "unit": "usd",
+          "published": true,
+          "source": "BKK 2017/10008, Resmi Gazete 5 May 2017 No. 30057",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "fixed_capital",
+          "value": 500000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "bank_deposit",
+          "value": 500000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "government_debt",
+          "value": 500000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "fund_units",
+          "value": 500000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2018-09-19",
+          "dimension": "employment",
+          "value": 50,
+          "unit": "persons",
+          "published": true,
+          "source": "Cumhurbaskanligi Kararnamesi 106, Resmi Gazete 19 September 2018 No. 30540",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2022-05-13",
+          "dimension": "private_pension",
+          "value": 500000,
+          "unit": "usd",
+          "published": true,
+          "source": "Cumhurbaskanligi Karari 5554, Resmi Gazete 13 May 2022 No. 31834",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "rule_change_count": {
+      "records": [
+        {
+          "period": "2017-2026",
+          "dimension": "confirmed_threshold_changes",
+          "value": 3,
+          "unit": "events",
+          "published": true,
+          "source": "Consolidated Regulation 2010/139 amendment table on mevzuat.gov.tr",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "enforcement_cancellations": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "cumulative_people",
+          "value": 6134,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement of 4 August 2026, restated 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026",
+          "dimension": "cumulative_principal_investors",
+          "value": 1413,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement of 4 August 2026, restated 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026",
+          "dimension": "fraud_certificates_cancelled_investors",
+          "value": 1150,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement, Law No. 5901 Art. 31",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026",
+          "dimension": "fraud_certificates_cancelled_people",
+          "value": 5391,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement, Law No. 5901 Art. 31",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026",
+          "dimension": "security_withdrawal_investors",
+          "value": 263,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement, Law No. 5901 Art. 40",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026",
+          "dimension": "security_withdrawal_people",
+          "value": 743,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement, Law No. 5901 Art. 40",
+          "asOf": "2026-09-21"
+        }
+      ]
+    },
+    "enforcement_since_11_feb_2026": {
+      "records": [
+        {
+          "period": "2026-08-04",
+          "dimension": "investors",
+          "value": 443,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement of 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "people",
+          "value": 1358,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement of 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "security_withdrawals",
+          "value": 7,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior written statement of 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "investors",
+          "value": 458,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior restatement of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "people",
+          "value": 1393,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior restatement of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "security_withdrawals",
+          "value": 7,
+          "unit": "people",
+          "published": true,
+          "source": "Ministry of Interior restatement of 21 September 2026",
+          "asOf": "2026-09-21"
+        }
+      ]
+    },
+    "enforcement_wave_1": {
+      "records": [
+        {
+          "period": "2026-08-04",
+          "dimension": "people_in_revocation_proceedings",
+          "value": 687,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "detention_warrants",
+          "value": 90,
+          "unit": "warrants",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "detained",
+          "value": 72,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "provinces",
+          "value": 16,
+          "unit": "provinces",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "properties_seized",
+          "value": 1045,
+          "unit": "properties",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "companies_under_trustees",
+          "value": 7,
+          "unit": "companies",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor investigation file, announced 4 August 2026",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "value_not_received_try",
+          "value": 2500000000,
+          "unit": "try",
+          "published": true,
+          "source": "Justice Minister Akin Gurlek, about USD 52.6 million",
+          "asOf": "2026-08-04"
+        }
+      ]
+    },
+    "enforcement_wave_2": {
+      "records": [
+        {
+          "period": "2026-09-21",
+          "dimension": "people_identified",
+          "value": 1070,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026; one quotation gives 1071",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "investors",
+          "value": 263,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026; distinct from the 263 Art. 40 investors, do not merge",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "family_members",
+          "value": 807,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "additional_in_process",
+          "value": 11,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "applications_rejected",
+          "value": 3,
+          "unit": "files",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026; subset of the 11 in process",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "children_naturalised_after_decision",
+          "value": 55,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "sales_examined",
+          "value": 734,
+          "unit": "sales",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "sales_found_collusive",
+          "value": 274,
+          "unit": "sales",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "properties_seized",
+          "value": 2011,
+          "unit": "properties",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "companies_under_trustees",
+          "value": 30,
+          "unit": "companies",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026; one outlet reports 32",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "detained",
+          "value": 72,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul Chief Public Prosecutor operation of 21 September 2026; outlet reports vary between 72 and 74",
+          "asOf": "2026-09-21"
+        },
+        {
+          "period": "2026-09-21",
+          "dimension": "value_try",
+          "value": 3500000000,
+          "unit": "try",
+          "published": true,
+          "source": "Justice Minister Akin Gurlek, about USD 71.7 million; a separate official figure gives USD 72.25 million",
+          "asOf": "2026-09-21"
+        }
+      ]
+    },
+    "enforcement_prior": {
+      "records": [
+        {
+          "period": "2025-09",
+          "dimension": "investors_in_earlier_phase",
+          "value": 451,
+          "unit": "people",
+          "published": true,
+          "source": "Industry attribution (CIP Turkey co-founder Aran Hawker), not an official figure",
+          "asOf": "2025-09-30"
+        }
+      ]
+    },
+    "enforcement_arrests": {
+      "records": [
+        {
+          "period": "2026-09-25",
+          "dimension": "referred_for_arrest",
+          "value": 52,
+          "unit": "people",
+          "published": true,
+          "source": "Anadolu Agency",
+          "asOf": "2026-09-25"
+        },
+        {
+          "period": "2026-09-25",
+          "dimension": "jailed_or_arrested_low",
+          "value": 26,
+          "unit": "people",
+          "published": true,
+          "source": "Reports disagree: Diken reports 26 jailed, Cumhuriyet reports 33 arrested",
+          "asOf": "2026-09-25"
+        },
+        {
+          "period": "2026-09-25",
+          "dimension": "jailed_or_arrested_high",
+          "value": 33,
+          "unit": "people",
+          "published": true,
+          "source": "Reports disagree: Diken reports 26 jailed, Cumhuriyet reports 33 arrested",
+          "asOf": "2026-09-25"
+        }
+      ]
+    },
+    "enforcement_cumulative_update": {
+      "records": [
+        {
+          "period": "2026-10",
+          "dimension": "updated_cumulative_figure",
+          "value": null,
+          "unit": "people",
+          "published": false,
+          "source": "No October or November 2026 Ministry statement superseding 6134 located as of 8 November 2026",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "enforcement_derived_sum": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "wave_1_plus_wave_2",
+          "value": 1757,
+          "unit": "people",
+          "published": true,
+          "source": "Derived sum published by IMI Daily, not by any authority; overlap with the 6134 is unquantified",
+          "asOf": "2026-09-21"
+        }
+      ]
+    },
+    "enforcement_file_nationality": {
+      "records": [
+        {
+          "period": "2026-08-04",
+          "dimension": "iran",
+          "value": 191,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown; persons under investigation, not programme clients",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "iraq",
+          "value": 81,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "saudi_arabia",
+          "value": 79,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "yemen",
+          "value": 72,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "afghanistan",
+          "value": 26,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "united_arab_emirates",
+          "value": 24,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "egypt",
+          "value": 24,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "israel",
+          "value": 21,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "jordan",
+          "value": 19,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "lebanon",
+          "value": 18,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "sudan",
+          "value": 17,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "kuwait",
+          "value": 16,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "qatar",
+          "value": 11,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "algeria",
+          "value": 10,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "syria",
+          "value": 9,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "palestine",
+          "value": 8,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "india",
+          "value": 8,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "pakistan",
+          "value": 8,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "china",
+          "value": 8,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "bangladesh",
+          "value": 8,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "libya",
+          "value": 6,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "turkiye",
+          "value": 6,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "malaysia",
+          "value": 3,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "morocco",
+          "value": 2,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "brazil",
+          "value": 2,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "south_africa",
+          "value": 2,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "russia",
+          "value": 2,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "kenya",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "sweden",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "brunei",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "singapore",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "canada",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "ukraine",
+          "value": 1,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses, 687-person breakdown",
+          "asOf": "2026-08-04"
+        },
+        {
+          "period": "2026-08-04",
+          "dimension": "total",
+          "value": 687,
+          "unit": "people",
+          "published": true,
+          "source": "Istanbul prosecutor file and MASAK analyses; the nationality list sums to 687",
+          "asOf": "2026-08-04"
+        }
+      ]
+    },
+    "real_estate_net_inflow": {
+      "records": [
+        {
+          "period": "2018",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 5915,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2019",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 4979,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2020",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 3954,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2021",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 5634,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2022",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 6273,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2023",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 3560,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2024",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 2822,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net)",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2025",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 2342,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, line 1.2.3 Gayrimenkul (Net); provisional",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-01",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 163,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-02",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 230,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-03",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 242,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-04",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 164,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-05",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 184,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-06",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 295,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-07",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 322,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-08",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 244,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics, August 2026 release, Table 2",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2026-01-to-08",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 1844,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics; compares with 1419 for January to August 2025",
+          "asOf": "2026-10-31"
+        },
+        {
+          "period": "2025-01-to-08",
+          "dimension": "net_acquisition_by_non_residents",
+          "value": 1419,
+          "unit": "usd_million",
+          "published": true,
+          "source": "TCMB balance of payments statistics",
+          "asOf": "2026-10-31"
+        }
+      ]
+    },
+    "average_transaction_value": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "official_series",
+          "value": null,
+          "unit": "usd",
+          "published": false,
+          "source": "Neither TUIK, TKGM nor TCMB publishes an average sale price for foreign purchases",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "closed_neighbourhoods_residence_permits": {
+      "records": [
+        {
+          "period": "2022-05-16",
+          "dimension": "neighbourhoods_closed",
+          "value": 781,
+          "unit": "neighbourhoods",
+          "published": true,
+          "source": "Goc Idaresi Mahalle Kapatma Duyurusu of 16 May 2022; residence permits, not property purchase",
+          "asOf": "2022-05-16"
+        },
+        {
+          "period": "2022-07-01",
+          "dimension": "neighbourhoods_closed",
+          "value": 1169,
+          "unit": "neighbourhoods",
+          "published": true,
+          "source": "Goc Idaresi announcement of 30 June 2022, across 63 provinces",
+          "asOf": "2022-07-01"
+        },
+        {
+          "period": "2026",
+          "dimension": "neighbourhoods_closed",
+          "value": null,
+          "unit": "neighbourhoods",
+          "published": false,
+          "source": "Current status unresolved; no official announcement lifting or restating the 2022 regime located",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "litigation": {
+      "records": [
+        {
+          "period": "2023-05-18",
+          "dimension": "bar_association_stay_of_execution",
+          "value": "refused",
+          "unit": "decision",
+          "published": true,
+          "source": "Danistay, Turkish Bar Association challenge to the programme",
+          "asOf": "2023-05-18"
+        },
+        {
+          "period": "2023-11-01",
+          "dimension": "bar_association_appeal_on_stay",
+          "value": "refused",
+          "unit": "decision",
+          "published": true,
+          "source": "Danistay, refused on standing",
+          "asOf": "2023-11-01"
+        },
+        {
+          "period": "2025-09-11",
+          "dimension": "bar_association_annulment_request",
+          "value": "refused",
+          "unit": "decision",
+          "published": true,
+          "source": "Danistay 10th Chamber, refused on standing grounds; appeal pending",
+          "asOf": "2026-11-08"
+        }
+      ]
+    },
+    "appeal_windows": {
+      "records": [
+        {
+          "period": "2026",
+          "dimension": "danistay_appeal_window",
+          "value": 60,
+          "unit": "days",
+          "published": true,
+          "source": "Practitioner sources; not a published administrative figure",
+          "asOf": "2026-11-08"
+        },
+        {
+          "period": "2026",
+          "dimension": "asset_liquidation_period_after_loss",
+          "value": 1,
+          "unit": "years",
+          "published": true,
+          "source": "Law No. 5901 Art. 33",
+          "asOf": "2026-11-08"
+        }
+      ]
+    }
+  }
+}

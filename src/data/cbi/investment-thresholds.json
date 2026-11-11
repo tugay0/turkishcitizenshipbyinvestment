@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Qualifying investment thresholds for Turkish citizenship under Law No. 5901 Art. 12(1)(b) and Art. 20 of the implementing Regulation.",
+  "asOf": "2026-11-11",
+  "currency": "USD",
+  "current": [
+    {
+      "route": "real_estate",
+      "label": "Real estate",
+      "minimum": 400000,
+      "basis": "Official SPK-licensed appraisal value, not the contract price",
+      "holdingPeriodYears": 3,
+      "annotation": "Three-year no-sale annotation recorded on the title deed (tapu)",
+      "effectiveFrom": "2022-06-13"
+    },
+    {
+      "route": "bank_deposit",
+      "label": "Bank deposit",
+      "minimum": 500000,
+      "basis": "Turkish lira deposit in a bank operating in Turkiye, after the foreign currency is sold to the bank and by the bank to the Central Bank (Regulation Art. 20(10), since 6 January 2022)",
+      "holdingPeriodYears": 3,
+      "effectiveFrom": "2018-09-19"
+    },
+    {
+      "route": "government_bonds",
+      "label": "Government bonds",
+      "minimum": 500000,
+      "basis": "Certified by the Ministry of Treasury and Finance",
+      "holdingPeriodYears": 3,
+      "effectiveFrom": "2018-09-19",
+      "conversionNote": "Whether the Art. 20(10) lira-conversion requirement applies to this sub-paragraph is not yet confirmed by counsel."
+    },
+    {
+      "route": "investment_fund",
+      "label": "Investment fund shares",
+      "minimum": 500000,
+      "basis": "Real-estate or venture capital fund shares (GYF/GSYF)",
+      "holdingPeriodYears": 3,
+      "effectiveFrom": "2018-09-19",
+      "conversionNote": "Whether the Art. 20(10) lira-conversion requirement applies to this sub-paragraph is not yet confirmed by counsel."
+    },
+    {
+      "route": "fixed_capital",
+      "label": "Fixed capital investment",
+      "minimum": 500000,
+      "basis": "Certified by the Ministry of Industry and Technology",
+      "holdingPeriodYears": null,
+      "effectiveFrom": "2018-09-19",
+      "conversionNote": "Whether the Art. 20(10) lira-conversion requirement applies to this sub-paragraph is not yet confirmed by counsel."
+    },
+    {
+      "route": "job_creation",
+      "label": "Job creation",
+      "minimum": null,
+      "employees": 50,
+      "basis": "Certified by the Ministry of Labour and Social Security",
+      "holdingPeriodYears": null,
+      "effectiveFrom": "2018-09-19"
+    }
+  ],
+  "history": [
+    {
+      "effectiveFrom": "2017-01-12",
+      "route": "bank_deposit",
+      "minimum": 3000000,
+      "note": "Programme introduced"
+    },
+    {
+      "effectiveFrom": "2017-01-12",
+      "route": "fixed_capital",
+      "minimum": 2000000,
+      "note": "Programme introduced"
+    },
+    {
+      "effectiveFrom": "2017-01-12",
+      "route": "government_bonds",
+      "minimum": 3000000,
+      "note": "Programme introduced"
+    },
+    {
+      "effectiveFrom": "2017-01-12",
+      "route": "job_creation",
+      "employees": 100,
+      "note": "Programme introduced"
+    },
+    {
+      "effectiveFrom": "2017-01-12",
+      "route": "real_estate",
+      "minimum": 1000000,
+      "note": "Programme introduced"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "bank_deposit",
+      "minimum": 500000,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "fixed_capital",
+      "minimum": 500000,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "government_bonds",
+      "minimum": 500000,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "investment_fund",
+      "minimum": 500000,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "job_creation",
+      "employees": 50,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2018-09-19",
+      "route": "real_estate",
+      "minimum": 250000,
+      "note": "Thresholds cut sharply"
+    },
+    {
+      "effectiveFrom": "2022-06-13",
+      "route": "real_estate",
+      "minimum": 400000,
+      "note": "Real-estate threshold raised from 250,000"
+    }
+  ],
+  "familyInclusion": {
+    "spouse": true,
+    "childrenUnder18": true,
+    "childrenOver18": false,
+    "parents": false,
+    "note": "Age is assessed at the application date, not at the decision date."
+  },
+  "requirements": {
+    "residenceRequirement": false,
+    "languageTest": false,
+    "interview": false,
+    "currencyConversionCertificate": "Mandatory (doviz alim belgesi); funds must move through the Turkish banking system",
+    "dualCitizenshipPermittedByTurkiye": true
+  },
+  "sources": [
+    {
+      "name": "Turkish Citizenship Law No. 5901",
+      "article": "12(1)(b)"
+    },
+    {
+      "name": "Regulation on the Implementation of the Turkish Citizenship Law",
+      "article": "20"
+    }
+  ]
+}

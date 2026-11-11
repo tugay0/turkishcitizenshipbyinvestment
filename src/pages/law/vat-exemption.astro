@@ -1,0 +1,227 @@
+---
+/**
+ * VAT Law art. 13(1)(i), the foreign-buyer exemption.
+ *
+ * Here because the market is demonstrably wrong about it. The no-disposal
+ * period was extended from one year to three by Law No. 7394 in April 2022,
+ * and published guidance still routinely says one year. The cost of relying
+ * on the wrong figure is the whole exempted VAT, with interest, which on a
+ * USD 400,000 purchase is not a rounding error.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+
+const PATH = '/law/vat-exemption';
+const pageUrl = absoluteUrl(PATH);
+const title = 'The Foreign-Buyer VAT Exemption and Its Three-Year Condition';
+const description =
+  'VAT Law No. 3065 art. 13(1)(i) exempts the first delivery of a new residence or workplace to a non-resident buyer paying in foreign currency. Law No. 7394 extended the attached no-disposal period from one year to three with effect from 1 May 2022. The conditions, the documents, and why the one-year figure is still in circulation.';
+
+const faqs: FaqItem[] = [
+  {
+    question: 'How long must the property be held to keep the VAT exemption?',
+    answer:
+      'Three years. Law No. 7394, published in the Resmî Gazete of 15 April 2022 and in force from 1 May 2022, replaced "one year" with "three years" in VAT Law No. 3065 art. 13(1)(i). Disposing of the unit within the period brings the exempted VAT back, with interest.',
+  },
+  {
+    question: 'Why do so many sources still say one year?',
+    answer:
+      'Because one year was correct until May 2022 and the pages saying so were written before then and never revised. It is the single most common factual error in published guidance on buying property in Türkiye as a foreigner, and unlike most such errors it has a direct and calculable cost.',
+  },
+  {
+    question: 'Does the VAT exemption period run with the citizenship holding period?',
+    answer:
+      'They are different obligations under different instruments that now happen to have the same length. The citizenship holding period is three years under art. 20 of the implementing Regulation and is secured by an annotation on the title deed. The VAT no-disposal period is three years under VAT Law art. 13(1)(i) and is a tax condition. They start on different events and are enforced by different authorities.',
+  },
+  {
+    question: 'Does the exemption apply to a resale?',
+    answer:
+      'No. The exemption applies to the first delivery of a building constructed as a residence or workplace. A resale between individuals is outside the scope of VAT altogether, so there is no exemption to claim and none to lose.',
+  },
+  {
+    question: 'Does VAT count toward the USD 400,000 threshold?',
+    answer:
+      'No. VAT, the title deed fee, the appraisal and every other transaction cost sit on top of the qualifying amount and count toward none of the four figures the threshold is tested against. Counting them is a common and fatal error in assembling a file.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+    about: [
+      'Katma Değer Vergisi Kanunu No. 3065, art. 13(1)(i)',
+      'Kanun No. 7394',
+    ],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'VAT exemption', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / VAT exemption
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        The foreign-buyer VAT exemption and its three-year condition
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        A non-resident buying a new-build residence or workplace in foreign currency can take the
+        delivery free of VAT. The exemption is conditional, and the condition was lengthened in
+        2022. Guidance written before then is still in wide circulation, which makes this the one
+        error on this subject with a directly calculable price.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>The exemption</h2>
+      <p>
+        VAT Law No. 3065 art. 13(1)(i) exempts the first delivery of a building constructed as a
+        residence or a workplace where the buyer is not resident in Türkiye and the price is
+        brought into the country in foreign currency.
+      </p>
+      <Instrument id="law-3065" article="13(1)(i)" />
+      <p>
+        The conditions, in the form a practitioner needs them:
+      </p>
+      <ul>
+        <li>
+          <strong>First delivery.</strong> The unit is delivered for the first time, typically by
+          the developer. A resale between individuals is outside VAT entirely, so there is nothing
+          to exempt.
+        </li>
+        <li>
+          <strong>Residence or workplace.</strong> Constructed as such. Land, and a building that
+          is neither, fall outside.
+        </li>
+        <li>
+          <strong>Buyer not resident in Türkiye.</strong> Including Turkish citizens resident
+          abroad, subject to the conditions on their residence status. A buyer who holds a Turkish
+          residence permit is a harder case and the exemption is commonly refused.
+        </li>
+        <li>
+          <strong>Price brought in in foreign currency.</strong> At least half of the price before
+          the invoice date and the balance within a year, evidenced by bank documents. The money
+          must come in from abroad; currency already in Türkiye does not satisfy it.
+        </li>
+        <li>
+          <strong>No disposal for three years.</strong> The condition dealt with below.
+        </li>
+      </ul>
+
+      <h2>The condition that changed</h2>
+      <p>
+        Until 2022 the exemption carried a one-year restriction on disposal. Law No. 7394 replaced
+        "one year" with "three years".
+      </p>
+      <Instrument id="law-7394" article="13(1)(i)" />
+      <p>
+        So for a delivery on or after 1 May 2022 the unit must not be disposed of for three years.
+        Disposal inside the period means the exempted VAT becomes payable, with interest, and it is
+        the buyer who pays it.
+      </p>
+      <p>
+        The amount is not marginal. On a {usd(400000)} purchase at the 10 per cent rate the
+        exempted VAT is {usd(40000)}; at 20 per cent it is {usd(80000)}. An investor told that the
+        restriction was a year, who sells in month eighteen having satisfied the citizenship
+        holding period in their own mind, repays that.
+      </p>
+      <p class="marginal">
+        Worth separating two failures here. An adviser who said "one year" in 2021 was right. An
+        adviser who says it now has not read the statute since 2021. Only the second is a problem,
+        and it is a widespread one.
+      </p>
+
+      <h2>Two three-year periods that are not the same period</h2>
+      <p>
+        Since 2022 both the citizenship holding period and the VAT no-disposal period have been
+        three years, which invites the conclusion that they are one obligation. They are not, and
+        treating them as one is how a file goes wrong.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead>
+            <tr><th></th><th>Citizenship holding period</th><th>VAT no-disposal period</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold">Instrument</td>
+              <td>Implementing Regulation art. 20</td>
+              <td>VAT Law No. 3065 art. 13(1)(i)</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Secured by</td>
+              <td>Annotation recorded on the title deed</td>
+              <td>Tax assessment on breach</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Enforced by</td>
+              <td>Land registry and the Ministry</td>
+              <td>The tax administration</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Consequence of breach</td>
+              <td>Grounds to withdraw the citizenship decision</td>
+              <td>Exempted VAT repayable with interest</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Runs from</td>
+              <td>The acquisition relied on in the file</td>
+              <td>The delivery that was exempted</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        They can therefore expire on different dates, and the annotation coming off the deed is not
+        evidence that the tax condition has run.
+      </p>
+
+      <h2>The rate, if the exemption does not apply</h2>
+      <p>
+        Where VAT is due on a new build the rate turns on the building licence date and the net
+        area. Since 1 April 2022 it is 10 per cent up to 150 square metres net and 20 per cent on
+        the area above that and on commercial units. The 1 per cent rate survives only for units
+        licensed before that date, which is why a 1 per cent figure in a cost estimate is a
+        question about the licence rather than an error.
+      </p>
+      <p class="unknown">
+        The decision number and Gazette issue for the rate change are not yet in our source
+        register, so this paragraph is carried on secondary authority. It is
+        {' '}<a href="/data#open-questions">recorded as an open question</a>.
+      </p>
+
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/law/regulation-article-20#art-20-2-b">The real estate route under art. 20(2)(b)</a></li>
+        <li><a href="/tools/cost-calculator">What a purchase costs beyond the investment</a></li>
+        <li><a href="/data">The cost data, with the instrument behind each line</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate('2026-11-11')}, {pageUrl}. CC BY 4.0. This
+        is a note on Turkish tax and citizenship legislation, not tax advice.
+      </p>
+    </div>
+  </article>
+</Base>

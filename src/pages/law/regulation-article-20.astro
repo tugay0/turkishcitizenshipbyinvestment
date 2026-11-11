@@ -1,0 +1,327 @@
+---
+/**
+ * The central page of the site: Art. 20 of the implementing Regulation,
+ * sub-paragraph by sub-paragraph.
+ *
+ * Everything else here is downstream of this article. The thresholds, the
+ * holding periods, the conversion rule and the certification authority for
+ * each route all sit in it, and almost every error in circulation about the
+ * programme is an error about one of its sub-paragraphs.
+ */
+import Base from '../../layouts/Base.astro';
+import Instrument from '../../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../../lib/schema';
+import thresholds from '../../data/cbi/investment-thresholds.json';
+
+const PATH = '/law/regulation-article-20';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Article 20 of the Implementing Regulation, Annotated';
+const description =
+  'Sub-paragraph by sub-paragraph annotation of Article 20 of the Regulation on the Implementation of the Turkish Citizenship Law: the qualifying investment thresholds, the holding periods, the certifying ministry for each route, and the lira-conversion requirement in Article 20(10).';
+
+const asOf: string = (thresholds as any).asOf ?? '';
+const current: any[] = (thresholds as any).current ?? [];
+
+/**
+ * The sub-paragraph letters of Art. 20(2) as the consolidated text numbers
+ * them, mapped to the dataset's route keys. The Turkish alphabet puts ç
+ * between c and d, which is why the deposit route is (ç) and not (c): a
+ * detail that matters when reading a certificate that cites one.
+ */
+const SUBPARAS = [
+  { letter: 'a', route: 'fixed_capital', heading: 'Fixed capital investment' },
+  { letter: 'b', route: 'real_estate', heading: 'Real estate' },
+  { letter: 'c', route: 'job_creation', heading: 'Employment' },
+  { letter: 'ç', route: 'bank_deposit', heading: 'Bank deposit' },
+  { letter: 'd', route: 'government_bonds', heading: 'Government debt instruments' },
+  { letter: 'e', route: 'investment_fund', heading: 'Investment fund shares' },
+  { letter: 'f', route: 'private_pension', heading: 'Private pension contribution' },
+] as const;
+
+const byRoute = Object.fromEntries(current.map((r) => [r.route, r]));
+
+const CERTIFIER: Record<string, string> = {
+  fixed_capital: 'Ministry of Industry and Technology',
+  real_estate: 'Ministry of Environment, Urbanisation and Climate Change',
+  job_creation: 'Ministry of Labour and Social Security',
+  bank_deposit: 'Banking Regulation and Supervision Agency (BDDK)',
+  government_bonds: 'Ministry of Treasury and Finance',
+  investment_fund: 'Capital Markets Board (SPK)',
+  private_pension: 'Insurance and Private Pension Regulation and Supervision Agency',
+};
+
+/** Notes that are ours, not the instrument's. Kept separate on purpose. */
+const NOTES: Record<string, string> = {
+  fixed_capital:
+    'The dataset records no holding period for this route, because Art. 20 sets none in terms. Several secondary sources state three years by analogy with the other routes. We have not found the provision they rely on, and we do not assert one.',
+  real_estate:
+    'The qualifying figure is the appraised value in a report obtained through the land registry system, not the price in the contract and not the price on the deed. A file fails here more often than anywhere else: the deed price, the appraisal, the currency-purchase certificate and the transfers to the seller must each independently reach the threshold.',
+  job_creation:
+    'Fifty employees, evidenced by the social security registration. The count is of persons employed, not of positions created on paper, and it is the route the Ministry examines most sceptically.',
+  bank_deposit:
+    'Read with Art. 20(10). Since 6 January 2022 this is a Turkish lira deposit, not a foreign currency one: the currency is sold to the bank and by the bank to the Central Bank, and the lira proceeds are what is held and blocked.',
+  government_bonds:
+    'The instruments are purchased and held for three years with a Treasury undertaking. Whether Art. 20(10) reaches this sub-paragraph is treated here as unsettled.',
+  investment_fund:
+    'Real estate or venture capital investment fund shares, GYF or GSYF, regulated under the Capital Markets Law. An ordinary mutual fund or a personal equity portfolio does not qualify; the fund type is part of the condition.',
+  private_pension:
+    'Added by Presidential Decision No. 5554. The dataset does not yet carry this route in its current table, which is a gap we record rather than fill: the effective date and whether Art. 20(10) applies both need confirming against the consolidated text.',
+};
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Which article actually sets the investment thresholds?',
+    answer:
+      'Article 20(2) of the Regulation on the Implementation of the Turkish Citizenship Law, not the Law itself. Law No. 5901 Art. 12(1)(b) creates the power to grant citizenship by exceptional means to a person determined to have brought investment into Türkiye; it names no figure. Every threshold is in the Regulation and has therefore been changed by Council of Ministers decision and later by Presidential decision, without any amendment to the Law.',
+  },
+  {
+    question: 'Is a qualifying bank deposit held in foreign currency or in Turkish lira?',
+    answer:
+      'Turkish lira. Presidential Decision No. 5072, in the Resmî Gazete of 6 January 2022, added Art. 20(10) to the Regulation: the foreign currency is sold to the bank, the bank sells it to the Central Bank, and the qualifying amount is held in lira. Sources describing a qualifying deposit as a foreign currency deposit are describing the position before January 2022.',
+  },
+  {
+    question: 'Does the real estate threshold attach to the contract price or the appraisal?',
+    answer:
+      'The appraised value, in a report obtained through the land registry system from a firm licensed by the Capital Markets Board. The contract price, the declared deed value and the appraisal are three different figures, and the threshold is tested against the appraisal.',
+  },
+  {
+    question: 'Which sub-paragraph is the deposit route?',
+    answer:
+      'Article 20(2)(ç). The Turkish alphabet places ç between c and d, so the deposit route is (ç) and the employment route is (c). A certificate or a decision citing "20/2-ç" is citing the deposit route.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+    about: [
+      'Türk Vatandaşlığı Kanununun Uygulanmasına İlişkin Yönetmelik, art. 20',
+      'Türk Vatandaşlığı Kanunu No. 5901, art. 12(1)(b)',
+    ],
+    citation: [
+      'https://www.mevzuat.gov.tr/MevzuatMetin/21.5.2010139.pdf',
+      'https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5901.pdf',
+    ],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'The law', url: absoluteUrl('/law') },
+    { name: 'Regulation art. 20', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/law" class="hover:text-cite">The law</a> / Article 20
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        Article 20 of the implementing Regulation, annotated
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        Everything about the investment route is in this article, and almost every error in
+        circulation about the programme is an error about one of its sub-paragraphs. What follows
+        takes them in the order the consolidated text numbers them, states the condition, names the
+        authority that certifies compliance, and separates what the instrument says from what we
+        have been unable to confirm.
+      </p>
+      <p class="font-ui mt-4 text-[0.8125rem] text-ink-faint">
+        Figures as of {longDate(asOf)}. Every one is held in
+        {' '}<a href="/data" class="underline decoration-cite-soft">the open dataset</a>, with the
+        instrument that set it.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>Where the power comes from, and where the numbers come from</h2>
+      <p>
+        These are two different instruments, and conflating them is the first mistake. Law No. 5901
+        art. 12(1)(b) creates a power: the Presidency may grant citizenship, by exceptional means,
+        to a foreigner determined to have brought investment into Türkiye. It names no amount, no
+        asset class and no holding period. It is one clause.
+      </p>
+      <Instrument id="law-5901" article="12(1)(b)" />
+      <p>
+        The amounts live in Art. 20 of the implementing Regulation, made under the authority of
+        art. 46 of the Law. That placement has a consequence worth being explicit about: because
+        the thresholds sit in secondary legislation, they have been moved four times without a
+        single amendment to the Law, first by Council of Ministers decision and since 2018 by
+        Presidential decision. A practitioner advising on this programme is advising on an
+        instrument that can change by decision published on a Friday.
+      </p>
+      <Instrument id="regulation-2010-139" article="20" />
+      <p class="marginal">
+        This is also why "the law changed" is usually wrong. Law No. 5901 has not been amended in
+        any respect material to the investment route since it was enacted. The Regulation has.
+      </p>
+
+      <h2>The sub-paragraphs of Article 20(2)</h2>
+      <p>
+        Seven routes. The letters below are the instrument's own, and they are worth learning,
+        because a certificate of conformity, a land registry annotation and a Ministry decision all
+        cite the sub-paragraph rather than describing the route.
+      </p>
+
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead>
+            <tr>
+              <th>Sub-para.</th>
+              <th>Route</th>
+              <th>Threshold</th>
+              <th>Holding</th>
+              <th>Certified by</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SUBPARAS.map((sp) => {
+              const r = byRoute[sp.route];
+              return (
+                <tr>
+                  <td class="whitespace-nowrap font-semibold">20(2)({sp.letter})</td>
+                  <td>{sp.heading}</td>
+                  <td class="whitespace-nowrap">
+                    {r?.minimum != null
+                      ? usd(r.minimum)
+                      : r?.employees != null
+                        ? `${r.employees} employees`
+                        : sp.route === 'job_creation'
+                          ? '50 employees'
+                          : sp.route === 'private_pension'
+                            ? `${usd(500000)} (not yet in the dataset)`
+                            : 'not recorded'}
+                  </td>
+                  <td class="whitespace-nowrap">
+                    {r
+                      ? r.holdingPeriodYears == null
+                        ? 'none stated'
+                        : `${r.holdingPeriodYears} years`
+                      : '3 years, unconfirmed'}
+                  </td>
+                  <td>{CERTIFIER[sp.route]}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {SUBPARAS.map((sp) => {
+        const r = byRoute[sp.route];
+        const slug = `art-20-2-${sp.letter === 'ç' ? 'c-cedilla' : sp.letter}`;
+        return (
+          <>
+            <h3 id={slug}>
+              Article 20(2)({sp.letter}): {sp.heading.toLowerCase()}
+            </h3>
+            {r?.basis && <p>{r.basis}.</p>}
+            {r?.annotation && <p>{r.annotation}.</p>}
+            {r?.effectiveFrom && (
+              <p class="cite">
+                Current figure effective {longDate(r.effectiveFrom)}.
+              </p>
+            )}
+            <p>{NOTES[sp.route]}</p>
+            {r?.conversionNote && (
+              <p class="unknown">Unsettled: {r.conversionNote}</p>
+            )}
+          </>
+        );
+      })}
+
+      <h2>Article 20(10): the conversion requirement</h2>
+      <p>
+        This paragraph is the most consequential recent change to the programme and the one most
+        often missed, because it does not alter a threshold and so does not appear in the tables
+        that circulate. It governs the currency in which a qualifying amount is held.
+      </p>
+      <Instrument id="cbk-5072" article="20(10)" />
+      <p>
+        The mechanism matters more than the rule. The investor's foreign currency is sold to the
+        bank; the bank sells it to the Central Bank; the lira proceeds are the qualifying amount,
+        and the lira is what is held for the holding period. The investor therefore carries lira
+        exposure for three years, which is the opposite of what a reader concludes from a source
+        describing the deposit route as a way of holding dollars in a Turkish bank.
+      </p>
+      <p>
+        How far the paragraph reaches is not settled here. The dataset records the bank deposit as
+        covered and marks the government debt, fund and fixed capital routes as unconfirmed. Some
+        practitioner guidance states that it covers sub-paragraphs (b), (ç), (d) and (e). We have
+        not confirmed that against the consolidated text, so it is recorded as
+        {' '}<a href="/data#open-questions">an open question</a> rather than repeated as fact.
+      </p>
+      <p class="marginal">
+        A reference work's value is mostly in the sentences it declines to write. This is one of
+        them.
+      </p>
+
+      <h2>What Article 20 does not do</h2>
+      <p>
+        Three points, each a recurring misreading:
+      </p>
+      <ul>
+        <li>
+          <strong>It does not create an entitlement.</strong> Art. 12(1)(b) is a power to grant,
+          exercised at discretion. Meeting every condition in Art. 20 produces an eligible file,
+          not a right to citizenship, and a refusal on discretionary grounds is lawful.
+        </li>
+        <li>
+          <strong>It does not set a processing time.</strong> No provision in the Law or the
+          Regulation imposes a deadline on the decision, and no authority publishes an end-to-end
+          figure. Durations in circulation, including
+          {' '}<a href="/data#processing-times">the ones recorded here</a>, are observations.
+        </li>
+        <li>
+          <strong>It does not make the investment amount a ceiling on cost.</strong> Transfer
+          taxes, VAT where it is due, appraisal, translation, notarial and application fees sit on
+          top, and none of them counts toward the threshold. Counting VAT or the title deed fee
+          toward the qualifying amount is a common and fatal error.
+        </li>
+      </ul>
+
+      <h2>Reading a file against the article</h2>
+      <p>
+        For the real estate route, the four figures that must each independently reach the
+        threshold are the appraised value, the value declared on the deed, the amount shown on the
+        currency-purchase certificate, and the sum actually transferred to the seller's account. A
+        file assembled by matching only one of them to {usd(400000)} will be refused, and the
+        refusal will not say which figure failed.
+      </p>
+      <p>
+        For the deposit and instrument routes, the equivalent is the Central Bank effective
+        exchange rate applied on the determination date: the threshold is measured in dollars, the
+        asset is held in lira, and the date on which the conversion is fixed decides whether the
+        file clears.
+      </p>
+
+      <h2>Questions this article decides</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p set:html={f.answer} />
+        </>
+      ))}
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/law/currency-conversion">Article 20(10) in full: the lira rule and what it changed</a></li>
+        <li><a href="/law/threshold-history">Every threshold change, with the instrument that made it</a></li>
+        <li><a href="/law/vat-exemption">The foreign-buyer VAT exemption and its three-year condition</a></li>
+        <li><a href="/data">The dataset behind every figure on this page</a></li>
+      </ul>
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Published by {SITE.publisher} under CC BY 4.0. Cite as: {SITE.publisher}, "{title}",
+        {' '}{longDate(asOf)}, {pageUrl}.
+      </p>
+    </div>
+  </article>
+</Base>

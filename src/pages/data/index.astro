@@ -1,0 +1,355 @@
+---
+/**
+ * The dataset, rendered in full.
+ *
+ * Rendered rather than linked. The tables are the point: an assistant quoting
+ * this page should not have to fetch a JSON file to answer, and a reader
+ * should not have to download anything to check a figure. The files are there
+ * for anyone who wants to compute with them.
+ */
+import Base from '../../layouts/Base.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { dataset, breadcrumbs } from '../../lib/schema';
+
+import manifest from '../../data/cbi/manifest.json';
+import thresholds from '../../data/cbi/investment-thresholds.json';
+import sources from '../../data/cbi/sources.json';
+import processing from '../../data/cbi/processing-times.json';
+import apostille from '../../data/cbi/apostille-countries.json';
+import returns from '../../data/cbi/investment-returns.json';
+import statistics from '../../data/cbi/statistics.json';
+import costsCsv from '../../data/cbi/government-costs.csv?raw';
+
+const PATH = '/data';
+const pageUrl = absoluteUrl(PATH);
+const TITLE = 'Turkish Citizenship by Investment: Open Data';
+const description =
+  'Machine-readable reference data on Turkish citizenship by investment: qualifying thresholds and their statutory basis, government and transaction costs, document requirements, the full Hague Apostille status table, observed processing times, dollar-return series, published statistics, and a register of every primary source. CC BY 4.0.';
+
+const asOf: string = (thresholds as any).asOf ?? '';
+const sha7 = manifest.commitShort;
+const srcList: any[] = (sources as any).sources ?? [];
+const openQuestions: string[] = (sources as any).openQuestions ?? [];
+const notKnown: string[] = (statistics as any).notKnown ?? [];
+
+const FILES = [
+  ['investment-thresholds.json', 'Current minimums per route, holding periods, legal basis, effective dates, the full threshold history, family inclusion and the general requirements', 'JSON'],
+  ['government-costs.csv', 'Government and third-party transaction costs per route: fixed amounts, per-person amounts and percentages of value', 'CSV'],
+  ['document-checklist.json', 'Documents required of a main applicant, a spouse and a child, and which need legalisation', 'JSON'],
+  ['apostille-countries.json', 'Every Contracting Party to the 1961 Hague Convention with the date it entered into force there, by ISO 3166-1 alpha-2 code, plus the non-parties our pages name', 'JSON'],
+  ['processing-times.json', 'Observed duration per stage and the end-to-end range, marked as observed because no authority publishes an official figure', 'JSON'],
+  ['investment-returns.json', 'Year-end index levels and rates per route, with USD/TRY, for expressing an outcome in dollars', 'JSON'],
+  ['statistics.json', 'Published statistical series, each dated and sourced, together with what no authority publishes', 'JSON'],
+  ['sources.json', 'The register of every statute, regulation, decision, circular and publication behind the figures, with Resmî Gazete dates and a verification status', 'JSON'],
+] as const;
+
+/* Parse the CSV we vendored rather than restating it. */
+function parseCsv(text: string) {
+  const rows: string[][] = [];
+  let row: string[] = [], field = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') q = false;
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  const head = rows.shift() ?? [];
+  return rows
+    .filter((r) => r.length === head.length && r.some((x) => x !== ''))
+    .map((r) => Object.fromEntries(head.map((h, i) => [h, r[i]])) as Record<string, string>);
+}
+const costs = parseCsv(costsCsv);
+
+const money = (lo: string, hi: string, pct: string, pctHi: string) => {
+  if (pct) return pctHi && pctHi !== pct ? `${pct}% to ${pctHi}% of value` : `${pct}% of value`;
+  if (!lo && !hi) return 'not published';
+  const f = (v: string) => usd(Number(v));
+  return lo && hi && lo !== hi ? `${f(lo)} to ${f(hi)}` : f(lo || hi);
+};
+
+const citation = `${SITE.publisher}, ${TITLE} (CC BY 4.0), as of ${asOf}, ${pageUrl}`;
+
+const schema = [
+  dataset({
+    name: TITLE,
+    description,
+    url: pageUrl,
+    datePublished: asOf,
+    dateModified: asOf,
+    version: sha7,
+    accrualPeriodicity: 'Quarterly',
+    citation,
+    temporalCoverage: '2013-01-01/2026-09-30',
+    keywords: [
+      'Turkish citizenship by investment',
+      'investment thresholds Law 5901',
+      'Hague Apostille status table',
+      'government costs Türkiye',
+      'open data',
+      'CC BY 4.0',
+    ],
+    distribution: FILES.map(([f]) => ({
+      url: `${manifest.rawBase}/${f}`,
+      encodingFormat: f.endsWith('.csv') ? 'text/csv' : 'application/json',
+    })),
+  }),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'Data', url: pageUrl },
+  ]),
+];
+
+const pendingApostille = apostille.countries.filter((c: any) => c.inForceFrom && !c.apostilleMember);
+---
+
+<Base title={TITLE} description={description} path={PATH} schema={schema} rawTitle>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / Data
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{TITLE}</h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        The figures behind every page on this site, published as files anyone can compute with. The
+        pages read these files at build time, so a figure here and a figure on a page cannot
+        disagree. Licensed CC BY 4.0: reuse it, including commercially, with attribution.
+      </p>
+      <p class="font-ui mt-5 text-[0.8125rem] text-cite">
+        As of {longDate(asOf)} &middot; source commit
+        {' '}<a href={manifest.commitUrl} rel="noopener" class="underline decoration-cite-soft">{sha7}</a>
+        {' '}&middot; {srcList.length} primary sources &middot; {openQuestions.length} open questions
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2 id="files">The files</h2>
+      <p>
+        Download links are pinned to the commit above, so a citation does not drift. The latest
+        column always points at the current version, which may differ from what this page shows.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>File</th><th>Contents</th><th>Format</th><th>Download</th></tr></thead>
+          <tbody>
+            {FILES.map(([file, what, fmt]) => (
+              <tr>
+                <td class="whitespace-nowrap"><code>{file}</code></td>
+                <td>{what}</td>
+                <td>{fmt}</td>
+                <td class="whitespace-nowrap">
+                  <a href={`${manifest.rawBase}/${file}`} rel="noopener">pinned</a>
+                  {' · '}
+                  <a href={`${manifest.latestBase}/${file}`} rel="noopener">latest</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="thresholds">Current thresholds</h2>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Route</th><th>Minimum</th><th>Holding</th><th>Basis</th><th>Effective</th></tr></thead>
+          <tbody>
+            {((thresholds as any).current ?? []).map((r: any) => (
+              <tr>
+                <td class="whitespace-nowrap font-semibold">{r.label}</td>
+                <td class="whitespace-nowrap">
+                  {r.minimum != null ? usd(r.minimum) : r.employees != null ? `${r.employees} employees` : 'not recorded'}
+                </td>
+                <td class="whitespace-nowrap">
+                  {r.holdingPeriodYears == null ? 'none stated' : `${r.holdingPeriodYears} years`}
+                </td>
+                <td>{r.basis}</td>
+                <td class="whitespace-nowrap">{r.effectiveFrom ? longDate(r.effectiveFrom) : ''}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="font-ui text-[0.8125rem]">
+        <a href="/law/regulation-article-20" class="underline decoration-cite-soft">Each sub-paragraph annotated</a>
+        {' '}&middot;
+        <a href="/law/threshold-history" class="underline decoration-cite-soft">the full history</a>
+      </p>
+
+      <h2 id="costs">Government and transaction costs</h2>
+      <p>
+        Payable to the state or to third parties. None of it counts toward the qualifying amount,
+        and attorney fees are not included.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Item</th><th>Route</th><th>Basis</th><th>Amount</th><th>Notes</th></tr></thead>
+          <tbody>
+            {costs.map((c) => (
+              <tr>
+                <td>{c.item}</td>
+                <td class="whitespace-nowrap">{c.route}</td>
+                <td class="whitespace-nowrap">{c.basis}</td>
+                <td class="whitespace-nowrap">
+                  {money(c.amount_usd_low, c.amount_usd_high, c.percent_of_value, c.percent_of_value_high)}
+                </td>
+                <td>{c.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="processing-times">Processing times, and why they are marked as observed</h2>
+      <p>
+        No Turkish authority publishes an end-to-end processing time and no statute sets a
+        deadline. The only official artefact is a provincial service-standards row covering a
+        single stage. So the figures below are marked <code>"basis": "observed"</code> in the data,
+        which is a different kind of claim from everything else on this page, and the dataset says
+        so rather than letting the two blur. End to end:
+        {' '}<strong>{processing.endToEnd.lowMonths} to {processing.endToEnd.highMonths} months</strong>
+        {' '}from the completed investment to the citizenship decision.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Stage</th><th>Observed</th><th>Worth querying after</th></tr></thead>
+          <tbody>
+            {processing.stages.map((s: any) => (
+              <tr>
+                <td>{s.label}</td>
+                <td class="whitespace-nowrap">{s.low} to {s.high} weeks</td>
+                <td class="whitespace-nowrap">{s.queryAfter} weeks or more</td>
+              </tr>
+            ))}
+            <tr>
+              <td><strong>End to end</strong></td>
+              <td class="whitespace-nowrap">
+                <strong>{processing.endToEnd.lowWeeks} to {processing.endToEnd.highWeeks} weeks</strong>
+              </td>
+              <td>n/a</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>{(processing.caveats ?? []).map((c: string) => <li>{c}</li>)}</ul>
+
+      <h2 id="apostille">The Hague Apostille status table</h2>
+      <p>
+        Whether a civil status document takes an apostille or needs consular legalisation turns on
+        one question: is the issuing state a party to the Hague Convention of 5 October 1961. The
+        file answers it for all {apostille.counts.parties} Contracting Parties by ISO 3166-1
+        alpha-2 code, with the date the Convention entered into force for each, and for the
+        {' '}{apostille.counts.listedNonParties} non-parties our pages name.
+        {' '}{apostille.counts.inForceToday} are in force today.
+      </p>
+      <p>
+        One case a yes-or-no field gets wrong: a state that has acceded but for which the
+        Convention is not yet in force. Documents from there still need legalisation.
+        {pendingApostille.length > 0 ? (
+          <>
+            {' '}Currently that is{' '}
+            {pendingApostille.map((c: any) => `${c.name}, in force ${longDate(c.inForceFrom)}`).join('; ')}.
+          </>
+        ) : (
+          <> There is no state in that position today.</>
+        )}
+      </p>
+      <p>
+        The file states in terms that absence from it is not a finding: a country we have not
+        listed is a country to check against the HCCH table, not a non-party.
+      </p>
+
+      <h2 id="returns">Dollar-return series</h2>
+      <p>
+        {Object.keys(returns.series).length} year-end series as of {longDate(returns.asOf)}, with
+        USD/TRY alongside so a conversion is reproducible rather than asserted. Gross of taxes,
+        fund fees and transaction costs, and not investment advice.
+      </p>
+      <p class="unknown">
+        This file records its own weakness: none of its series yet has an entry in the source
+        register, and the lira gold price series has no identified publication at all. Both are in
+        the open questions below.
+      </p>
+
+      <h2 id="not-known">What no authority publishes</h2>
+      <p>
+        These gaps are stated rather than filled. Nothing in the dataset is estimated or
+        interpolated to cover them, and this is the section practitioners quote back to us most.
+      </p>
+      <ul>{notKnown.map((n) => <li>{n}</li>)}</ul>
+
+      <h2 id="open-questions">Open questions</h2>
+      <p>
+        {openQuestions.length} questions we have not resolved, published as questions. Several are
+        load-bearing: the reach of art. 20(10) decides whether three routes carry a currency
+        conversion requirement.
+      </p>
+      <ul>{openQuestions.map((q) => <li>{q}</li>)}</ul>
+      <p>
+        If you can close one with a citation,
+        <a href={`mailto:${SITE.email}`}> write to the editor</a>.
+      </p>
+
+      <h2 id="sources">The source register</h2>
+      <p>
+        {srcList.length} instruments and publications. Each carries a verification status, because
+        "we read the instrument" and "we read a consolidated text that cites it" are different
+        claims.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Instrument</th><th>No.</th><th>Resmî Gazete</th><th>Verification</th></tr></thead>
+          <tbody>
+            {srcList.map((s: any) => {
+              const rg = s.resmiGazete ?? {};
+              return (
+                <tr>
+                  <td>
+                    {s.url ? (
+                      <a href={s.url} rel="noopener">{s.titleEn ?? s.titleTr ?? s.id}</a>
+                    ) : (
+                      s.titleEn ?? s.titleTr ?? s.id
+                    )}
+                  </td>
+                  <td class="whitespace-nowrap">{s.number ?? 'not recorded'}</td>
+                  <td class="whitespace-nowrap">
+                    {rg.date ? longDate(rg.date) : 'not recorded'}
+                    {rg.issue ? ` · No. ${rg.issue}` : ''}
+                  </td>
+                  <td class="whitespace-nowrap">{(s.verification ?? '').replace(/_/g, ' ')}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="cite">How to cite this</h2>
+      <p><code>{citation}</code></p>
+      <p>
+        The underlying repository carries a <code>CITATION.cff</code>, so GitHub renders a "Cite
+        this repository" button with the same details. If you are citing a single figure, cite that
+        record's own source field as well: that is what the field is for.
+      </p>
+
+      <h2 id="provenance">Provenance</h2>
+      <p>
+        These files are maintained in
+        <a href={SITE.dataRepo} rel="noopener"> a public repository</a> and vendored into this site
+        with the commit they came from, recorded above. The repository's revision history is the
+        audit trail: a disputed figure can be traced to the commit that introduced it and the
+        message explaining why.
+      </p>
+      <p>
+        The same files are read by
+        <a href="/tools"> the calculators on this site</a>, so a tool cannot compute from a
+        different number than the one published here.
+      </p>
+    </div>
+  </article>
+</Base>

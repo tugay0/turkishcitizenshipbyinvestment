@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Year-end series used to express the dollar outcome of each qualifying investment route. Index levels and rates as published by the sources named; the dollar conversion is done by the consumer using the fx series. Published so that the site tool, the connector and this dataset compute from the same numbers. Not investment advice and not an investable product: gross of taxes, fund fees and transaction costs.",
+  "asOf": "2026-11-06",
+  "note": "The 2026 values are partial-year, to 6 November 2026.",
+  "series": {
+    "bist": {
+      "label": "BIST 100 price index",
+      "unit": "index level",
+      "note": "Price index, excluding dividends.",
+      "source": "Borsa Istanbul",
+      "values": {
+        "2019": 1144.25,
+        "2020": 1476.72,
+        "2021": 1857.65,
+        "2022": 5509.16,
+        "2023": 7470.18,
+        "2024": 9830.56,
+        "2025": 11261.52,
+        "2026": 11482.6
+      }
+    },
+    "fx": {
+      "label": "USD/TRY",
+      "unit": "lira per US dollar",
+      "source": "TCMB and exchange-rate records",
+      "values": {
+        "2019": 5.9496,
+        "2020": 7.4388,
+        "2021": 13.32,
+        "2022": 18.71,
+        "2023": 29.4493,
+        "2024": 35.366,
+        "2025": 42.958,
+        "2026": 50.16
+      }
+    },
+    "reit": {
+      "label": "BIST REIT index (XGMYO)",
+      "unit": "index level",
+      "source": "Borsa Istanbul",
+      "values": {
+        "2019": null,
+        "2020": 647,
+        "2021": 721,
+        "2022": 2098.94,
+        "2023": 2450,
+        "2024": 3588,
+        "2025": 5761.22,
+        "2026": 4634.18
+      }
+    },
+    "gold": {
+      "label": "Gold held in lira, gram price",
+      "unit": "lira per gram",
+      "note": "The series stops at 2025. An entry year at or after the last value is an absence of data, not a zero return.",
+      "values": {
+        "2019": 290,
+        "2020": 454.12,
+        "2021": 779.68,
+        "2022": 1096.93,
+        "2023": 1940.32,
+        "2024": 2986.24,
+        "2025": 6109.37,
+        "2026": null
+      },
+      "source": null,
+      "sourceNote": "Source publication not yet recorded. See openQuestions in sources.json."
+    },
+    "tlDep": {
+      "label": "Rolling Turkish lira deposits, realised annual return",
+      "unit": "per cent per year",
+      "note": "Gross of withholding tax.",
+      "source": "TCMB weighted-average deposit rates",
+      "values": {
+        "2020": 10.08,
+        "2021": 18.24,
+        "2022": 16.68,
+        "2023": 30.48,
+        "2024": 67.89,
+        "2025": 52.13,
+        "2026": 37
+      }
+    },
+    "usdDep": {
+      "label": "US dollar deposit in a Turkish bank, annual return",
+      "unit": "per cent per year",
+      "source": "TCMB weighted-average deposit rates",
+      "values": {
+        "2020": 1.0,
+        "2021": 1.0,
+        "2022": 1.5,
+        "2023": 2.5,
+        "2024": 1.5,
+        "2025": 3.0,
+        "2026": 2.2
+      }
+    },
+    "housing": {
+      "label": "Housing: TCMB price index growth plus about 5 per cent rental yield",
+      "unit": "per cent per year",
+      "note": "Turkiye average, quality-adjusted.",
+      "source": "TCMB residential property price index",
+      "values": {
+        "2020": 28.65,
+        "2021": 53.99,
+        "2022": 132.73,
+        "2023": 80.77,
+        "2024": 31.8,
+        "2025": 26.86,
+        "2026": 18
+      }
+    }
+  },
+  "qualifying": {
+    "note": "Only some of these are qualifying investments. Direct personal stock portfolios and physical gold do not qualify; a real estate or venture capital investment fund (GYF or GSYF) is the compliant wrapper for equity exposure.",
+    "routes": [
+      "real_estate",
+      "bank_deposit",
+      "government_bonds",
+      "investment_fund"
+    ]
+  },
+  "sourceRegister": "Not yet in sources.json. The index levels and rates here are attributed in each series' source field, but none has a dated register entry with a URL, so a citation of this file cannot be traced the way a citation of investment-thresholds.json can."
+}

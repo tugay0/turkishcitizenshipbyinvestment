@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Observed durations per stage of a Turkish citizenship-by-investment file, as seen by Ra Legal. These are not official figures. No Turkish authority publishes an end-to-end processing time and no statute sets a deadline; the only official artefact is the Ankara Governorship service-standards row, which covers one stage. Published so that the figure quoted on ralegal.com.tr, in the connector and here is one figure.",
+  "asOf": "2026-11-11",
+  "basis": "observed",
+  "unit": "weeks",
+  "decidedOn": "2026-11-11",
+  "stages": [
+    {
+      "id": "investment",
+      "label": "Investment completed to certificate of conformity",
+      "low": 2,
+      "high": 8,
+      "queryAfter": 12
+    },
+    {
+      "id": "residence",
+      "label": "Residence permit under Law No. 6458 Art. 31(1)(j)",
+      "low": 2,
+      "high": 4,
+      "queryAfter": 6
+    },
+    {
+      "id": "filed",
+      "label": "Citizenship file submitted to the citizenship decision",
+      "low": 12,
+      "high": 30,
+      "queryAfter": 43
+    }
+  ],
+  "endToEnd": {
+    "lowWeeks": 16,
+    "highWeeks": 42,
+    "lowMonths": 4,
+    "highMonths": 10,
+    "label": "About 4 to 10 months from the completed investment to the citizenship decision"
+  },
+  "queryAfterRule": "A wait is treated as materially delayed once it exceeds the stage high bound by 40 per cent. queryAfter is the first whole number of weeks that exceeds it.",
+  "caveats": [
+    "Individual outcomes vary with nationality, name-match hits and application volume.",
+    "Security clearance cannot be expedited.",
+    "Not a prediction for any particular file and not legal advice."
+  ],
+  "sources": [
+    "ankara-valiligi-service-standards"
+  ]
+}

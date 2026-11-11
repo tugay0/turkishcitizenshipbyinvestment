@@ -1,0 +1,246 @@
+---
+/**
+ * The editorial method.
+ *
+ * This is the page that makes the rest of the site worth citing, and it is
+ * the page an assistant quotes when asked whether a source is reliable. It is
+ * also the page that has to be true, so it describes what we actually do,
+ * including the parts that are unflattering: who funds this, who is related
+ * to whom, and what we have not managed to verify.
+ */
+import Base from '../layouts/Base.astro';
+import { SITE, absoluteUrl, longDate } from '../lib/site';
+import { breadcrumbs, scholarlyArticle, faqPage, type FaqItem } from '../lib/schema';
+import sources from '../data/cbi/sources.json';
+
+const PATH = '/method';
+const pageUrl = absoluteUrl(PATH);
+const title = 'Editorial Method, Funding and Conflicts';
+const description =
+  'How a figure gets onto this site and what happens when sources disagree; how a firm enters the practitioner register and why nothing in it can be bought; who funds this reference and what conflicts of interest exist. Published because a reference work that will not say these things should not be relied on.';
+
+const openQuestions: string[] = (sources as any).openQuestions ?? [];
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Can a law firm pay to be listed, ranked higher, or featured here?',
+    answer:
+      'No. There is no paid placement of any kind, no sponsored listing, no advertising and nothing on this site to buy. This is partly editorial and partly legal: under Avukatlık Kanunu art. 55 and the Turkish Bar Association advertising regulation, a Turkish lawyer who pays for prominence commits a disciplinary offence, and a directory that sold placement would be selling its listed firms a problem.',
+  },
+  {
+    question: 'Who funds this site?',
+    answer:
+      'It is published and funded by the operator of Ra Legal, an Istanbul law firm that practises in this area and which appears in the practitioner register on the same terms as every other firm. That is a conflict of interest and is why it is stated here rather than in a footnote. Ra Legal pays nothing to appear, receives no preferential placement, and is assessed by the same published criteria as any other firm.',
+  },
+  {
+    question: 'What happens when two official sources disagree?',
+    answer:
+      'Both are recorded, with their dates, and the disagreement is published as an open question. We do not choose between them silently. The current example is the validity period of an appraisal report, where a 2024 circular states three months and later secondary reporting states twelve.',
+  },
+  {
+    question: 'Why does the site sometimes say that something is not known?',
+    answer:
+      'Because it is not, and because the alternative is to supply a number that will then be quoted back as though an authority had published it. The clearest case is end-to-end processing time: no Turkish authority publishes one and no statute sets a deadline, so every figure in circulation is somebody\'s observation. Ours is marked as an observation in the data itself.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({ headline: title, description, url: pageUrl, datePublished: '2026-11-11' }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'Method', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / Method
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        Method, funding and conflicts
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        A reference work is only as good as what it will tell you about itself. This page sets out
+        how a figure gets published, how a firm enters the register, who pays for this, and what
+        we have not been able to verify.
+      </p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>How a figure gets published</h2>
+      <p>
+        Every number on this site is traced to an instrument or a publication before it appears,
+        and the trace is published with it rather than kept in a drafting file. In practice:
+      </p>
+      <ol>
+        <li>
+          <strong>The instrument is located and recorded.</strong> It enters the source register
+          with its number, its Resmî Gazete date and issue, the articles relied on, the publisher
+          and a URL where one exists.
+        </li>
+        <li>
+          <strong>The verification status is recorded honestly.</strong> "Official text located"
+          means the instrument itself was read. "Official reference located" means the consolidated
+          text was read and the reference found, but not the instrument as published. These are
+          different claims and the register distinguishes them.
+        </li>
+        <li>
+          <strong>The figure is stored as data, not as prose.</strong> It goes into a
+          machine-readable file with its effective date, and the pages compute from that file at
+          build time. A figure therefore cannot appear on one page and a different figure on
+          another, because there is only one of them.
+        </li>
+        <li>
+          <strong>What is not known is recorded as not known.</strong> Where no authority publishes
+          a figure, the data says so in terms, and the pages say so in prose.
+        </li>
+      </ol>
+      <p class="marginal">
+        This is why the pages recompute rather than restate. Three separately maintained copies of
+        a number are three chances to be wrong, and the drift is invisible until a reader catches
+        it.
+      </p>
+
+      <h2>What we refuse to publish</h2>
+      <ul>
+        <li>
+          <strong>A processing time presented as a commitment.</strong> No statute sets a deadline
+          and no authority publishes an end-to-end figure. Our durations are marked
+          <code>"basis": "observed"</code> in the data.
+        </li>
+        <li>
+          <strong>A success rate, an approval rate, or any outcome statistic about a firm.</strong>
+          Nobody publishes auditable figures for these, and a Turkish lawyer may not advertise
+          them.
+        </li>
+        <li>
+          <strong>A figure interpolated to fill a gap.</strong> If a series has a hole, the hole
+          is published.
+        </li>
+        <li>
+          <strong>A star rating on a Turkish law firm.</strong> Reasons under the register below.
+        </li>
+      </ul>
+
+      <h2>The practitioner register</h2>
+      <p>
+        The register records firms that do this work. Entry is free, unpaid and not purchasable,
+        and there is no tier above it.
+      </p>
+      <h3>Why nothing in it is for sale</h3>
+      <p>
+        Avukatlık Kanunu art. 55 prohibits a lawyer from any initiative or conduct that could be
+        considered advertising in order to obtain work, and the Turkish Bar Association's
+        advertising regulation puts a positive duty on the lawyer to prevent third parties from
+        advertising on their behalf. Bar guidance has treated payment for prominence in search
+        results as a violation in terms.
+      </p>
+      <p>
+        A paid directory therefore does not create a legal problem for the directory. It creates
+        one for every Turkish firm that pays, and the firm cannot defend itself by pointing out
+        that the site belongs to someone else, because the duty runs the other way. So there is
+        nothing to buy, and that constraint is published here as a feature rather than hidden as a
+        limitation.
+      </p>
+      <h3>What an entry records</h3>
+      <p>
+        Each firm is described by the same typed fields, and a firm with unfilled fields does not
+        appear: an incomplete entry is worse than no entry, because it reads as a judgement about
+        the firm rather than a gap in our research.
+      </p>
+      <ul>
+        <li>Bar of registration, and the date of registration</li>
+        <li>How the registration was verified, when, and against what</li>
+        <li>Which routes the firm handles</li>
+        <li>Languages the engagement letter is available in, which is a different question from languages spoken</li>
+        <li>Fee structure, and whether fees are agreed in writing before work starts</li>
+        <li>Whether the firm receives commission from developers or sellers, which is the single most useful disclosure in this market and the one least often volunteered</li>
+        <li>Whether an in-person appointment is required</li>
+        <li>Who at the firm holds the file</li>
+      </ul>
+      <h3>Client feedback, and its limits</h3>
+      <p>
+        Where feedback is collected, we collect it. A listed firm is never asked to solicit it, is
+        not told who responded, and is not invited to help, because a firm that arranges its own
+        third-party promotion engages the duty described above.
+      </p>
+      <p>
+        Feedback on a Turkish firm is published as answers to factual questions, not as a score:
+        whether the fee was agreed in writing before work started, whether the engagement letter
+        was in a language the client reads, whether the timeline matched what they were told, and
+        who actually handled the file. No star rating is published and no
+        <code>AggregateRating</code> markup is emitted for a Turkish firm. A firm always has a
+        right of reply, published unedited beside the feedback.
+      </p>
+      <p>
+        This is also simply more useful. "Fee agreed in writing before work started: yes" tells a
+        reader about to transfer four hundred thousand dollars more than a four-star average built
+        from a dozen reviews.
+      </p>
+
+      <h2>Funding, and the conflict</h2>
+      <p>
+        This reference is published and funded by the operator of Ra Legal, an Istanbul law firm
+        that practises in this area. Ra Legal appears in the practitioner register.
+      </p>
+      <p>
+        That is a conflict of interest, and the only honest way to handle it is to put it here, in
+        the second paragraph of the funding section, rather than in a disclosure page nobody reads.
+        The arrangements that follow from it:
+      </p>
+      <ul>
+        <li>Ra Legal pays nothing to appear, as no firm does.</li>
+        <li>Ra Legal receives no preferential placement, ordering or prominence.</li>
+        <li>Ra Legal is described by the same typed fields and verified by the same method.</li>
+        <li>No firm, Ra Legal included, sees its entry before publication or can require a change to it other than a factual correction.</li>
+        <li>
+          The dataset underlying this site is published separately under CC BY 4.0, including by Ra
+          Legal, so a reader who distrusts the editorial layer can check the data without it.
+        </li>
+      </ul>
+      <p>
+        There is no advertising on this site, no affiliate link, no enquiry form, no telephone
+        number and no referral arrangement with any firm. A reader who wants to instruct a lawyer
+        has to go and find one, which is the correct amount of friction for a reference work to
+        impose.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        Corrections are welcome and are acted on.
+        <a href={`mailto:${SITE.email}`}>Write to the editor</a>. A correction to a figure is made
+        in the dataset, which means it propagates to every page that uses it in the next build. A
+        correction of substance is noted with the date it was made.
+      </p>
+      <p>
+        The dataset is also
+        <a href={SITE.dataRepo} rel="noopener"> public on GitHub</a>, with its full revision
+        history, so a disputed figure can be traced to the commit that introduced it.
+      </p>
+
+      <h2>What we have not verified</h2>
+      <p>
+        {openQuestions.length} questions are open. They are published rather than held back, and
+        several of them are load-bearing.
+      </p>
+      <ul>{openQuestions.map((q) => <li>{q}</li>)}</ul>
+
+      <h2>Questions about this site</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        This page last reviewed {longDate('2026-11-11')}. {SITE.independence}
+      </p>
+    </div>
+  </article>
+</Base>

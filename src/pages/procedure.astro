@@ -1,0 +1,234 @@
+---
+/**
+ * The procedural chain.
+ *
+ * Organised by what each stage produces, because that is how a file is
+ * actually assessed: not by whether the investor did the right things but by
+ * whether the right documents exist and agree with each other.
+ */
+import Base from '../layouts/Base.astro';
+import Instrument from '../components/Instrument.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../lib/site';
+import { scholarlyArticle, breadcrumbs, faqPage, type FaqItem } from '../lib/schema';
+import processing from '../data/cbi/processing-times.json';
+
+const PATH = '/procedure';
+const pageUrl = absoluteUrl(PATH);
+const title = 'The Procedural Chain, Stage by Stage';
+const description =
+  'From investment to citizenship decision: the appraisal, the certificate of conformity, the residence permit under Law No. 6458 art. 31(1)(j), the citizenship file and the decision. What each stage produces, which authority issues it, what it is tested against, and where files fail.';
+
+const STAGES = [
+  {
+    id: 'investment',
+    n: 1,
+    heading: 'The qualifying investment',
+    output: 'Title deed, or the currency-purchase certificate and the blocking undertaking',
+    authority: 'Land registry, or the bank',
+    body: `The acquisition itself. For real estate, registration of the deed in the investor's name with the three-year annotation recorded against it. For the financial routes, conversion of the currency through the bank and the Central Bank under art. 20(10), followed by the blocking undertaking.
+
+    Where files fail here: the four figures. The appraised value, the value declared on the deed, the amount on the currency-purchase certificate and the sum actually transferred to the seller must each independently reach the threshold. A file where only one of them does will be refused, and the refusal will not identify which.`,
+  },
+  {
+    id: 'appraisal',
+    n: 2,
+    heading: 'The appraisal',
+    output: 'Valuation report',
+    authority: 'A firm licensed by the Capital Markets Board, instructed through the land registry system',
+    body: `For the real estate route the threshold is tested against the appraised value, not the price. The report must be obtained from an SPK-licensed firm through the land registry's own system on the directorate's instruction; a report commissioned directly by the buyer or the seller is disregarded in the value assessment, however competent the valuer.
+
+    This is the stage that the 2026 enforcement action concerned. Where a valuation was inflated to carry a purchase over the threshold, the consequence is not a corrected file but the annulment or withdrawal powers in arts. 31 and 40 of the Law, applied years later.`,
+  },
+  {
+    id: 'conformity',
+    n: 3,
+    heading: 'The certificate of conformity',
+    output: 'Certificate of conformity (uygunluk belgesi)',
+    authority: 'The ministry that certifies that route',
+    body: `The certificate is the document that converts an investment into a qualifying investment. Each route is certified by a different authority, which is why art. 20(2) is worth reading by sub-paragraph: the certifying ministry follows from the letter.
+
+    The certificate is a prerequisite for the residence permit, not a parallel step, and this is where a sequencing error becomes expensive: an application filed before the certificate exists is not early, it is incomplete.`,
+  },
+  {
+    id: 'residence',
+    n: 4,
+    heading: 'The residence permit',
+    output: 'Short-term residence permit, investor ground',
+    authority: 'Presidency of Migration Management',
+    body: `Law No. 6458 art. 31(1)(j) provides a short-term residence permit for a holder of a qualifying investment and their family, granted on the certificate of conformity.
+
+    It is a procedural gateway rather than a residence requirement: the programme imposes no obligation to live in Türkiye, no language test and no physical presence requirement beyond the appointments. The permit exists because the citizenship application is made by a lawful resident.`,
+  },
+  {
+    id: 'file',
+    n: 5,
+    heading: 'The citizenship file',
+    output: 'Application, with the civil status documents of every family member',
+    authority: 'Provincial civil registration and nationality directorate',
+    body: `The application and the family's documents, each legalised in the issuing country by apostille or consular legalisation depending on whether that state is a party to the 1961 Hague Convention, then translated by a sworn translator and notarised.
+
+    Where files fail here: documents that will not reconcile. A name spelled three ways across a passport, a birth certificate and a valuation report; a power of attorney drafted too narrowly to cover the step now needed; a birth record that does not match the passport. These are not legal problems, they are clerical ones, and they stop files for months.
+
+    Since 2024 both the main applicant and the spouse must attend in person to give fingerprints.`,
+  },
+  {
+    id: 'decision',
+    n: 6,
+    heading: 'The decision',
+    output: 'Presidential decision, then registration and the passport',
+    authority: 'The Presidency, on the Ministry of Interior\'s submission',
+    body: `A discretionary act. Meeting every condition produces an eligible file, not an entitlement, and a refusal on discretionary grounds is lawful. Security clearance drives the variation in duration and cannot be expedited by anyone.
+
+    No provision sets a deadline and no authority publishes an end-to-end figure, which is why every duration in circulation is an observation.`,
+  },
+] as const;
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Can the whole process be completed without travelling to Türkiye?',
+    answer:
+      'Not entirely. Most steps can be handled under a power of attorney, but since 2024 the main applicant and the spouse must attend in person to give fingerprints. A power of attorney drafted narrowly is a common cause of delay: it has to cover the step that turns out to be needed, which is not always foreseeable at the time it is signed.',
+  },
+  {
+    question: 'Which comes first, the residence permit or the certificate of conformity?',
+    answer:
+      'The certificate. It is the document that establishes the investment qualifies, and the residence permit under Law No. 6458 art. 31(1)(j) is granted on it. An application filed before the certificate exists is incomplete rather than early.',
+  },
+  {
+    question: 'What is the appraisal actually for?',
+    answer:
+      'It fixes the value the threshold is tested against on the real estate route. It must be obtained from a firm licensed by the Capital Markets Board through the land registry system on the directorate\'s instruction. A report commissioned privately by the buyer or seller is disregarded in the value assessment.',
+  },
+  {
+    question: 'Is there a language test, an interview or a residence requirement?',
+    answer:
+      'No language test and no residence requirement on the investment route. The in-person attendance is for biometrics, not an interview on the merits. Citizenship by marriage and general naturalisation are different routes with different requirements, including an interview.',
+  },
+  {
+    question: 'How long does the whole chain take?',
+    answer:
+      `No Turkish authority publishes an end-to-end processing time and no statute sets a deadline. The durations observed and recorded in our dataset total about ${processing.endToEnd.lowMonths} to ${processing.endToEnd.highMonths} months from the completed investment to the decision, which is an observation and marked as one.`,
+  },
+];
+
+const schema = [
+  scholarlyArticle({
+    headline: title,
+    description,
+    url: pageUrl,
+    datePublished: '2026-11-11',
+    about: [
+      'Türk Vatandaşlığı Kanununun Uygulanmasına İlişkin Yönetmelik, art. 20',
+      'Yabancılar ve Uluslararası Koruma Kanunu No. 6458, art. 31(1)(j)',
+    ],
+  }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'Procedure', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / Procedure
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        The procedural chain, stage by stage
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        Six stages, each producing a document that the next stage depends on. A file is assessed on
+        whether those documents exist and agree with one another, not on whether the investor did
+        the right things, which is why the chain is set out below by output rather than by activity.
+      </p>
+    </header>
+
+    <div class="scroll-x mt-10">
+      <table class="ref-table">
+        <thead><tr><th>Stage</th><th>Produces</th><th>Issued by</th><th>Observed</th></tr></thead>
+        <tbody>
+          {STAGES.map((s) => {
+            const st = processing.stages.find((p: any) =>
+              (s.id === 'investment' && p.id === 'investment') ||
+              (s.id === 'conformity' && p.id === 'investment') ||
+              (s.id === 'residence' && p.id === 'residence') ||
+              (s.id === 'decision' && p.id === 'filed'),
+            );
+            return (
+              <tr>
+                <td class="whitespace-nowrap">
+                  <a href={`#${s.id}`} class="underline decoration-cite-soft">{s.n}. {s.heading}</a>
+                </td>
+                <td>{s.output}</td>
+                <td>{s.authority}</td>
+                <td class="whitespace-nowrap">{st ? `${st.low} to ${st.high} weeks` : 'not recorded'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+    <p class="font-ui mt-3 text-[0.8125rem] text-ink-faint">
+      Durations are observations, not official figures.
+      {' '}<a href="/data#processing-times" class="underline decoration-cite-soft">How they are recorded</a>.
+    </p>
+
+    <div class="prose-ref mt-12">
+      {STAGES.map((s) => (
+        <>
+          <h3 id={s.id}>{s.n}. {s.heading}</h3>
+          <p class="cite">Produces: {s.output} &middot; {s.authority}</p>
+          {s.body.trim().split(/\n\s*\n/).map((para) => <p>{para.trim()}</p>)}
+        </>
+      ))}
+
+      <h2>The residence permit ground</h2>
+      <Instrument id="law-6458" article="31(1)(j)" />
+
+      <h2>Legalisation: apostille or consular</h2>
+      <p>
+        Every civil status document from outside Türkiye needs legalising before it can be
+        translated and filed, and which form it takes depends only on whether the issuing state is
+        a party to the Hague Convention of 5 October 1961. A party's documents carry an apostille
+        from the designated authority. A non-party's documents go through the longer consular
+        chain: notarised and certified locally, legalised by that state's foreign ministry, then
+        legalised by the Turkish mission there.
+      </p>
+      <p>
+        The distinction is worth getting right early, because the consular chain takes
+        substantially longer and has to be started before the rest of the file is ready.
+        <a href="/data#apostille"> The status table is published here</a> for all Contracting
+        Parties with the date the Convention entered into force for each, including the case a
+        yes-or-no answer gets wrong: a state that has acceded but for which it is not yet in force.
+      </p>
+
+      <h2>Where the money does not count</h2>
+      <p>
+        One arithmetic point that belongs in a procedural account because it causes procedural
+        failure. The qualifying amount is the investment. Transfer taxes, VAT where it is due, the
+        appraisal, translation, notarial and application fees all sit on top and count toward
+        none of the figures the threshold is tested against. A buyer who assembles {usd(400000)}
+        inclusive of VAT and fees has not met the threshold.
+      </p>
+      <p class="font-ui text-[0.8125rem]">
+        <a href="/tools/cost-calculator" class="underline decoration-cite-soft">What those costs come to</a>
+      </p>
+
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate('2026-11-11')}, {pageUrl}. CC BY 4.0.
+      </p>
+    </div>
+  </article>
+</Base>

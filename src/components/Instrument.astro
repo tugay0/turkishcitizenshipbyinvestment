@@ -1,0 +1,85 @@
+---
+/**
+ * An instrument citation, rendered from the source register.
+ *
+ * Every legal claim on this site names the instrument behind it in the same
+ * shape, pulled from the same file, so a reader can check a citation without
+ * trusting our prose and the citation cannot drift from the data. Pass an id
+ * from src/data/cbi/sources.json.
+ */
+import sources from '../data/cbi/sources.json';
+import { longDate } from '../lib/site';
+
+interface Props {
+  /** Source register id, e.g. 'cbk-5072'. */
+  id: string;
+  /** Article to foreground, e.g. '20(10)'. */
+  article?: string;
+  /** Inline renders a single line; block renders the full entry. */
+  inline?: boolean;
+}
+const { id, article, inline = false } = Astro.props;
+
+const s = (sources as any).sources.find((x: any) => x.id === id);
+if (!s) throw new Error(`Instrument not in the source register: ${id}`);
+
+const rg = s.resmiGazete ?? {};
+const title = s.titleEn ?? s.titleTrNative ?? s.titleTr ?? id;
+const kind =
+  s.kind === 'statute' ? 'Law' : s.kind === 'regulation' ? 'Regulation' : s.instrument ?? 'Instrument';
+
+/* "Law No. 7394", "Presidential Decision No. 5554", "Regulation 2010/139". */
+const label = s.number ? `${kind} No. ${s.number}`.replace('Regulation No.', 'Regulation') : title;
+const gazette = rg.date ? `Resmî Gazete ${longDate(rg.date)}${rg.issue ? `, No. ${rg.issue}` : ''}` : null;
+const art = article ? `, art. ${article}` : '';
+
+/* The register records how far we got in confirming each citation. Saying so
+   is the point: "official_reference_located" is a weaker claim than
+   "official_text_located", and a reader deserves to know which they have. */
+const VERIFICATION: Record<string, string> = {
+  official_text_located: 'Official text located and read.',
+  official_reference_located:
+    'Official reference located; the consolidated text, not the original instrument, was read.',
+};
+---
+
+{
+  inline ? (
+    <span class="cite">
+      {label}
+      {art}
+      {gazette ? ` (${gazette})` : ''}
+    </span>
+  ) : (
+    <aside class="mt-6 border-l-2 border-l-cite-soft bg-paper-deep/60 px-4 py-3">
+      <p class="ui-label text-cite">Instrument</p>
+      <p class="font-ui mt-1.5 text-sm font-semibold">
+        {label}
+        {art}
+      </p>
+      <p class="font-ui mt-0.5 text-[0.8125rem] text-ink-soft">{title}</p>
+      {gazette && <p class="font-ui mt-1 text-[0.8125rem] text-ink-faint">{gazette}</p>}
+      {s.inForce && (
+        <p class="font-ui mt-1 text-[0.8125rem] text-ink-faint">In force {longDate(s.inForce)}</p>
+      )}
+      {s.effect && <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">{s.effect}</p>}
+      <p class="font-ui mt-2 text-[0.75rem] text-ink-faint">
+        {VERIFICATION[s.verification] ?? s.verification}
+        {s.url && (
+          <>
+            {' '}
+            <a href={s.url} rel="noopener" class="underline decoration-cite-soft">Official text</a>.
+          </>
+        )}
+        {s.originalTextUrl && (
+          <>
+            {' '}
+            <a href={s.originalTextUrl} rel="noopener" class="underline decoration-cite-soft">
+              As published
+            </a>.
+          </>
+        )}
+      </p>
+    </aside>
+  )
+}

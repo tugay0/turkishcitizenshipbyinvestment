@@ -1,0 +1,335 @@
+---
+/**
+ * What a purchase costs beyond the qualifying investment.
+ *
+ * Computes from the vendored cost data rather than from figures typed into
+ * this page, so the calculator and /data cannot disagree. The VAT options
+ * carry the licence-date condition, because the 1 per cent rate survives only
+ * for units licensed before 1 April 2022 and an unqualified "1% VAT" option
+ * understates the cost of current stock tenfold.
+ */
+import Base from '../../layouts/Base.astro';
+import { SITE, absoluteUrl, longDate, usd } from '../../lib/site';
+import { breadcrumbs, faqPage, scholarlyArticle, type FaqItem } from '../../lib/schema';
+import costsCsv from '../../data/cbi/government-costs.csv?raw';
+import thresholds from '../../data/cbi/investment-thresholds.json';
+
+const PATH = '/tools/cost-calculator';
+const pageUrl = absoluteUrl(PATH);
+const title = 'What Turkish Citizenship Costs Beyond the Investment';
+const description =
+  'Itemised calculator for the costs that sit on top of a qualifying investment: title deed transfer tax, VAT where it is due, the SPK appraisal, currency conversion spread, translation, notarial and application fees, by family size. Computed from published cost data, with the instrument behind each line.';
+
+const asOf: string = (thresholds as any).asOf ?? '';
+const real = ((thresholds as any).current ?? []).find((r: any) => r.route === 'real_estate');
+const dep = ((thresholds as any).current ?? []).find((r: any) => r.route === 'bank_deposit');
+const PRICE_MIN: number = real?.minimum ?? 400000;
+const DEPOSIT: number = dep?.minimum ?? 500000;
+
+/* Parse the vendored CSV into the rows the calculator uses. */
+function parseCsv(text: string) {
+  const rows: string[][] = [];
+  let row: string[] = [], field = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') q = false;
+      else field += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  const head = rows.shift() ?? [];
+  return rows
+    .filter((r) => r.length === head.length && r.some((x) => x !== ''))
+    .map((r) => Object.fromEntries(head.map((h, i) => [h, r[i]])) as Record<string, string>);
+}
+
+const num = (v: string) => (v === '' || v == null ? null : Number(v));
+const COSTS = parseCsv(costsCsv).map((c) => ({
+  item: c.item,
+  route: c.route,
+  basis: c.basis,
+  lo: num(c.amount_usd_low),
+  hi: num(c.amount_usd_high),
+  pct: num(c.percent_of_value),
+  pctHi: num(c.percent_of_value_high),
+  notes: c.notes ?? '',
+}));
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Do these costs count toward the USD 400,000 threshold?',
+    answer:
+      'No. The qualifying amount is the investment alone. VAT, the title deed fee, the appraisal and every other transaction cost sit on top and count toward none of the four figures the threshold is tested against. Assembling USD 400,000 inclusive of fees does not meet the threshold.',
+  },
+  {
+    question: 'What is the VAT rate on a new build?',
+    answer:
+      'It depends on the building licence date and the net area. Since 1 April 2022 it is 10 per cent up to 150 square metres net and 20 per cent on the area above that and on commercial units. The 1 per cent rate survives only for units whose licence predates that date, so a 1 per cent figure in an estimate is a question about the licence rather than a mistake.',
+  },
+  {
+    question: 'When does the foreign-buyer VAT exemption apply?',
+    answer:
+      'On the first delivery of a new residence or workplace to a buyer not resident in Türkiye who brings the price into the country in foreign currency, under VAT Law No. 3065 art. 13(1)(i). It carries a three-year no-disposal condition since Law No. 7394, in force 1 May 2022. Disposing of the unit inside the period brings the exempted VAT back with interest.',
+  },
+  {
+    question: 'Who pays the title deed transfer tax?',
+    answer:
+      'Legally 2 per cent each from buyer and seller, 4 per cent in total, on the declared transfer value. In practice the buyer frequently pays all 4 per cent, which is why the calculator offers both. The declared value may not be below the municipal property tax value, and understating it is a tax offence.',
+  },
+  {
+    question: 'Are attorney fees included?',
+    answer:
+      'No. This calculates costs payable to the state and to third parties such as valuers, translators and notaries. Professional fees are a matter between a client and the firm they instruct, and this site does not publish or estimate them.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({ headline: title, description, url: pageUrl, datePublished: '2026-11-11' }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'Tools', url: absoluteUrl('/tools') },
+    { name: 'Cost calculator', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / <a href="/tools" class="hover:text-cite">Tools</a> / Cost calculator
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        What it costs beyond the investment
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        The qualifying amount is not the cost. Transfer tax, VAT where it is due, the appraisal,
+        the conversion spread and the per-person fees sit on top, and none of it counts toward the
+        threshold. These are the published figures, computed from
+        {' '}<a href="/data#costs" class="underline decoration-cite-soft">the cost data</a>, with
+        the instrument behind each line.
+      </p>
+    </header>
+
+    <div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr]">
+      <form id="calc" class="h-fit space-y-5 border rule border-l-2 border-l-cite-soft bg-paper-deep/50 p-6">
+        <div>
+          <label class="ui-label text-ink-faint" for="route">Route</label>
+          <select id="route" class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm">
+            <option value="property">Real estate, {usd(PRICE_MIN)} minimum</option>
+            <option value="deposit">Bank deposit, {usd(DEPOSIT)}</option>
+          </select>
+          <p class="font-ui mt-2 text-[0.75rem] leading-relaxed text-ink-faint">
+            These two routes only. The bond, fund, fixed capital and employment routes carry
+            different costs and are set out in
+            {' '}<a href="/law/regulation-article-20" class="underline decoration-cite-soft">art. 20</a>.
+          </p>
+        </div>
+
+        <div data-show="property">
+          <label class="ui-label text-ink-faint" for="price">Appraised value (USD)</label>
+          <input id="price" type="number" min={PRICE_MIN} step="10000" value={PRICE_MIN}
+            class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm" />
+          <p class="font-ui mt-2 text-[0.75rem] leading-relaxed text-ink-faint">
+            The appraisal, not the contract price. The threshold is tested against the SPK-licensed
+            valuation.
+          </p>
+        </div>
+
+        <div data-show="property">
+          <label class="ui-label text-ink-faint" for="vat">VAT position</label>
+          <select id="vat" class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm">
+            <option value="exempt">Exempt: non-resident, first delivery, paid in FX</option>
+            <option value="resale">Resale between individuals, outside VAT</option>
+            <option value="10">New build, 10% (up to 150 m² net)</option>
+            <option value="20">New build, 20% (above 150 m² net, or commercial)</option>
+            <option value="1">New build, licence before 1 April 2022, 1%</option>
+          </select>
+          <p class="font-ui mt-2 text-[0.75rem] leading-relaxed text-ink-faint">
+            The exemption carries a three-year no-disposal condition.
+            {' '}<a href="/law/vat-exemption" class="underline decoration-cite-soft">Why three and not one</a>.
+          </p>
+        </div>
+
+        <div data-show="property">
+          <label class="ui-label text-ink-faint" for="deed">Title deed tax (4%) borne by</label>
+          <select id="deed" class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm">
+            <option value="half">Split 2% and 2%, the legal default</option>
+            <option value="full" selected>Buyer pays all 4%, common in practice</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="ui-label text-ink-faint" for="spouse">Spouse</label>
+            <select id="spouse" class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm">
+              <option value="1">Included</option>
+              <option value="0">Not included</option>
+            </select>
+          </div>
+          <div>
+            <label class="ui-label text-ink-faint" for="kids">Children under 18</label>
+            <input id="kids" type="number" min="0" max="8" value="2"
+              class="font-ui mt-2 w-full border rule bg-paper px-3 py-2 text-sm" />
+          </div>
+        </div>
+      </form>
+
+      <div>
+        <div class="scroll-x">
+          <table class="ref-table">
+            <thead><tr><th>Item</th><th class="text-right">Amount</th></tr></thead>
+            <tbody id="rows"></tbody>
+            <tfoot>
+              <tr>
+                <td class="border-t border-t-ink pt-3 font-semibold">Costs beyond the investment</td>
+                <td id="total" class="border-t border-t-ink pt-3 text-right font-semibold"></td>
+              </tr>
+              <tr>
+                <td class="text-ink-faint">Investment plus costs</td>
+                <td id="grand" class="text-right text-ink-faint"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div id="bounds" class="font-ui mt-4 text-[0.8125rem] leading-relaxed text-flag" hidden></div>
+        <p class="font-ui mt-4 max-w-xl text-[0.8125rem] leading-relaxed text-ink-faint">
+          Ranges observed as of {longDate(asOf)}, computed from
+          {' '}<a href="/data#costs" class="underline decoration-cite-soft">the published cost data</a>.
+          Not a quote and not advice. Attorney fees are excluded: this site does not publish
+          professional fees. Conversion spread assumes a bank-to-bank transfer with a
+          currency-purchase certificate.
+        </p>
+      </div>
+    </div>
+
+    <div class="prose-ref mt-14">
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/law/vat-exemption">The VAT exemption and its three-year condition</a></li>
+        <li><a href="/law/regulation-article-20#art-20-2-b">The real estate route under art. 20(2)(b)</a></li>
+        <li><a href="/data#costs">The cost data, with every source</a></li>
+      </ul>
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Cite as: {SITE.publisher}, "{title}", {longDate(asOf)}, {pageUrl}. CC BY 4.0.
+      </p>
+    </div>
+  </article>
+
+  <script define:vars={{ COSTS, PRICE_MIN, DEPOSIT }}>
+    /* Plain JavaScript: define:vars makes this script inline, so Astro does
+       not compile it and TypeScript syntax would ship broken. */
+    const $ = (id) => document.getElementById(id);
+    const fmt = (n) => 'USD ' + Math.round(n).toLocaleString('en-US');
+    const range = (lo, hi) => (Math.round(lo) === Math.round(hi) ? fmt(lo) : fmt(lo) + ' to ' + fmt(hi));
+
+    const KIDS_MAX = 8;
+
+    function calc() {
+      const notes = [];
+      const route = $('route').value;
+
+      const rawPrice = Number($('price').value);
+      let price = Number.isFinite(rawPrice) && rawPrice > 0 ? rawPrice : PRICE_MIN;
+      if (route === 'property' && price < PRICE_MIN) {
+        notes.push(
+          'The real estate route requires an appraised value of at least ' + fmt(PRICE_MIN) +
+          ', so the figures below are calculated at that value. A lower appraisal does not qualify, whatever the contract says.',
+        );
+        price = PRICE_MIN;
+      }
+
+      const rawKids = Number($('kids').value);
+      const kids = Math.min(KIDS_MAX, Math.max(0, Number.isFinite(rawKids) ? Math.floor(rawKids) : 0));
+      if (Number.isFinite(rawKids) && Math.floor(rawKids) !== kids) {
+        notes.push('Calculated for ' + kids + ' children: this tool covers 0 to ' + KIDS_MAX + '.');
+      }
+      const persons = 1 + Number($('spouse').value) + kids;
+
+      document.querySelectorAll('[data-show="property"]').forEach((el) => {
+        el.hidden = route !== 'property';
+      });
+
+      const value = route === 'property' ? price : DEPOSIT;
+      const rows = [];
+
+      /* Every line is computed from the published cost rows, matched by route. */
+      for (const c of COSTS) {
+        if (c.route !== 'all' && c.route !== route && !(route === 'property' && c.route === 'real_estate')) continue;
+        if (route === 'deposit' && c.route === 'real_estate') continue;
+
+        if (c.item === 'Title deed transfer tax') {
+          const rate = $('deed').value === 'full' ? 4 : 2;
+          const amt = (value * rate) / 100;
+          rows.push([c.item + ' (' + rate + '% of declared value)', amt, amt, c.notes]);
+          continue;
+        }
+        if (c.item === 'VAT (new build)') {
+          const v = $('vat').value;
+          if (v === 'exempt') {
+            rows.push(['VAT: foreign-buyer exemption, art. 13(1)(i)', 0, 0,
+              'Requires FX payment and a three-year no-disposal condition']);
+          } else if (v === 'resale') {
+            rows.push(['VAT: none, resale between individuals', 0, 0, 'Outside the scope of VAT']);
+          } else {
+            const amt = (value * Number(v)) / 100;
+            const note = v === '1' ? 'Only for units licensed before 1 April 2022' : c.notes;
+            rows.push(['VAT at ' + v + '%', amt, amt, note]);
+          }
+          continue;
+        }
+        if (c.item === 'VAT exemption (foreign buyer)') continue;
+
+        if (c.pct != null) {
+          const hi = c.pctHi != null ? c.pctHi : c.pct;
+          rows.push([
+            c.item + ' (' + c.pct + (hi !== c.pct ? ' to ' + hi : '') + '% of value)',
+            (value * c.pct) / 100,
+            (value * hi) / 100,
+            c.notes,
+          ]);
+          continue;
+        }
+
+        const mult = c.basis === 'per_person' ? persons : 1;
+        const label = c.basis === 'per_person' ? c.item + ' (' + persons + ' persons)' : c.item;
+        rows.push([label, (c.lo ?? 0) * mult, (c.hi ?? c.lo ?? 0) * mult, c.notes]);
+      }
+
+      $('rows').innerHTML = rows
+        .map(
+          ([label, lo, hi, note]) =>
+            '<tr><td>' + label +
+            (note ? '<span class="block text-[0.75rem] text-ink-faint">' + note + '</span>' : '') +
+            '</td><td class="text-right whitespace-nowrap">' + range(lo, hi) + '</td></tr>',
+        )
+        .join('');
+
+      const lo = rows.reduce((s, r) => s + r[1], 0);
+      const hi = rows.reduce((s, r) => s + r[2], 0);
+      $('total').textContent = range(lo, hi);
+      $('grand').textContent = range(value + lo, value + hi);
+
+      const b = $('bounds');
+      b.innerHTML = notes.map((n) => '<p class="mt-2">' + n + '</p>').join('');
+      b.hidden = notes.length === 0;
+    }
+
+    $('calc').addEventListener('input', calc);
+    calc();
+  </script>
+</Base>

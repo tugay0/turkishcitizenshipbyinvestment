@@ -1,0 +1,173 @@
+---
+/**
+ * The practitioner register, before it has entries.
+ *
+ * Published empty on purpose. The research is unambiguous that a directory
+ * launched thin is the exact shape Google's scaled-content enforcement
+ * targets, and that a schema retrofitted across a hundred listings never
+ * happens. So the schema is published first, as a commitment, and firms are
+ * added only when every field is filled.
+ *
+ * This page also does the work of saying what cannot be bought, which is the
+ * claim the whole register rests on.
+ */
+import Base from '../layouts/Base.astro';
+import { SITE, absoluteUrl, longDate } from '../lib/site';
+import { breadcrumbs, scholarlyArticle, faqPage, type FaqItem } from '../lib/schema';
+
+const PATH = '/directory';
+const pageUrl = absoluteUrl(PATH);
+const title = 'The Practitioner Register: Criteria and Verification';
+const description =
+  'A register of firms practising Turkish citizenship by investment, recording bar registration and how it was verified, routes handled, fee structure, engagement-letter languages and whether the firm takes commission from developers. Entry is free and cannot be purchased.';
+
+const FIELDS = [
+  ['Bar of registration', 'Which bar, and the date of registration. The single fact that distinguishes a lawyer from an agency presenting itself as one.'],
+  ['Verification', 'How the registration was checked, against what, and on what date. A claim we have not verified is not published.'],
+  ['Routes handled', 'Which sub-paragraphs of art. 20(2) the firm works on. A firm that handles only real estate is not worse than one that handles all seven; it is different, and the reader should know which.'],
+  ['Engagement letter languages', 'The languages the engagement letter itself is available in. Distinct from languages spoken, and far more useful: a client who cannot read the contract they signed has a problem that an interpreter at the meeting did not solve.'],
+  ['Fee structure', 'Fixed, hourly or staged, and whether fees are agreed in writing before work starts. Not amounts: this site does not publish professional fees.'],
+  ['Developer commission', 'Whether the firm receives commission from a developer, agency or seller. The most useful disclosure in this market and the one least often volunteered, because it determines whether the advice on which property to buy is advice or a sale.'],
+  ['In-person requirement', 'Whether the firm requires an appointment in Türkiye, and at which stage.'],
+  ['Who holds the file', 'The person at the firm who is actually responsible, as distinct from the person who answers the first message.'],
+  ['Regulatory history', 'Where it is a matter of public record.'],
+] as const;
+
+const faqs: FaqItem[] = [
+  {
+    question: 'How does a firm get into the register?',
+    answer:
+      'By being verified against the published criteria. There is no application fee, no subscription and no paid tier, because there is nothing here to buy. A firm with any field unfilled does not appear: an incomplete entry reads as a judgement about the firm rather than a gap in our research.',
+  },
+  {
+    question: 'Can a firm pay to be listed or ranked higher?',
+    answer:
+      'No, and the reason is worth stating plainly. Under Avukatlık Kanunu art. 55 and the Turkish Bar Association advertising regulation, a Turkish lawyer who pays for prominence commits a disciplinary offence, and the regulation puts a positive duty on the lawyer to prevent third parties advertising on their behalf. A register that sold placement would be selling its listed firms a problem rather than a service.',
+  },
+  {
+    question: 'Why is the register empty?',
+    answer:
+      'Because the schema is published before the entries rather than after. A directory launched with thin listings is the shape search engines now actively demote, and a schema retrofitted across a hundred existing entries does not get retrofitted. Forty complete entries are worth more than four hundred thin ones, so the criteria go up first and firms are added as each is verified.',
+  },
+  {
+    question: 'Will the register rank or score firms?',
+    answer:
+      'No scores and no stars, and no AggregateRating markup on a Turkish firm. The register publishes typed facts and lets a reader compare them. "Fees agreed in writing before work starts: yes" and "takes developer commission: no" tell a reader about to transfer four hundred thousand dollars more than any average of stars.',
+  },
+  {
+    question: 'Is Ra Legal in the register, and who funds this site?',
+    answer:
+      'The site is funded by the operator of Ra Legal, an Istanbul firm that practises in this area and which will appear in the register on the same terms as every other firm: paying nothing, with no preferential placement, verified by the same method. That is a conflict of interest and it is set out in full on the method page rather than in a footnote.',
+  },
+];
+
+const schema = [
+  scholarlyArticle({ headline: title, description, url: pageUrl, datePublished: '2026-11-11' }),
+  faqPage(faqs, pageUrl),
+  breadcrumbs([
+    { name: 'Home', url: absoluteUrl('/') },
+    { name: 'Practitioners', url: pageUrl },
+  ]),
+];
+---
+
+<Base title={title} description={description} path={PATH} schema={schema}>
+  <article class="mx-auto max-w-6xl px-(--spacing-gutter) py-14">
+    <nav class="ui-label text-ink-faint" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-cite">Home</a> / Practitioners
+    </nav>
+
+    <header class="mt-5 max-w-3xl">
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+        The practitioner register
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        A register of firms doing this work, describing each by the same typed facts. Entry is
+        free, unpaid and not purchasable, and there is no tier above it. The criteria are published
+        here before the entries, so that a firm can see exactly what it will be recorded as and a
+        reader can see exactly what has been checked.
+      </p>
+      <p class="font-ui mt-5 text-[0.8125rem] text-cite">{SITE.independence}</p>
+    </header>
+
+    <div class="prose-ref mt-12">
+      <h2>What an entry records</h2>
+      <p>
+        Nine fields. A firm with any of them unfilled does not appear, because a half-filled entry
+        reads as a verdict on the firm rather than a gap in our work.
+      </p>
+      <div class="scroll-x">
+        <table class="ref-table">
+          <thead><tr><th>Field</th><th>Why it is recorded</th></tr></thead>
+          <tbody>
+            {FIELDS.map(([name, why]) => (
+              <tr>
+                <td class="font-semibold">{name}</td>
+                <td>{why}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>What an entry will never record</h2>
+      <ul>
+        <li>
+          <strong>A success rate or approval rate.</strong> Nobody publishes auditable figures, and
+          a Turkish lawyer may not advertise them.
+        </li>
+        <li>
+          <strong>A star rating, or a score of any kind, on a Turkish firm.</strong> No
+          <code>AggregateRating</code> markup either: that is the structured data that turns a
+          review into an advertisement, and the advertisement would be the firm's, not ours.
+        </li>
+        <li>
+          <strong>Fee amounts.</strong> What a firm charges is between it and its client.
+        </li>
+        <li>
+          <strong>Testimonials, client names or client counts.</strong>
+        </li>
+        <li><strong>Anything paid for.</strong></li>
+      </ul>
+
+      <h2>Client feedback, when it is collected</h2>
+      <p>
+        Where feedback is collected, this site collects it. A listed firm is never asked to solicit
+        it, is not told who responded and is not invited to help, because a firm arranging its own
+        third-party promotion engages the duty the bar regulation places on it.
+      </p>
+      <p>
+        Feedback is published as answers to factual questions rather than as a score: whether the
+        fee was agreed in writing before work started, whether the engagement letter was in a
+        language the client reads, whether the timeline matched what they were told, and who
+        actually handled the file. A firm always has a right of reply, published unedited beside
+        the feedback.
+      </p>
+
+      <h2>Status</h2>
+      <p>
+        The register has no entries yet. Verification is under way and firms will be added as each
+        completes, in no particular order and with no concept of placement.
+      </p>
+      <p>
+        If you practise in this area and want to be recorded, or you are already listed somewhere
+        and want to check what we hold,
+        <a href={`mailto:${SITE.email}`}> write to the editor</a>. There is nothing to pay, and
+        nothing you can pay for.
+      </p>
+
+      <h2>Questions</h2>
+      {faqs.map((f) => (
+        <>
+          <h4>{f.question}</h4>
+          <p>{f.answer}</p>
+        </>
+      ))}
+
+      <p class="font-ui text-[0.8125rem] text-ink-faint">
+        Criteria published {longDate('2026-11-11')}. Changes to them are dated. Full editorial
+        method, funding and conflicts: <a href="/method">the method page</a>.
+      </p>
+    </div>
+  </article>
+</Base>

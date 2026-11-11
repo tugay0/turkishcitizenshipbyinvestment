@@ -1,0 +1,215 @@
+@import 'tailwindcss';
+
+/*
+ * A reference work, so the page is set like one: a serif for running text at a
+ * size meant for sustained reading, a measure that stays near 70 characters,
+ * and marginal notes rather than call-out boxes. Deliberately unlike
+ * ralegal.com.tr, which is a firm's site and reads like one. A reader who
+ * knows both should not mistake this for marketing.
+ */
+
+@theme {
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Charter, Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Paper and ink. Warm, low-contrast, closer to a printed page than a screen. */
+  --color-paper: #fbfaf7;
+  --color-paper-deep: #f3f1ea;
+  --color-ink: #1c1b18;
+  --color-ink-soft: #3c3a35;
+  --color-ink-faint: #6e6a61;
+  --color-line: #ddd8cc;
+  /* One accent, used for citations and instrument references only. */
+  --color-cite: #7a4a1e;
+  --color-cite-soft: #b08a5e;
+  --color-flag: #8a2f22;
+
+  --spacing-gutter: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  @theme {
+    --spacing-gutter: 2rem;
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* An anchored heading should not land flush against the viewport edge. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Rules are hairlines. */
+.rule {
+  border-color: var(--color-line);
+}
+
+.ui-label {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/*
+ * Running text. Sized and spaced for a reader working through an argument,
+ * not scanning a landing page.
+ */
+.prose-ref {
+  max-width: 38rem;
+}
+.prose-ref > * + * {
+  margin-top: 1.1em;
+}
+.prose-ref h2 {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  margin-top: 2.75em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--color-line);
+}
+.prose-ref h3 {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  margin-top: 2em;
+  line-height: 1.35;
+}
+.prose-ref h4 {
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-top: 1.6em;
+}
+.prose-ref a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-cite-soft);
+  text-underline-offset: 0.18em;
+}
+.prose-ref a:hover {
+  color: var(--color-cite);
+}
+.prose-ref ul,
+.prose-ref ol {
+  padding-left: 1.4em;
+}
+.prose-ref ul {
+  list-style: disc;
+}
+.prose-ref ol {
+  list-style: decimal;
+}
+.prose-ref li + li {
+  margin-top: 0.4em;
+}
+.prose-ref code {
+  font-size: 0.875em;
+  background: var(--color-paper-deep);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+.prose-ref blockquote {
+  border-left: 2px solid var(--color-cite-soft);
+  padding-left: 1.1em;
+  color: var(--color-ink-soft);
+  font-style: italic;
+}
+
+/* Tables are data, so they get the UI face and room to breathe. */
+.prose-ref table,
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  margin-top: 1.4em;
+}
+.prose-ref table th,
+.ref-table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  border-bottom: 1px solid var(--color-ink);
+  padding: 0 0.7rem 0.5rem 0;
+  vertical-align: bottom;
+}
+.prose-ref table td,
+.ref-table td {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.6rem 0.7rem 0.6rem 0;
+  vertical-align: top;
+}
+.prose-ref table th:last-child,
+.prose-ref table td:last-child,
+.ref-table th:last-child,
+.ref-table td:last-child {
+  padding-right: 0;
+}
+
+/* A table wider than the measure scrolls on its own, never the page. */
+.scroll-x {
+  overflow-x: auto;
+}
+
+/*
+ * A marginal note. On a wide screen it sits in the margin beside the text it
+ * annotates, which is how a reference work handles an aside; narrow, it
+ * becomes an indented note in the flow.
+ */
+.marginal {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-ink-faint);
+  border-left: 2px solid var(--color-line);
+  padding-left: 0.9rem;
+  margin-top: 1.1em;
+}
+@media (min-width: 80rem) {
+  .marginal {
+    float: right;
+    clear: right;
+    width: 14rem;
+    margin-right: -16rem;
+    margin-top: 0.3em;
+    border-left: none;
+    padding-left: 0;
+    text-align: left;
+  }
+}
+
+/* An instrument citation: statute, regulation, decision, circular. */
+.cite {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--color-cite);
+}
+
+/* Something we do not know, marked as such rather than quietly omitted. */
+.unknown {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--color-flag);
+}

@@ -1,0 +1,12 @@
+item,route,basis,amount_usd_low,amount_usd_high,percent_of_value,percent_of_value_high,notes
+Title deed transfer tax,real_estate,percent,,,4.0,,Legally 2% buyer + 2% seller; buyers often pay all 4% in practice
+VAT (new build),real_estate,percent,,,1.0,,"1%, 10% or 20% depending on classification"
+VAT exemption (foreign buyer),real_estate,fixed,0,0,,,"First delivery of a new residence or workplace to a non-resident buyer paid in FX, VAT Law No. 3065 Art. 13(1)(i), three-year no-disposal condition"
+SPK-licensed appraisal report,real_estate,fixed,400,700,,,Mandatory for citizenship files
+Currency conversion spread,all,percent,,,0.3,1.0,0.3% to 1.0% typical bank spread on the inbound transfer
+DASK insurance and utility registrations,real_estate,fixed,150,400,,,
+Power of attorney (notary or consulate),all,fixed,150,450,,,
+Sworn translation and notarisation,all,per_person,120,250,,,Per person in the family file
+Residence permit and citizenship application fees,all,per_person,100,220,,,Per person in the family file
+Biometric photos and courier,all,fixed,100,300,,,
+Bank account opening and blocked-deposit setup,bank_deposit,fixed,0,500,,,Varies by bank; some waive it for a deposit of this size

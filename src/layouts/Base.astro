@@ -1,0 +1,123 @@
+---
+/**
+ * The only layout.
+ *
+ * Carries the canonical, the JSON-LD graph and the chrome. No analytics
+ * script: there is nothing to convert on this site, so measuring a reader is
+ * all cost and no benefit, and a reference work that tracks you is a worse
+ * reference work. Crawler behaviour is read from the host's logs instead.
+ */
+import '@fontsource-variable/source-serif-4';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { SITE, absoluteUrl } from '../lib/site';
+import { graph } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path without a trailing slash, e.g. /law/article-20. */
+  path: string;
+  /** JSON-LD nodes; the publisher and site nodes are added automatically. */
+  schema?: object[];
+  /** Suppress the brand suffix where the title is itself a citable name. */
+  rawTitle?: boolean;
+}
+const { title, description, path, schema = [], rawTitle = false } = Astro.props;
+
+const canonical = absoluteUrl(path);
+const fullTitle = rawTitle ? title : `${title} | ${SITE.shortName}`;
+
+const NAV = [
+  ['/law', 'The law'],
+  ['/procedure', 'Procedure'],
+  ['/data', 'Data'],
+  ['/tools', 'Tools'],
+  ['/directory', 'Practitioners'],
+  ['/method', 'Method'],
+] as const;
+
+const year = new Date().getUTCFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="license" href={SITE.license.url} />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph(schema))} />
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="font-ui sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-paper focus:px-4 focus:py-2"
+      >Skip to content</a
+    >
+
+    <header class="border-b rule">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-baseline justify-between gap-x-8 gap-y-3 px-(--spacing-gutter) py-5">
+        <a href="/" class="font-ui text-sm font-semibold tracking-tight hover:text-cite">
+          Turkish Citizenship by Investment
+          <span class="block text-[0.6875rem] font-normal uppercase tracking-[0.09em] text-ink-faint">
+            An annotated reference
+          </span>
+        </a>
+        <nav aria-label="Sections">
+          <ul class="font-ui flex flex-wrap gap-x-5 gap-y-2 text-[0.8125rem]">
+            {NAV.map(([href, label]) => (
+              <li>
+                <a
+                  href={href}
+                  aria-current={path === href || path.startsWith(`${href}/`) ? 'page' : undefined}
+                  class="hover:text-cite aria-[current=page]:font-semibold aria-[current=page]:text-cite"
+                  >{label}</a
+                >
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="mt-20 border-t rule">
+      <div class="mx-auto max-w-6xl px-(--spacing-gutter) py-10">
+        <p class="font-ui max-w-2xl text-[0.8125rem] leading-relaxed text-ink-faint">
+          {SITE.independence}
+        </p>
+        <p class="font-ui mt-4 max-w-2xl text-[0.8125rem] leading-relaxed text-ink-faint">
+          This is a work of reference on Turkish law, not legal advice, and reading it creates no
+          lawyer-client relationship with anyone. Whether a particular investment, property or
+          family qualifies is a question about documents, which no reference work can read. The
+          grant of citizenship is a discretionary act of the Turkish state.
+        </p>
+        <p class="font-ui mt-6 text-[0.8125rem] text-ink-faint">
+          Text and data licensed
+          <a href={SITE.license.url} rel="license noopener" class="underline decoration-cite-soft">CC BY 4.0</a>.
+          Reuse it, including commercially, with attribution.
+          {' '}&middot; {year} &middot;
+          <a href={`mailto:${SITE.email}`} class="underline decoration-cite-soft">Corrections</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
